@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
 import {login} from '../actions/auth'
@@ -8,14 +8,13 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const {token} = useSelector(state => state.auth)
-
-
     const submitLogin = (event) => {
         event.stopPropagation()
         event.preventDefault()
 
         dispatch(login(email, password))
+
+
     }
 
     const setField = (event) => {
@@ -26,11 +25,9 @@ const Login = () => {
             setPassword(event.target.value)
         }
     }
-
     if (token) {
-      return <Redirect to='/users'></Redirect>
+      return <Redirect to="/users"></Redirect>
     }
-
     return (
         <div className="container is-widescreen">
             <div className="control">
@@ -40,13 +37,13 @@ const Login = () => {
                 <div className="field">
                 <label className="label">Email address</label>
                     <div className="control">
-                        <input className="input is-info" type="email" required autoComplete="email" name="email" value={email} onChange={setField}/>
+                        <input className="input is-info" type="email" autoComplete="email" name="email" value={email} onChange={setField}/>
                     </div>
                 </div>
                 <div className="field">
                 <label className="label">Password</label>
                     <div className="control">
-                        <input className="input is-info" type="password" required autoComplete="current-password" name="password" value={password} onChange={setField}/>
+                        <input className="input is-info" type="password" autoComplete="current-password" name="password" value={password} onChange={setField}/>
                     </div>
                 </div>
                 <div className="field is-grouped">

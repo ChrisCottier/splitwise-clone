@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 import {signUp} from '../actions/auth'
 
 const SignUp =() => {
+  const {token} = useSelector(state => state.auth)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,6 +13,7 @@ const SignUp =() => {
   const submitSignUp = (event) => {
     event.stopPropagation()
     event.preventDefault()
+    console.log('args1', name, email, password)
     dispatch(signUp(name, email, password))
 
 
@@ -27,6 +30,9 @@ const SignUp =() => {
     }
   }
 
+  if (token) {
+    return <Redirect to="/users"></Redirect>
+  }
 return (
   <div className="container is-widescreen">
     <div className="control">
@@ -36,19 +42,24 @@ return (
         <div className="field">
         <label className="label">Hi there! My name is</label>
             <div className="control">
-                <input className="input is-info" type="text" name="name" required value={name} onChange={setField}/>
+                <input className="input is-info" type="text" name="name" value={name} onChange={setField}/>
             </div>
         </div>
         <div className="field">
         <label className="label">Here's my email address:</label>
             <div className="control">
-                <input className="input is-info" type="email" autoComplete="email" name="email" value={email} required onChange={setField}/>
+                <input className="input is-info" type="email" autoComplete="email" name="email" value={email} onChange={setField}/>
             </div>
         </div>
         <div className="field">
         <label className="label">And here's my password:</label>
             <div className="control">
-                <input className="input is-info" type="password" autoComplete="new-password" required name="password" value={password} onChange={setField}/>
+                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
+                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
+                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
+                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
+                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
+                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
             </div>
         </div>
         <div className="field is-grouped">
