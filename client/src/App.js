@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
+import 'bulma/css/bulma.css'
 import UserList from './components/UsersList';
+import AddFriend from './components/AddFriend';
 
 
 function App() {
@@ -15,13 +17,9 @@ function App() {
             </ul>
         </nav>
         <Switch>
-            <Route path="/users">
-                <UserList />
-            </Route>
-
-            <Route path="/">
-                <h1>My Home Page</h1>
-            </Route>
+            <Route path="/dashboard" component={AddFriend} />
+            <Route path="/users"> <UserList /></Route>
+            <Route path="/"><h1>My Home Page</h1></Route>
         </Switch>
     </BrowserRouter>
   );
