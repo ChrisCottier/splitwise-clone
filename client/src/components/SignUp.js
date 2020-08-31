@@ -55,11 +55,6 @@ return (
         <label className="label">And here's my password:</label>
             <div className="control">
                 <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
-                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
-                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
-                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
-                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
-                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
             </div>
         </div>
         <div className="field is-grouped">
