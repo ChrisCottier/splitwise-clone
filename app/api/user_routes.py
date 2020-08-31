@@ -17,20 +17,37 @@ def sign_up():
   print(data)
   # Create a hashed password
   password=data['password'].encode()
-  hashed_password=bcrypt(password, bcrypt.gensalt())
+  hashed_password=bcrypt.hashpw(password, bcrypt.gensalt())
 
   # Generate and add new user to db
-  new_user=User(firstName=data['firstName'],
-  lastName=data['lastName'],
+  new_user=User(first_name=data['first_name'],
+  last_name=data['last_name'],
   email=data['email'],
-  password=hashed_password)
+  hashed_password=hashed_password)
   db.session()
-  db.add(new_user)
-  db.commit()
+  db.session.add(new_user)
+  db.session.commit()
 
   # get user and create jwt to return
-  user=User.query.filter(User.email == data['email']).first()
-  jwt=create_jwt(user)
+  user=User.query.filter(User.email == data['email']).first().to_dict()
+  print(user)
 
-  return jsonify(jwt)
+  jwt=create_jwt(user)
+  print(jwt)
+
+  return jsonify(str(jwt))
+
+@user_routes.route('/login', methods=['post'])
+def login():
+  data=request.json
+  user=dict(User.query.filter(User.email == data['email']))
+  print(user)
+  return jsonify(user)
+
+
+
+
+
+
+
 
