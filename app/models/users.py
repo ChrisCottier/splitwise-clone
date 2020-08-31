@@ -7,8 +7,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), unique=True, nullable=False)
     hashed_password = db.Column(db.String, nullable=False)
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     profile_img = db.Column(db.Integer, db.ForeignKey('images.id'))
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
@@ -19,8 +18,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
+            "name": self.name,
             "profile_img": self.profile_img,
             "created_at": self.created_at,
             "update_at": self.update_at,
