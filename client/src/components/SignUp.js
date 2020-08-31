@@ -11,7 +11,6 @@ const SignUp =() => {
   const submitSignUp = (event) => {
     event.stopPropagation()
     event.preventDefault()
-    console.log('args1', name, email, password)
     dispatch(signUp(name, email, password))
 
 
@@ -37,19 +36,19 @@ return (
         <div className="field">
         <label className="label">Hi there! My name is</label>
             <div className="control">
-                <input className="input is-info" type="text" name="name" value={name} onChange={setField}/>
+                <input className="input is-info" type="text" name="name" required value={name} onChange={setField}/>
             </div>
         </div>
         <div className="field">
         <label className="label">Here's my email address:</label>
             <div className="control">
-                <input className="input is-info" type="email" autoComplete="email" name="email" value={email} onChange={setField}/>
+                <input className="input is-info" type="email" autoComplete="email" name="email" value={email} required onChange={setField}/>
             </div>
         </div>
         <div className="field">
         <label className="label">And here's my password:</label>
             <div className="control">
-                <input className="input is-info" type="password" autoComplete="new-password" name="password" value={password} onChange={setField}/>
+                <input className="input is-info" type="password" autoComplete="new-password" required name="password" value={password} onChange={setField}/>
             </div>
         </div>
         <div className="field is-grouped">

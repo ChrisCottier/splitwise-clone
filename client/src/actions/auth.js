@@ -4,7 +4,6 @@ export const SIGN_IN="SIGNED_IN"
 
 export const signUp = (name, email, password) =>
 async (dispatch) => {
-  console.log('args2', name, email, password)
   const res = await fetch(`${apiUrl}/users`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
@@ -14,8 +13,6 @@ async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     data.token = data.token.slice(2, data.token.length-1)
-    console.log(data)
-    console.log(typeof data)
     document.cookie = `${ACCESS_TOKEN}=${data.token}`;
     dispatch({type: SIGN_IN, token: data.token, user: data.user})
   }
@@ -32,8 +29,6 @@ async (dispatch) => {
     if (res.ok) {
         const data = await res.json()
         data.token = data.token.slice(2, data.token.length-1)
-        console.log(data)
-        console.log(typeof data)
         document.cookie = `${ACCESS_TOKEN}=${data.token}`;
         dispatch({type: SIGN_IN, token: data.token, user: data.user})
       }
