@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
+import {login} from '../actions/auth'
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -9,6 +11,7 @@ const Login = () => {
         event.stopPropagation()
         event.preventDefault()
 
+        dispatch(login(email, password))
 
 
     }
@@ -31,13 +34,13 @@ const Login = () => {
                 <div className="field">
                 <label className="label">Email address</label>
                     <div className="control">
-                        <input className="input is-info" type="email" name="email"/>
+                        <input className="input is-info" type="email" autoComplete="email" name="email" value={email} onChange={setField}/>
                     </div>
                 </div>
                 <div className="field">
                 <label className="label">Password</label>
                     <div className="control">
-                        <input className="input is-info" type="password" name="password"/>
+                        <input className="input is-info" type="password" autoComplete="current-password" name="password" value={password} onChange={setField}/>
                     </div>
                 </div>
                 <div className="field is-grouped">
