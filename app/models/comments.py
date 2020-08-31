@@ -16,4 +16,4 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
-                          server_default=func.now())
+                          onupdate=func.now())
