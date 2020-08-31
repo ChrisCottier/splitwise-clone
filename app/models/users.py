@@ -1,4 +1,6 @@
 from . import db, func
+
+
 class User(db.Model):
     __tablename__ = "users"
 
@@ -16,6 +18,10 @@ class User(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "email": self.email,
             "first_name": self.first_name,
-            "email": self.email
+            "last_name": self.last_name,
+            "profile_img": self.profile_img,
+            "created_at": self.created_at,
+            "update_at": self.update_at,
         }

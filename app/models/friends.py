@@ -1,4 +1,6 @@
 from . import db, func
+
+
 class Friend(db.Model):
     __tablename__ = "friends"
 
@@ -11,3 +13,12 @@ class Friend(db.Model):
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
                           onupdate=func.now())
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user1_id": self.user1_id,
+            "user2_id": self.user2_id,
+            "created_at": self.created_at,
+            "update_at": self.update_at,
+        }
