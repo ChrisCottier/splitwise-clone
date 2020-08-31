@@ -2,9 +2,19 @@ import os
 from flask import Flask, render_template, request, session
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask_migrate import Migrate
 
 
-from app.models import db, User
+from app.models import db
+from app.models.images import Image
+from app.models.users import User
+from app.models.expenses import Expense
+from app.models.debts import Debt
+from app.models.transactions import Transaction
+from app.models.comments import Comment
+from app.models.friends import Friend
+from app.models.groups import Group
+
 from app.api.user_routes import user_routes
 
 from app.config import Config
@@ -14,6 +24,7 @@ app = Flask(__name__, static_url_path='')
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 db.init_app(app)
+migrate=Migrate(app,db)
 
 ## Application Security
 CORS(app)

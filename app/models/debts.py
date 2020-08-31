@@ -1,15 +1,9 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-
-
-db = SQLAlchemy()
-
-
+from . import db, func
 class Debt(db.Model):
     __tablename__ = "debts"
 
     id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Numeric, precision=2, nullable=False)
+    amount = db.Column(db.DECIMAL(10,2), nullable=False)
     lender_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
     borrower_id = db.Column(

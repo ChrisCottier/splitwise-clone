@@ -1,9 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-
-db = SQLAlchemy()
-
-
+from . import db, func
 class User(db.Model):
     __tablename__ = "users"
 
@@ -17,3 +12,10 @@ class User(db.Model):
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
                           onupdate=func.now())
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "first_name": self.first_name,
+            "email": self.email
+        }

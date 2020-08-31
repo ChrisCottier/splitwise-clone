@@ -1,10 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-
-
-db = SQLAlchemy()
-
-
+from . import db, func
 class Friend(db.Model):
     __tablename__ = "friends"
 
