@@ -21,11 +21,11 @@ function App() {
             </ul>
         </nav>
         <Switch>
-            <Route path='/add-friend' component={AddFriend} />
             <Route path="/users" component={UserList}/>
             <Route exact path="/"><h1>My Home Page</h1></Route>
             <Route path="/sign-up" component={SignUp}/>
             <Route path="/login" component={Login}/>
+            <Route path='/add-friend' component={AddFriend} />
         </Switch>
     </BrowserRouter>
   );
