@@ -20,8 +20,8 @@ def sign_up():
   hashed_password=bcrypt.hashpw(password, bcrypt.gensalt())
 
   # Generate and add new user to db
-  new_user=User(first_name=data['first_name'],
-  last_name=data['last_name'],
+  new_user=User(first_name=data['firstName'],
+  last_name=data['lastName'],
   email=data['email'],
   hashed_password=hashed_password)
   db.session()
@@ -40,9 +40,12 @@ def sign_up():
 @user_routes.route('/login', methods=['post'])
 def login():
   data=request.json
-  user=dict(User.query.filter(User.email == data['email']))
-  print(user)
-  return jsonify(user)
+  user=User.query.filter(User.email == data['email']).first()
+  hashed_password = user.hashed_password
+  if bcrypt.checkpw(data['password'].encode(), hashed_password.encode()):
+    print('match')
+
+  return jsonify(hashed_password)
 
 
 

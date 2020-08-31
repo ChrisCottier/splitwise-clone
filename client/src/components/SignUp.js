@@ -1,33 +1,63 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
 
 const SignUp =() => {
+  const [firstName, setFirstName] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const submitSignUp = (event) => {
+    event.stopPropagation()
+    event.preventDefault()
+    // dispatch(signUp())
+
+
+  }
+
+  const setField = (event) => {
+    const name = event.target.name
+    if (name === 'firstName') {
+      setFirstName(event.target.value)
+    } else if (name === 'email') {
+      setEmail(event.target.value)
+    } else if (name === 'password') {
+      setPassword(event.target.value)
+    }
+  }
 
 return (
-  <div>
-      <p>INTRODUCE YOURSELF</p>
-    <div class="field">
-        <div class="control">
-            <input class="input is-info" type="text"/>
-        </div>
+  <div className="container is-widescreen">
+    <div className="control">
+        <p>INTRODUCE YOURSELF</p>
     </div>
-    <div class="field">
-        <div class="control">
-            <input class="input is-info" type="email"/>
+    <form action="sign-up" method="POST" onSubmit={submitSignUp}>
+        <div className="field">
+        <label className="label">Hi there! My name is</label>
+            <div className="control">
+                <input className="input is-info" type="text" name="firstName" value={firstName} onChange={setField}/>
+            </div>
         </div>
-    </div>
-    <div class="field">
-        <div class="control">
-            <input class="input is-info" type="password"/>
+        <div className="field">
+        <label className="label">Here's my email address:</label>
+            <div className="control">
+                <input className="input is-info" type="email" name="email"/>
+            </div>
         </div>
-    </div>
-    <div class="field is-grouped">
-        <div class="control">
-            <button class="button is-link">Sign me up!</button>
+        <div className="field">
+        <label className="label">And here's my password:</label>
+            <div className="control">
+                <input className="input is-info" type="password" name="password"/>
+            </div>
         </div>
-        <div class="control">
-            <button class="button is-link is-light">Sign up with Demo User</button>
+        <div className="field is-grouped">
+            <div className="control">
+                <button className="button is-link">Sign me up!</button>
+            </div>
+            <div className="control">
+                <button className="button is-link is-light">Sign up as Demo User</button>
+            </div>
         </div>
-    </div>
+    </form>
   </div>
 )
 }

@@ -1,0 +1,1 @@
+import {baseUrl} from "../config"
