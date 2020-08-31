@@ -17,7 +17,7 @@ def sign_up():
   print(data)
   # Create a hashed password
   password=data['password'].encode()
-  hashed_password=bcrypt.hashpw(password, bcrypt.gensalt(14))
+  hashed_password=bcrypt.hashpw(password, bcrypt.gensalt(14)).decode('utf-8')
 
   # Generate and add new user to db
   new_user=User(name=data['name'],
@@ -48,7 +48,9 @@ def login():
     user_data=user.to_dict()
     jwt=create_jwt(user_data)
     return jsonify({ "user": user_data, "token": str(jwt)})
-  return jsonify('Bad Login')
+  else:
+    print('invalid login')
+    return jsonify('Bad Login')
 
 
 
