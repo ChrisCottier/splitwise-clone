@@ -1,4 +1,6 @@
 from . import db, func
+
+
 class Comment(db.Model):
     __tablename__ = "comments"
 
@@ -12,3 +14,13 @@ class Comment(db.Model):
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
                           onupdate=func.now())
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "message": self.message,
+            "user_id": self.user_id,
+            "expense_id": self.expense_id,
+            "created_at": self.created_at,
+            "update_at": self.update_at,
+        }
