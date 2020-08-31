@@ -1,4 +1,4 @@
-from jwt import jwt
+import jwt
 from .config import Config
 
 def create_jwt(user):

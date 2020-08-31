@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, jsonify
-from bcrypt import bcrypt
+import bcrypt
 from app.models import User, db
 from app.auth import create_jwt
 user_routes = Blueprint('users', __name__)
