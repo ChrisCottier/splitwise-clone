@@ -6,13 +6,7 @@ const AddFriend = () => {
 
   return(
     <div>
-      <div>Friends</div>
-        <a className='add' href= '#invite'>
-          <i className='friend-icon'></i>
-          Add +
-        </a>
-      {/* add friend modal */}
-      <div class="modal">
+      <div class="modal is-active">
         <div class="modal-background"></div>
         <div class="modal-content">
           <button>
@@ -25,6 +19,10 @@ const AddFriend = () => {
 
         <table className='.table table is-striped is-bordered is-fullwidth'>
           <thead>Friends</thead>
+          <a className='add is-active modal' href='#invite' >
+          <i className='friend-icon'></i>
+          Add +
+          </a>
           <tr>
             <td>
               <a href='#friend2'>
