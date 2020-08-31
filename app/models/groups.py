@@ -1,4 +1,6 @@
 from . import db, func
+
+
 class Group(db.Model):
     __tablename__ = "groups"
 
@@ -20,3 +22,16 @@ class Group(db.Model):
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
                           onupdate=func.now())
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user1_id": self.user1_id,
+            "user2_id": self.user2_id,
+            "user3_id": self.user3_id,
+            "user4_id": self.user4_id,
+            "user5_id": self.user5_id,
+            "user6_id": self.user6_id,
+            "created_at": self.created_at,
+            "update_at": self.update_at,
+        }
