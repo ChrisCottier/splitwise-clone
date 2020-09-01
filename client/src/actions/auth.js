@@ -33,3 +33,30 @@ async (dispatch) => {
         dispatch({type: SIGN_IN, token: data.token, user: data.user})
       }
 }
+
+function getCookieValue(value) {
+  const match = document.cookie.match("(^|;)\\s*" + value + "\\s*=\\s*([^;]+)");
+  return match ? match.pop() : null;
+}
+
+export const hasAccessToken = () => async (dispatch) => {
+  const token = getCookieValue(ACCESS_TOKEN);
+
+  const res = await fetch(`${apiUrl}/users/restore`, {
+    method: "get",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    if (data !== null) {
+      console.log('logged in')
+      dispatch({type: SIGN_IN, token: data.token, user: data.user})
+    } else {
+
+      console.log('not logged in')
+    }
+  }
+};

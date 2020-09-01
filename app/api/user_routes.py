@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, jsonify
 import bcrypt
 from app.models import db
 from app.models.users import User
-from app.auth import create_jwt
+from app.auth import create_jwt, validate_jwt
 user_routes = Blueprint('users', __name__)
 
 @user_routes.route('')
@@ -52,8 +52,16 @@ def login():
     print('invalid login')
     return jsonify('Bad Login')
 
-
-
+@user_routes.route('/restore')
+def restore():
+  # auth_header= request.headers['Authorization']
+  # print(auth_header)
+  # print(auth_header[7:])
+  validated = validate_jwt(request)
+  if (validated):
+    return validated
+  else:
+    return jsonify(None)
 
 
 

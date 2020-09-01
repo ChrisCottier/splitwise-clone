@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux'
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import 'bulma/css/bulma.css'
@@ -7,8 +8,14 @@ import AddFriend from './components/AddFriend';
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 
+import {hasAccessToken} from "./actions/auth"
+
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(hasAccessToken());
+  });
 
   return (
     <BrowserRouter>
