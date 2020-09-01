@@ -3,10 +3,14 @@ import {useDispatch} from 'react-redux'
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import 'bulma/css/bulma.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+
 import UserList from './components/UsersList';
 import AddFriend from './components/AddFriend';
 import SignUp from './components/SignUp'
 import Login from './components/Login'
+import Footer from './components/Footer'
 
 import {hasAccessToken} from "./actions/auth"
 
@@ -34,6 +38,7 @@ function App() {
             <Route path="/sign-up" component={SignUp}/>
             <Route path="/login" component={Login}/>
             <Route path='/add-friend' component={AddFriend}/>
+            <Route path='/footer' component={Footer} />
         </Switch>
     </BrowserRouter>
   );

@@ -38,13 +38,13 @@ const Login = () => {
                 <div className="field">
                 <label className="label">Email address</label>
                     <div className="control">
-                        <input className="input is-info" type="email" autoComplete="email" name="email" value={email} onChange={setField}/>
+                        <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField}/>
                     </div>
                 </div>
                 <div className="field">
                 <label className="label">Password</label>
                     <div className="control">
-                        <input className="input is-info" type="password" autoComplete="current-password" name="password" value={password} onChange={setField}/>
+                        <input className="input is-info" type="password" autoComplete="current-password" name="password" required value={password} onChange={setField}/>
                     </div>
                 </div>
                 <div className="field is-grouped">

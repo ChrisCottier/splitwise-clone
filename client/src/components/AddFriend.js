@@ -1,5 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import friending from '../friending'
 
 import 'bulma/css/bulma.css'
 
@@ -9,7 +10,7 @@ const AddFriend = () => {
   return(
     <div>
 
-      <div className="modal is-inactive">
+      <div className="modal">
         <div className="modal-background"></div>
           <div className="modal-content">
             <button>
@@ -24,7 +25,7 @@ const AddFriend = () => {
         <thead>
           <tr>
             <th>
-              <a className='add is-active modal' href='#invite' >
+              <a className='add modal' href='#invite' >
                 <i className='friend-icon'></i>
                   Add +
               </a>
@@ -36,6 +37,7 @@ const AddFriend = () => {
             <td>
               <a href='#friend2'>
                 <i className='user-icon'> Guest 2</i>
+                <FontAwesomeIcon icon='coffee' />
               </a>
             </td>
           </tr>
@@ -82,6 +84,18 @@ const AddFriend = () => {
         <button type='submit'>Send Invite</button>
       </form>
 
+      {/* <div className="modal">
+        <div className="modal-background"></div>
+        <div className="modal-content">
+            <img src="https://assets.splitwise.com/assets/fat_rabbit/email-db939b398a4bea03ee3f5fe956e3476f1d9eab86ca731b9293e53082be9f11e2.png" alt=""></img>
+              Invite Friends
+            <input placeholder='Enter names or email addresses'>To:</input>
+            <textarea placeholder='Include an optional message'></textarea>
+            <span><a>Preview The Message You'll Send</a></span>
+            <button>Send Invites and Add Friends</button> 
+        </div>
+        <button className="modal-close is-large" aria-label="close"></button>
+      </div> */}
     </div>
 
   )
