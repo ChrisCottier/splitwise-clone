@@ -18,6 +18,7 @@ function App() {
                 <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
                 <li><NavLink to="/sign-up" activeclass="active">Sign-Up</NavLink></li>
                 <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
+                <li><NavLink to="/add-friend" activeclass="active">Add Friend</NavLink></li>
             </ul>
         </nav>
         <Switch>
@@ -25,7 +26,7 @@ function App() {
             <Route exact path="/"><h1>My Home Page</h1></Route>
             <Route path="/sign-up" component={SignUp}/>
             <Route path="/login" component={Login}/>
-            <Route path='/add-friend' component={AddFriend} />
+            <Route path='/add-friend' component={AddFriend}/>
         </Switch>
     </BrowserRouter>
   );

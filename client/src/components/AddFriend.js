@@ -1,28 +1,37 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import 'bulma/css/bulma.css'
+
 
 const AddFriend = () => {
 
   return(
     <div>
-      <div class="modal is-active">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-          <button>
-            <img src="https://assets.splitwise.com/assets/fat_rabbit/email-db939b398a4bea03ee3f5fe956e3476f1d9eab86ca731b9293e53082be9f11e2.png"></img>
-            INVITE FRIENDS BY EMAIL ADDRESS
-          </button>
-        </div>
-        <button class="modal-close is-large" aria-label="close"></button>
-      </div>
 
-        <table className='.table table is-striped is-bordered is-fullwidth'>
-          <thead>Friends</thead>
-          <a className='add is-active modal' href='#invite' >
-          <i className='friend-icon'></i>
-          Add +
-          </a>
+      <div className="modal is-inactive">
+        <div className="modal-background"></div>
+          <div className="modal-content">
+            <button>
+              <img src="https://assets.splitwise.com/assets/fat_rabbit/email-db939b398a4bea03ee3f5fe956e3476f1d9eab86ca731b9293e53082be9f11e2.png" alt=""></img>
+              INVITE FRIENDS BY EMAIL ADDRESS
+            </button>
+          </div>
+          <button className="modal-close is-large" aria-label="close"></button>
+        </div>
+
+      <table className='.table table is-striped is-bordered is-widescreen'>
+        <thead>
+          <tr>
+            <th>
+              <a className='add is-active modal' href='#invite' >
+                <i className='friend-icon'></i>
+                  Add +
+              </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
           <tr>
             <td>
               <a href='#friend2'>
@@ -65,13 +74,14 @@ const AddFriend = () => {
               </a>
             </td>
           </tr>
-        </table>
-        {/* form */}
-        <form method='post' type='email'>
-          <p>Invite Friends</p>
-          <input placeholder='Enter An Email Address' />
-          <button type='submit'>Send Invite</button>
-        </form>
+        </tbody>
+      </table>
+      <form method='post' type='email'>
+        <p>Invite Friends</p>
+        <input placeholder='Enter An Email Address' />
+        <button type='submit'>Send Invite</button>
+      </form>
+
     </div>
 
   )
