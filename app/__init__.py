@@ -16,6 +16,7 @@ from app.models.friends import Friend
 from app.models.groups import Group
 
 from app.api.user_routes import user_routes
+from app.api.friend_routes import friend_routes
 
 from app.config import Config
 
@@ -23,6 +24,7 @@ app = Flask(__name__, static_url_path='')
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(friend_routes, url_prefix='/api/friends')
 db.init_app(app)
 migrate=Migrate(app,db)
 
