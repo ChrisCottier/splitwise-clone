@@ -5,10 +5,12 @@ import {Redirect} from 'react-router-dom'
 import {login} from '../actions/auth'
 
 const Login = () => {
+
     const {token} = useSelector(state => state.auth)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    
     const submitLogin = (event) => {
         event.stopPropagation()
         event.preventDefault()

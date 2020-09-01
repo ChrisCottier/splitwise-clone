@@ -1,13 +1,24 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+
+import {apiUrl} from '../config';
+import Friend from './Friend';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import friending from '../friending'
 
 import 'bulma/css/bulma.css'
 
 
-const AddFriend = () => {
+const AddFriend = (props) => {
+  const [friends, setFriends] = useState([]);
 
-  return(
+  useEffect(()=>{
+    async const fetchData = () =>{
+      const res = await fetch(apiUrl + '/')
+    }
+  })
+  // const friendsComponents = 
+    return(
     <div>
 
       <div className="modal">

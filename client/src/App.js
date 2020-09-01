@@ -11,6 +11,7 @@ import AddFriend from './components/AddFriend';
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Footer from './components/Footer'
+import Dashboard from './components/Dashboard'
 
 import {hasAccessToken} from "./actions/auth"
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/sign-up" component={SignUp}/>
             <Route path="/login" component={Login}/>
             <Route path='/add-friend' component={AddFriend}/>
+            <Route path='/dashboard' component={Dashboard}/>
             <Route path='/footer' component={Footer} />
         </Switch>
     </BrowserRouter>
