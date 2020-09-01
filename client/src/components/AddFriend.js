@@ -1,23 +1,35 @@
 import React, {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 import {apiUrl} from '../config';
 import Friend from './Friend';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import friending from '../friending'
 
+// import friending from '../friending'
 import 'bulma/css/bulma.css'
 
-
-const AddFriend = (props) => {
+const AddFriend = () => {
+  const {userId, token} = useSelector(state => state.auth)
+  console.log(userId)
   const [friends, setFriends] = useState([]);
 
   useEffect(()=>{
-    async const fetchData = () =>{
-      const res = await fetch(apiUrl + '/')
+      if (!token || friends) return;
+      const fetchData = async() =>{
+      const res = await fetch(`${apiUrl}/friends/${userId}`);
+      const data = await res.json();
+      console.log(data)
+      setFriends(data.friends);
     }
-  })
-  // const friendsComponents = 
+    fetchData();
+  }, []);
+
+  const friendsComponents = friends.map((friend) => <Friend key={friend.id} friend={friend}/>);
+    if (!token) {
+      return <Redirect to="/login"></Redirect>
+    }
     return(
     <div>
 
@@ -44,49 +56,7 @@ const AddFriend = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <a href='#friend2'>
-                <i className='user-icon'> Guest 2</i>
-                <FontAwesomeIcon icon='coffee' />
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href='#friend2'>
-                <i className='user-icon'> Guest 3</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href='#friend2'>
-                <i className='user-icon'> Guest 4</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href='#friend2'>
-                <i className='user-icon'> Guest 5</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href='#friend2'>
-                <i className='user-icon'> Guest 6</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href='#friend2'>
-                <i className='user-icon'> Guest 7</i>
-              </a>
-            </td>
-          </tr>
+          {friendsComponents}
         </tbody>
       </table>
       <form method='post' type='email'>
@@ -109,7 +79,50 @@ const AddFriend = (props) => {
       </div> */}
     </div>
 
-  )
+)
 }
 
 export default AddFriend
+{/* <tr>
+  <td>
+    <a href='#friend2'>
+      <i className='user-icon'> Guest 2</i>
+      <FontAwesomeIcon icon='coffee' />
+    </a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a href='#friend2'>
+      <i className='user-icon'> Guest 3</i>
+    </a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a href='#friend2'>
+      <i className='user-icon'> Guest 4</i>
+    </a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a href='#friend2'>
+      <i className='user-icon'> Guest 5</i>
+    </a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a href='#friend2'>
+      <i className='user-icon'> Guest 6</i>
+    </a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a href='#friend2'>
+      <i className='user-icon'> Guest 7</i>
+    </a>
+  </td>
+</tr> */}
