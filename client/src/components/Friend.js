@@ -9,7 +9,7 @@ const Friend = (props) => {
             <td>
                 <a href={url}>
                     <i className='user-icon'>
-                        {/* <FontAwesomeIcon icon='coffee' /> */}
+                        {/* <FontAwesomeIcon icon='user' /> */}
                     </i> {props.user.name}
                 </a>
             </td>

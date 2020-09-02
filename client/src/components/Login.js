@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import {login} from '../actions/auth'
+import { login } from '../actions/auth'
 
 const Login = () => {
 
-    const {token} = useSelector(state => state.auth)
+    const { token } = useSelector(state => state.auth)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const Login = () => {
         }
     }
     if (token) {
-      return <Redirect to="/users"></Redirect>
+        return <Redirect to="/dashboard"></Redirect>
     }
     return (
         <div className="container is-widescreen">
@@ -38,15 +38,15 @@ const Login = () => {
             </div>
             <form action="sign-up" method="POST" onSubmit={submitLogin}>
                 <div className="field">
-                <label className="label">Email address</label>
+                    <label className="label">Email address</label>
                     <div className="control">
-                        <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField}/>
+                        <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField} />
                     </div>
                 </div>
                 <div className="field">
-                <label className="label">Password</label>
+                    <label className="label">Password</label>
                     <div className="control">
-                        <input className="input is-info" type="password" autoComplete="current-password" name="password" required value={password} onChange={setField}/>
+                        <input className="input is-info" type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} />
                     </div>
                 </div>
                 <div className="field is-grouped">

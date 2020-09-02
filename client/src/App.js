@@ -35,7 +35,7 @@ function App() {
       </nav>
       <Switch>
         <Route path="/users" component={UserList} />
-        <Route exact path="/"><h1>My Home Page</h1></Route>
+        <Route exact path="/"><h1>Welcome to Splitwise</h1></Route>
         <Route path="/sign-up" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path='/add-friend' component={AddFriend} />
