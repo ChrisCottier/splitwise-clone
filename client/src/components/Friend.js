@@ -8,7 +8,7 @@ const Friend = (props) => {
             <td>
                 <a href={url}>
                     <i className='user-icon'>
-                        <FontAwesomeIcon icon='coffee' />::before
+                        <FontAwesomeIcon icon='coffee' />
                     </i> {props.user.name}
                 </a>
             </td>

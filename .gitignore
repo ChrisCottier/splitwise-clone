@@ -2,3 +2,7 @@
 node_modules/
 .env
 __pycache__/
+migrations/__pycache__/env.cpython-38.pyc
+migrations/__pycache__/env.cpython-38.pyc
+migrations/versions/__pycache__/10ba12b70b1d_.cpython-38.pyc
+migrations/versions/__pycache__/e473f4f40a47_.cpython-38.pyc

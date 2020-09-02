@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './styles/dashboard.css'
+import './styles/Dashboard.css'
 
 export const ExpenseHeader = (props) => {
-  const {title} = props;
+  const { title } = props;
   return (
     <div className="dashboard-header">
       <div className="title is-5">{title}</div>
@@ -16,9 +16,9 @@ export const ExpenseHeader = (props) => {
 }
 
 export const Balances = (props) => {
-  const {totalBalance, youOwe, youAreOwed} = props;
+  const { totalBalance, youOwe, youAreOwed } = props;
 
-  return(
+  return (
     <div className="balance-header">
       <div className="balance-box">
         <div>total balance</div>
@@ -83,7 +83,7 @@ export default Dashboard;
 // import './styles/Dashboard.css'
 
 // const Dashboard = () => {
-   
+
 //   return(
 //     <div className='dashboard header'>
 //       <div className='topbar'>
@@ -96,23 +96,23 @@ export default Dashboard;
 //       <div className="columnss db-balances">
 //         <div className="column is-narrow is-one-third balances">
 //           <div>Total Balance</div>
-//           <span>+ $8625.00 HC</span> 
+//           <span>+ $8625.00 HC</span>
 //         </div>
 //       </div>
 //       <div className="columnss db-balances">
 //         <div className="column is-narrow is-one-third balances">
 //           <div>You Owe</div>
-//           <span>+ $0.00 HC</span> 
+//           <span>+ $0.00 HC</span>
 //         </div>
 //       </div>
 //       <div className="columnss db-balances">
 //         <div className="column is-narrow is-one-third balances">
 //           <div className='right'>You Are Owed</div>
-//           <span> $8625.00 HC</span> 
+//           <span> $8625.00 HC</span>
 //         </div>
 //       </div>
 //       <div>
-//         <h2> 
+//         <h2>
 //           You Owe
 //           <div>
 //             <button>
@@ -145,7 +145,7 @@ export default Dashboard;
 //           <span><a href='/friends/:id'>Guest 4</a></span>
 //           <span> Owes You $2875.00</span>
 //         </div>
-//       </div>  
+//       </div>
 
 //       <Footer />
 //     </div>

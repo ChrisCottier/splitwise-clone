@@ -37,9 +37,8 @@ def index(id):
     all_friend_ids=[friend_id for friend_id in all_ids if friend_id != int(id)]
     print('all friend ids', all_friend_ids)
 
-    #query users for 
+    #query users for
     friend_users= User.query.filter(User.id.in_(all_friend_ids)).all()
     friend_users_dict=[user.to_dict() for user in friend_users]
     print('dict of friends',friend_users_dict)
     return jsonify(friend_users_dict)
-
