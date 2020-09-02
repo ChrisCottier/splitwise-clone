@@ -1,0 +1,8 @@
+div.hover-click :hover{
+  cursor: pointer;
+}
+
+.friend-options {
+  display: flex;
+  flex-direction: column;
+}
