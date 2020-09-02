@@ -4,18 +4,42 @@ load_dotenv()
 from app import app, db
 from app.models.expenses import Expense
 from app.models.users import User
+from app.models.friends import Friend
 
 with app.app_context():
   db.drop_all()
   db.create_all()
 
+  users = [
+    User(email = 'test1@test.test', name='test1', hashed_password='test'),
+    User(email = 'test2@test.test', name='test2', hashed_password='test'),
+    User(email = 'test3@test.test', name='test3', hashed_password='test'),
+    User(email = 'test4@test.test', name='test4', hashed_password='test'),
+    User(email = 'test5@test.test', name='test5', hashed_password='test'),
+    User(email = 'test6@test.test', name='test6', hashed_password='test'),
+    User(email = 'test7@test.test', name='test7', hashed_password='test'),
+    ]
+
+  for user in users:
+    db.session.add(user)
+  db.session.commit()
+
+  friends = [
+    Friend(user1_id=1, user2_id=2),
+    Friend(user1_id=1, user2_id=3),
+    Friend(user1_id=1, user2_id=5),
+    Friend(user1_id=1, user2_id=6),
+  ]
+
+  for friend in friends:
+    db.session.add(friend)
+  db.session.commit()
   # ian = User(username = 'Ian', email = 'ian@aa.io')
   # javier = User(username = 'Javier', email = 'javier@aa.io')
   # dean = User(username = 'Dean', email = 'dean@aa.io')
   # angela = User(username = 'Angela', email = 'angela@aa.io')
   # soonmi = User(username = 'Soon-Mi', email = 'soonmi@aa.io')
   # alissa = User(username = 'Alissa', email = 'alissa@aa.io')
-
   # db.session.add(ian)
   # db.session.add(javier)
   # db.session.add(dean)
