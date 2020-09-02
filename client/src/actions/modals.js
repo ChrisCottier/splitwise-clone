@@ -1,0 +1,1 @@
+export const EXPENSE_MODAL="EXPENSE_MODAL"

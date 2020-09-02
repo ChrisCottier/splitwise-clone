@@ -1,15 +1,27 @@
 import React from 'react';
+<<<<<<< HEAD
 import AddFriend from './AddFriend';
+=======
+import {useDispatch} from 'react-redux'
+>>>>>>> setting up expense modal
 
 import './styles/dashboard.css'
+import {EXPENSE_MODAL} from '../actions/modals'
+import AddExpenseModal from './AddExpenseModal'
 
 export const ExpenseHeader = (props) => {
   const { title } = props;
+  const dispatch = useDispatch();
+
+  const showExpenseModal = () => {
+    dispatch({type: EXPENSE_MODAL, display: "block"})
+  }
+
   return (
     <div className="dashboard-header">
       <div className="title is-5">{title}</div>
       <div className="buttons">
-        <button className="button add-expense-button">Add an Expense</button>
+        <button className="button add-expense-button" onClick={showExpenseModal}>Add an Expense</button>
         <button className="button settle-up-button">Settle Up</button>
       </div>
     </div>
@@ -37,14 +49,11 @@ export const Balances = (props) => {
   )
 }
 
-const ExpeneModal = () => {
-  return (<div></div>)
-}
-
 const Dashboard = () => {
   return (
     <main>
       <div className="container is-widescreen">
+        <AddExpenseModal></AddExpenseModal>
         <div className="columns">
           <div className="column is-one-fifth">
             <div>FILLER FILLER FILLER FILLER FILLER friends go here FILLER FILLER FILLER FILLER </div>
