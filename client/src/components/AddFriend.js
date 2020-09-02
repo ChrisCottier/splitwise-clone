@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import {apiUrl} from '../config';
+import { apiUrl } from '../config';
 import Friend from './Friend';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,48 +11,53 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'bulma/css/bulma.css'
 
 const AddFriend = () => {
-  const {userId, token} = useSelector(state => state.auth)
+  const { userId, token } = useSelector(state => state.auth)
   console.log(userId)
   const [friends, setFriends] = useState([]);
 
-  useEffect(()=>{
-      if (!token || friends) return;
-      const fetchData = async() =>{
+  useEffect(() => {
+    console.log('in effect');
+    console.log(friends);
+    console.log(token)
+    if (!token) return;
+    if (friends.length > 0) return;
+    const fetchData = async () => {
       const res = await fetch(`${apiUrl}/friends/${userId}`);
       const data = await res.json();
-      console.log(data)
-      setFriends(data.friends);
+      console.log(data) //[{user1}, ...]
+      setFriends(data);
     }
+    console.log('after if')
     fetchData();
   }, []);
 
-  const friendsComponents = friends.map((friend) => <Friend key={friend.id} friend={friend}/>);
-    if (!token) {
-      return <Redirect to="/login"></Redirect>
-    }
-    return(
+  const friendsComponents = friends.map((friend) => <Friend key={friend.id} user={friend} />);
+  if (!token) {
+    return <Redirect to="/login"></Redirect>
+  }
+  console.log(friends)
+  return (
     <div>
 
       <div className="modal">
         <div className="modal-background"></div>
-          <div className="modal-content">
-            <button>
-              <img src="https://assets.splitwise.com/assets/fat_rabbit/email-db939b398a4bea03ee3f5fe956e3476f1d9eab86ca731b9293e53082be9f11e2.png" alt=""></img>
+        <div className="modal-content">
+          <button>
+            <img src="https://assets.splitwise.com/assets/fat_rabbit/email-db939b398a4bea03ee3f5fe956e3476f1d9eab86ca731b9293e53082be9f11e2.png" alt=""></img>
               INVITE FRIENDS BY EMAIL ADDRESS
             </button>
-          </div>
-          <button className="modal-close is-large" aria-label="close"></button>
         </div>
+        <button className="modal-close is-large" aria-label="close"></button>
+      </div>
 
       <table className='.table table is-striped is-bordered is-widescreen'>
         <thead>
-          <tr>
-            <th>
-              <a className='add modal' href='#invite' >
-                <i className='friend-icon'></i>
+          <tr><th>
+            <a className='add modal' href='#invite' >
+              <i className='friend-icon'></i>
                   Add +
               </a>
-            </th>
+          </th>
           </tr>
         </thead>
         <tbody>
@@ -73,13 +78,13 @@ const AddFriend = () => {
             <input placeholder='Enter names or email addresses'>To:</input>
             <textarea placeholder='Include an optional message'></textarea>
             <span><a>Preview The Message You'll Send</a></span>
-            <button>Send Invites and Add Friends</button> 
+            <button>Send Invites and Add Friends</button>
         </div>
         <button className="modal-close is-large" aria-label="close"></button>
       </div> */}
     </div>
 
-)
+  )
 }
 
 export default AddFriend
