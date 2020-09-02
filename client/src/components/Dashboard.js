@@ -1,4 +1,5 @@
 import React from 'react';
+import AddFriend from './AddFriend';
 
 import './styles/Dashboard.css'
 
@@ -46,7 +47,8 @@ const Dashboard = () => {
       <div className="container is-widescreen">
         <div className="columns">
           <div className="column is-one-fifth">
-            <div>FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER </div>
+            <div>FILLER FILLER FILLER FILLER FILLER friends go here FILLER FILLER FILLER FILLER </div>
+            <div><AddFriend /> </div>
           </div>
           <div className="column is-three-fifths">
             <ExpenseHeader title={'Dashboard'}></ExpenseHeader>
