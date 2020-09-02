@@ -1,4 +1,4 @@
-from . import db, func, User
+from . import db, func
 
 
 class Friend(db.Model):
