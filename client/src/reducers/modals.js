@@ -1,11 +1,20 @@
 import {EXPENSE_MODAL} from '../actions/modals'
 
-const modals = (state = {}, action) => {
+const defaultState = {
+  expenseDisplay: "none"
+}
+
+const modals = (state = defaultState, action) => {
     switch (action.type) {
-  
+      case EXPENSE_MODAL: {
+        return {
+          ...state,
+          expenseDisplay: action.display
+        }
+      }
       default:
         return state;
     }
   };
-  
+
   export default modals;

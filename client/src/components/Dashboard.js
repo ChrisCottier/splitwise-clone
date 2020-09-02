@@ -1,9 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
 import AddFriend from './AddFriend';
-=======
 import {useDispatch} from 'react-redux'
->>>>>>> setting up expense modal
 
 import './styles/dashboard.css'
 import {EXPENSE_MODAL} from '../actions/modals'
