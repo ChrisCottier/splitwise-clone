@@ -42,14 +42,21 @@ const ExpeneModal = () => {
 }
 
 const Dashboard = () => {
+
+  const updateDash = () => {
+
+  }
+
   return (
     <main>
       <div className="container is-widescreen">
         <div className="columns">
           <div className="column is-one-fifth">
             <div>FILLER FILLER FILLER FILLER FILLER friends go here FILLER FILLER FILLER FILLER </div>
-            <div><AddFriend /> </div>
+            <div><AddFriend onClick={updateDash} /> </div>
           </div>
+
+          {/* this is the center */}
           <div className="column is-three-fifths">
             <ExpenseHeader title={'Dashboard'}></ExpenseHeader>
             <Balances totalBalance={5}></Balances>
@@ -62,14 +69,13 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+          {/* This is the end of the center */}
+
           <div className="column is-one-fifth">
             <div>FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER </div>
           </div>
         </div>
       </div>
-
-
-
     </main>
   )
 }
