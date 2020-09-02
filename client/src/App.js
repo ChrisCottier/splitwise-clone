@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import 'bulma/css/bulma.css'
+import './index.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 

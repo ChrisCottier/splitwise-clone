@@ -1,102 +1,19 @@
-body{
-  background: #fff;
-  position: relative;
-  margin: 0;
-  padding-top: 33px;
-  text-rendering: optimizeLegibility;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  color: #333333;
+.dashboard-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.dashboard{
-  position: relative;
-  min-height: 100%;
-  height: 100%;
-  overflow: visible;
-  width: 960px;
-  /* margin: -33px auto 0; */
-  padding: 0;
-  margin: 0 200px 0 200px;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  min-height: 100%;
-  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+.balance-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-.dashboard.header{
-  padding: 0;
-  height: 64px;
-  border-bottom: none;
-  position: relative;
-  background: #eee;
-}
-
-.header{
-  position: relative;
-  background: #eee;
-}
-
-h1{ 
-  font-weight: bold;
-}
-
-.topbar h1{
-  overflow: hidden;
-  max-width: 315px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 24px;
-  line-height: 38px;
-  height: 38px;
-  display: inline-block;
-  vertical-align: middle;
-  color: #333;
-  padding-left: 5px
-}
-
-.topbar .actions{
-  position: absolute;
-  top: 13px;
-  right: 10px;
-  display: inline-block;
-}
-
-.columnss{
-  font-size: 15px;
-  margin: -10px -15px 0;
-  padding: 7px 0 2px;
-  background: #eee;
-  border-bottom: 1px solid #ddd;
-  color: #999;
-  text-align: center;
-}
-
-.db-balances{
-  display: inline-block;
-  width: 175px;
-  text-align: center;
-  padding: 0 5px;
-  border-left: 1px solid #ddd;
-  line-height: 16px;
-  font-size: 13px;
-}
-
-h2{
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #999;
-  padding: 5px 0;
-  line-height: 36px;
-}
-
-.summary{
-  margin: -5px 0 10px 0;
-  text-align: center;
-  font-size: 15px;
-}
-
-.right-side{
-  text-align: center;
+.balance-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid lightgray;
+  width: 33%
 }
