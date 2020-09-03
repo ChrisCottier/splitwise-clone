@@ -14,7 +14,7 @@ activity_routes = Blueprint('activities', __name__)
 
 @activity_routes.route("/<id>")
 def index(id):
-    recent_activity = []
+    user_activity = []
 
     # Get all comments associated with the current user
     user_comments = Comment.query.filter(Comment.user_id == int(id)).all()
