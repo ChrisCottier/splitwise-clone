@@ -21,11 +21,7 @@ const MatchingFriends = (props) => {
     event.preventDefault();
 
     const indexOfSelection= parseInt(event.target.getAttribute('name'))
-    console.log(indexOfSelection)
     const selection = matches[indexOfSelection]
-    console.log(selection)
-    console.log(friendsOnExpense)
-    console.log(typeof event.target.getAttribute('name'))
     const add = [...friendsOnExpense, selection]
     setFriendsOnExpense(add)
     setAddFriend('')
@@ -60,7 +56,6 @@ const AddExpenseModal = () => {
   const {friends} = useSelector(state => state.friends)
   const {userId, token} = useSelector(state => state.auth)
   const dispatch = useDispatch();
-  console.log(friends)
 
   useEffect(() => {
     if (friends === undefined) {

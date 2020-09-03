@@ -10,7 +10,7 @@ export const newExpense = (data) => async dispatch => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ data }),
+    body: JSON.stringify(data),
   })
 
   if (res.ok) {
