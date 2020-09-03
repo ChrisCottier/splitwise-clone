@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 
 
 import './styles/dashboard.css'
-import {EXPENSE_MODAL} from '../actions/modals'
+import { EXPENSE_MODAL } from '../actions/modals'
 import AddExpenseModal from './AddExpenseModal'
 import {getUserDebts} from '../actions/debts'
 
@@ -13,7 +13,7 @@ export const ExpenseHeader = (props) => {
   const dispatch = useDispatch();
 
   const showExpenseModal = () => {
-    dispatch({type: EXPENSE_MODAL, display: "block"})
+    dispatch({ type: EXPENSE_MODAL, display: "block" })
   }
 
   return (
