@@ -1,15 +1,13 @@
-.dashboard-header {
+dashboard-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
 .balance-header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-
 .balance-box{
   display: flex;
   flex-direction: column;
