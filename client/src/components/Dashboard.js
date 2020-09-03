@@ -46,11 +46,22 @@ export const Balances = (props) => {
   )
 }
 
+const YouAreOwedDebtTile = (props) => {
+  const {debt} = props;
+  return (
+    <div>
+      {/* <div>PROFILE PIC</div> */}
+      <div>{debt.borrower}</div>
+    </div>
+  )
+}
+
 const Dashboard = () => {
 
   const updateDash = () => {
 
   }
+
 
   return (
     <main>
@@ -58,7 +69,6 @@ const Dashboard = () => {
         <AddExpenseModal></AddExpenseModal>
         <div className="columns">
           <div className="column is-one-fifth">
-            <div>FILLER FILLER FILLER FILLER FILLER friends go here FILLER FILLER FILLER FILLER </div>
             <div><AddFriend onClick={updateDash} /> </div>
           </div>
 
@@ -68,10 +78,10 @@ const Dashboard = () => {
             <Balances totalBalance={5}></Balances>
             <div className="columns">
               <div className="column is-half">
-                <div>LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT </div>
+                <div>YOU OWE </div>
               </div>
               <div className="column is-half">
-                <div>RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT </div>
+                <div>YOU ARE OWED </div>
               </div>
             </div>
           </div>
