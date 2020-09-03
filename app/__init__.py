@@ -18,6 +18,7 @@ from app.models.groups import Group
 from app.api.user_routes import user_routes
 from app.api.friend_routes import friend_routes
 from app.api.expense_routes import expense_routes
+from app.api.activity_routes import activity_routes
 from app.api.debt_routes import debt_routes
 
 from app.config import Config
@@ -28,19 +29,23 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(friend_routes, url_prefix='/api/friends')
 app.register_blueprint(expense_routes, url_prefix='/api/expenses')
+app.register_blueprint(activity_routes, url_prefix='/api/activities')
 app.register_blueprint(debt_routes, url_prefix='/api/debts')
 db.init_app(app)
-migrate=Migrate(app,db)
+migrate = Migrate(app, db)
 
-## Application Security
+# Application Security
 CORS(app)
+
+
 @app.after_request
 def inject_csrf_token(response):
     response.set_cookie('csrf_token',
-        generate_csrf(),
-        secure=True if os.environ.get('FLASK_ENV') else False,
-        samesite='Strict' if os.environ.get('FLASK_ENV') else None,
-        httponly=True)
+                        generate_csrf(),
+                        secure=True if os.environ.get('FLASK_ENV') else False,
+                        samesite='Strict' if os.environ.get(
+                            'FLASK_ENV') else None,
+                        httponly=True)
     return response
 
 
