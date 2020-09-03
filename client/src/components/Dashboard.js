@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import AddFriend from './AddFriend';
-import { useDispatch } from 'react-redux'
 import {useDispatch, useSelector} from 'react-redux'
 
 
