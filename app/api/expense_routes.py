@@ -49,4 +49,4 @@ def post_expense():
 
   db.session.commit()
 
-  return jsonify('success')
+  return jsonify(new_expense)

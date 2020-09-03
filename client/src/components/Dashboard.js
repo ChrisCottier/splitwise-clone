@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import AddFriend from './AddFriend';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+
 
 import './styles/dashboard.css'
 import {EXPENSE_MODAL} from '../actions/modals'
 import AddExpenseModal from './AddExpenseModal'
+import {getUserDebts} from '../actions/debts'
 
 export const ExpenseHeader = (props) => {
   const { title } = props;
@@ -26,52 +28,92 @@ export const ExpenseHeader = (props) => {
 }
 
 export const Balances = (props) => {
-  const { totalBalance, youOwe, youAreOwed } = props;
+  const { netOwed, totalIOwe, totalIAmOwed } = props;
 
   return (
     <div className="balance-header">
       <div className="balance-box">
         <div>total balance</div>
-        <div>{totalBalance}</div>
+        <div>{netOwed}</div>
       </div>
       <div className="balance-box">
         <div>you owe</div>
-        <div>{youOwe}</div>
+        <div>{totalIOwe}</div>
       </div>
       <div className="balance-box">
         <div>you are owed</div>
-        <div>{youAreOwed}</div>
+        <div>{totalIAmOwed}</div>
       </div>
     </div>
   )
 }
 
+const IAmOwedDebtTile = (props) => {
+  const {debt} = props;
+  return (
+    <div>
+      {/* <div>PROFILE PIC</div> */}
+      <div>{debt.created_at}</div>
+      <div>{debt.borrower.name}</div>
+      <div>{debt.amount}</div>
+    </div>
+  )
+}
+
+const IOweDebtTile = (props) => {
+  const {debt} = props;
+  return (
+    <div>
+      {/* <div>PROFILE PIC</div> */}
+      <div>{debt.created_at}</div>
+      <div>{debt.lender.name}</div>
+      <div>{debt.amount}</div>
+    </div>
+  )
+}
+
 const Dashboard = () => {
+  const dispatch = useDispatch()
+  const [debtsUpdated, setDebtsUpdated] = useState(false)
+
+  const {userId, token} = useSelector(state=> state.auth);
+  const {iOwe, iAmOwed, totalIAmOwed, totalIOwe, netOwed} = useSelector(state => state.debts)
+  useEffect(()=>{
+    if (!userId || debtsUpdated ) return;
+    dispatch(getUserDebts(userId))
+    setDebtsUpdated(true)
+  })
 
   const updateDash = () => {
 
   }
 
+  if (!token || !netOwed) return null;
   return (
     <main>
       <div className="container is-widescreen">
         <AddExpenseModal></AddExpenseModal>
         <div className="columns">
           <div className="column is-one-fifth">
-            <div>FILLER FILLER FILLER FILLER FILLER friends go here FILLER FILLER FILLER FILLER </div>
             <div><AddFriend onClick={updateDash} /> </div>
           </div>
 
           {/* this is the center */}
           <div className="column is-three-fifths">
             <ExpenseHeader title={'Dashboard'}></ExpenseHeader>
-            <Balances totalBalance={5}></Balances>
+            <Balances netOwed={netOwed} totalIOwe={totalIOwe} totalIAmOwed={totalIAmOwed} ></Balances>
             <div className="columns">
               <div className="column is-half">
-                <div>LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT LEFT </div>
+                <div>YOU OWE </div>
+                {iOwe.map(debt => {
+                  return <IOweDebtTile key={debt.id} debt={debt}></IOweDebtTile>
+                })}
               </div>
               <div className="column is-half">
-                <div>RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT RIGHT </div>
+                <div>YOU ARE OWED </div>
+                {iAmOwed.map(debt => {
+                  return <IAmOwedDebtTile key={debt.id} debt={debt}></IAmOwedDebtTile>
+                })}
               </div>
             </div>
           </div>

@@ -18,6 +18,7 @@ from app.models.groups import Group
 from app.api.user_routes import user_routes
 from app.api.friend_routes import friend_routes
 from app.api.expense_routes import expense_routes
+from app.api.debt_routes import debt_routes
 
 from app.config import Config
 
@@ -27,6 +28,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(friend_routes, url_prefix='/api/friends')
 app.register_blueprint(expense_routes, url_prefix='/api/expenses')
+app.register_blueprint(debt_routes, url_prefix='/api/debts')
 db.init_app(app)
 migrate=Migrate(app,db)
 

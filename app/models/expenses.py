@@ -23,7 +23,7 @@ class Expense(db.Model):
             "id": self.id,
             "title": self.title,
             "note": self.note,
-            "amount": self.amount,
+            "amount": str(self.amount),
             "split_type": self.split_type,
             "settled_up": self.settled_up,
             "expense_img": self.expense_img,
