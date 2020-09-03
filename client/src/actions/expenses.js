@@ -14,7 +14,7 @@ export const newExpense = (data) => async dispatch => {
   })
 
   if (res.ok) {
-    const result = await res.json()
-    console.log(result)
+    const data = await res.json()
+    console.log(data)
   }
 }
