@@ -1,5 +1,7 @@
 {
   "cSpell.ignoreWords": [
     "fortawesome"
-  ]
+  ],
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true
 }
