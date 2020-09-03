@@ -52,20 +52,58 @@ def post_expense():
   return jsonify('success')
 
   ################################# Expense and Comment Routes ################
+
+  ## Returns all activity/expenses for a specific user
   @expense_routes.route('/expenses/all/:id')
   def all_expenses():
-    pass
+    all_user_expenses = Activities.query.filter_by(activity.id).all()
+    return user_expenses
 
-  @expense_routes.route('/expenses/:id', methods=['DELETE'])
+  ## Delete expenses for a specific user
+  @expense_routes.route('/expenses/:id', methods=['DELETE', 'GET'])
   def delete_expense():
-    pass
+    delete_me = Expenses(expense=data['expense'])
+    db.session()
+    db.session.delete(delete_me)
+    db.session.commit()
 
-  @expense_routes.route('/expenses/:id')
+  ## Returns a specific activity/expense for a user
   def get_expense():
+    user_expense = Activities.query.filter_by(activity.id).all()
+    return user_expenses
+
+  ## Post a new comment to an expense
+  @expense_routes.route('expenses/:id/comments', methods=['POST'])
+  def post_comment():
+    new_comment = Activity(comments=data['comments'])
+    db.session()
+    db.session.add(new_comment)
+    db.session.commit()
+
+  ## Delete a comment from an expense
+  @expense_routes.routes('expenses/comments/:id', methods=['DELETE'])
+  def delete_comment():
+    delete_comment = Comments(comment=data['comment'])
+    db.session()
+    db.session.delete(delete_comment)
+    db.session.commit()
+
+  ## Update the title or amount associated with an amount
+  @expense_routes.route('expenses/:id', methods=['PATCH'])
+  def update_title():
+    update_title = Expenses.query.filter_by(id =expense.id).update(expense.title)
+    db.session.commit()
+
+    update_amount = Expenses.query.filter_by(id expense.id).update(expense.amount)
+    db.session.commit()
+
+## NOT SURE ABOUT THIS ONE
+  ## Return all comments associated with an expense
+  @expense_routes.route('expenses/:id/comments/all')
+  def get_all():
     pass
 
-  @expense_routes.route('expenses/comments', methods=['POST'])
-  def post_comment():
-    pass
+
+
 
   
