@@ -24,5 +24,3 @@ with app.app_context():
   for comment in comments:
     db.session.add(comment)
   db.session.commit()
-
-  
