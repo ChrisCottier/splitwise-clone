@@ -50,3 +50,22 @@ def post_expense():
   db.session.commit()
 
   return jsonify('success')
+
+  ################################# Expense and Comment Routes ################
+  @expense_routes.route('/expenses/all/:id')
+  def all_expenses():
+    pass
+
+  @expense_routes.route('/expenses/:id', methods=['DELETE'])
+  def delete_expense():
+    pass
+
+  @expense_routes.route('/expenses/:id')
+  def get_expense():
+    pass
+
+  @expense_routes.route('expenses/comments', methods=['POST'])
+  def post_comment():
+    pass
+
+  

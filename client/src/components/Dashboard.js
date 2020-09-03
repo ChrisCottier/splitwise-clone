@@ -1,9 +1,9 @@
 import React from 'react';
 import AddFriend from './AddFriend';
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import './styles/dashboard.css'
-import {EXPENSE_MODAL} from '../actions/modals'
+import { EXPENSE_MODAL } from '../actions/modals'
 import AddExpenseModal from './AddExpenseModal'
 
 export const ExpenseHeader = (props) => {
@@ -11,7 +11,7 @@ export const ExpenseHeader = (props) => {
   const dispatch = useDispatch();
 
   const showExpenseModal = () => {
-    dispatch({type: EXPENSE_MODAL, display: "block"})
+    dispatch({ type: EXPENSE_MODAL, display: "block" })
   }
 
   return (
