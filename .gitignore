@@ -1,6 +1,7 @@
 .venv/
 node_modules/
 .env
+.vscode
 __pycache__/
 migrations/__pycache__/env.cpython-38.pyc
 migrations/__pycache__/env.cpython-38.pyc
