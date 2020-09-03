@@ -51,7 +51,7 @@ def post_expense():
 
   return jsonify('success')
 
-  ################################# Expense Routes ################
+  ################################# Expense & Comment Routes ################
 
   ## Returns all activity/expenses for a specific user
   @expense_routes.route('/expenses/all/:id')
@@ -98,11 +98,11 @@ def post_expense():
     update_amount = Expenses.query.filter_by(id = expense.id).update(expense.amount)
     db.session.commit()
 
-## NOT SURE ABOUT THIS ONE
   ## Return all comments associated with an expense
   @expense_routes.route('expenses/:id/comments/all')
   def get_all():
-    pass
+    get_comment = Comments.query.filter(id = Comment.id == Expense.id).all()
+    return get_comment
 
 
 
