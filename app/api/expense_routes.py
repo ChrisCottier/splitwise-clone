@@ -51,13 +51,14 @@ def post_expense():
 
   return jsonify('success')
 
-  ################################# Expense and Comment Routes ################
+  ################################# Expense Routes ################
 
   ## Returns all activity/expenses for a specific user
   @expense_routes.route('/expenses/all/:id')
   def all_expenses():
-    all_user_expenses = Activities.query.filter_by(activity.id).all()
-    return user_expenses
+    all_user_expenses = Expense.query.filter_by(expenses.id).all()
+    return all_user_expenses
+    print(all_user_expenses)
 
   ## Delete expenses for a specific user
   @expense_routes.route('/expenses/:id', methods=['DELETE', 'GET'])
@@ -91,10 +92,10 @@ def post_expense():
   ## Update the title or amount associated with an amount
   @expense_routes.route('expenses/:id', methods=['PATCH'])
   def update_title():
-    update_title = Expenses.query.filter_by(id =expense.id).update(expense.title)
+    update_title = Expenses.query.filter_by(id = expense.id).update(expense.title)
     db.session.commit()
 
-    update_amount = Expenses.query.filter_by(id expense.id).update(expense.amount)
+    update_amount = Expenses.query.filter_by(id = expense.id).update(expense.amount)
     db.session.commit()
 
 ## NOT SURE ABOUT THIS ONE
