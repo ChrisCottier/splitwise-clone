@@ -27,6 +27,7 @@ bcrypt = "*"
 pyjwt = "*"
 flask-migrate = "*"
 sqlalchemy = "*"
+simplejson = "*"
 
 [requires]
 python_version = "3.8"

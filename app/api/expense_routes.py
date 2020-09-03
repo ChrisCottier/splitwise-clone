@@ -49,6 +49,7 @@ def post_expense():
 
   db.session.commit()
 
+<<<<<<< HEAD
   return jsonify('success')
 
   ################################# Expense & Comment Routes ################
@@ -108,3 +109,6 @@ def post_expense():
 
 
   
+=======
+  return jsonify(new_expense)
+>>>>>>> 4b71851345dbe2cecfda820e6d420b002c197a43

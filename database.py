@@ -5,6 +5,7 @@ from app import app, db
 from app.models.expenses import Expense
 from app.models.users import User
 from app.models.friends import Friend
+from app.models.debts import Debt
 
 with app.app_context():
   db.drop_all()
@@ -33,6 +34,14 @@ with app.app_context():
 
   for friend in friends:
     db.session.add(friend)
+
+  expense=Expense(title='sample', note='sample note', amount=234, split_type='even', settled_up=False, creator_id=1)
+  db.session.add(expense)
+
+  db.session.commit()
+
+  debt=Debt(amount = 3.50, lender_id=1, borrower_id=2, expense_id=expense.id)
+  db.session.add(debt)
   db.session.commit()
   # ian = User(username = 'Ian', email = 'ian@aa.io')
   # javier = User(username = 'Javier', email = 'javier@aa.io')
