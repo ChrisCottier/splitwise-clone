@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, jsonify
+from flask import Blueprint, jsonify, request
 import bcrypt
 from app.models import db
 from app.models.users import User

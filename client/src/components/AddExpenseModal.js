@@ -4,25 +4,44 @@ import {useSelector, useDispatch} from 'react-redux'
 import { TextAreaInput, TextInput, NumberInput, FileInput, CategoryInput} from './sub-components/Form-Inputs'
 import {EXPENSE_MODAL} from '../actions/modals'
 import {getFriends} from '../actions/friends.js'
+import {newExpense} from '../actions/expenses'
+import './styles/expense-modal.css'
 
 
 const MatchingFriends = (props) => {
-  const {friends, string} = props;
+  const {friends, string, friendsOnExpense, setFriendsOnExpense, setAddFriend} = props;
 
   const matches= friends.filter(friend => {
     const name = friend.name;
-    return name.includes(string)
+    return name.includes(string) && string.length >=1 && !friendsOnExpense.includes(friend)
   })
 
+  const addToList = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const indexOfSelection= parseInt(event.target.getAttribute('name'))
+    const selection = matches[indexOfSelection]
+    const add = [...friendsOnExpense, selection]
+    setFriendsOnExpense(add)
+    setAddFriend('')
+  }
   return (
-    <div></div>
+    <div className="friend-options">
+      {matches.map((friend, index) => {
+
+      return (
+      <a className="hover-click" name={index} key={friend.id} onClick={addToList}>{friend.name}</a>
+      )}
+      )}
+    </div>
   )
 }
 
 const FriendOnExpense = (props) => {
   const {friend} = props
   return (
-  <div>{friend.name}<span>X</span></div>
+  <div>{friend.name}<span>**Cancel icon here**</span></div>
   )
 }
 
@@ -35,9 +54,8 @@ const AddExpenseModal = () => {
 
   const {expenseDisplay} = useSelector(state => state.modals)
   const {friends} = useSelector(state => state.friends)
-  const {userId} = useSelector(state => state.auth)
+  const {userId, token} = useSelector(state => state.auth)
   const dispatch = useDispatch();
-  console.log(friends)
 
   useEffect(() => {
     if (friends === undefined) {
@@ -80,31 +98,47 @@ const AddExpenseModal = () => {
       }
     }
   }
-   if (!expenseDisplay) {
+
+  const handleSubmit = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log('submitting')
+    dispatch(newExpense({friendsOnExpense, amount, title, userId, splitType:'even', note, settledUp: false}))
+  }
+
+   if (!expenseDisplay, friends === undefined) {
     return null;
   }
 
+
   return (
-      <div class="modal" style={{display:expenseDisplay}}>
-          <div class="modal-background" onClick={modalOff}></div>
-          <div class="modal-card">
-              <header class="modal-card-head">
-                  <p class="modal-card-title">Create An Expense</p>
-                  <button class="delete" aria-label="close" onClick={modalOff}></button>
+      <div className="modal" style={{display:expenseDisplay}}>
+          <div className="modal-background" onClick={modalOff}></div>
+          <div className="modal-card">
+              <header className="modal-card-head">
+                  <p className="modal-card-title">Create An Expense</p>
+                  <button className="delete" aria-label="close" onClick={modalOff}></button>
               </header>
-              <section class="modal-card-body">
+              <section className="modal-card-body">
               {/* <h1 className="title is-5">Create An Expense</h1> */}
-                <form>
+                <form onSubmit={handleSubmit}>
                   <TextInput
                   label="Add Friends"
                   name="addFriend"
                   placeHolder="Type friends' names here..."
                   value={addFriend}
                   handleChange={handleChange}
-                  require={true}
+                  require={false}
                   ></TextInput>
+                  <MatchingFriends
+                  string={addFriend}
+                  friends={friends}
+                  friendsOnExpense={friendsOnExpense}
+                  setFriendsOnExpense={setFriendsOnExpense}
+                  setAddFriend={setAddFriend}></MatchingFriends>
+                  <div>FRIENDS ADDED BELOW</div>
                   {friendsOnExpense.map(friend => {
-                    return <FriendOnExpense friend={friend}></FriendOnExpense>
+                    return <FriendOnExpense key={friend.id} friend={friend}></FriendOnExpense>
                   })}
                   <TextInput
                   label="Title"
@@ -131,11 +165,11 @@ const AddExpenseModal = () => {
                   handleChange={handleChange}
                   require={true}
                   ></TextInput>
+                  <button className="button is-success" type="submit">Split It!</button>
+                  <button className="button cancel" onClick={modalOff}>Cancel</button>
                 </form>
               </section>
-              <footer class="modal-card-foot">
-                  <button class="button is-success">Save changes</button>
-                  <button class="button cancel" onClick={modalOff}>Cancel</button>
+              <footer className="modal-card-foot">
               </footer>
           </div>
       </div>
