@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 
 from app.models import db
 from app.models.expenses import Expense
+from app.models.debts import Debt
 
 expense_routes = Blueprint('expenses', __name__)
 
@@ -31,10 +32,21 @@ def post_expense():
   creator_id=user_id)
 
   db.session.add(new_expense)
+  db.session.commit()
 
   # make new debts for each friend in friends on expense
+  new_expense = Expense.query.filter(Expense.creator_id == user_id).order_by(Expense.created_at.desc()).first().to_dict()
+  print(new_expense)
+  new_expense_id=new_expense['id']
 
+  for friend in friends_on_expense:
+    new_debt = Debt(
+    amount=debt_per_person,
+    lender_id=user_id,
+    borrower_id=friend['id'],
+    expense_id=new_expense_id)
+    db.session.add(new_debt)
 
   db.session.commit()
 
-  return jsonify('idk yet')
+  return jsonify('success')
