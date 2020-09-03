@@ -1,6 +1,5 @@
 from . import db, func
 
-
 class Debt(db.Model):
     __tablename__ = "debts"
 
