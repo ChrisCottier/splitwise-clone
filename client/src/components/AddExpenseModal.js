@@ -46,6 +46,7 @@ const FriendOnExpense = (props) => {
 }
 
 const AddExpenseModal = () => {
+  const [friendsUpdated,setFriendsUpdated] = useState(false)
   const [friendsOnExpense, setFriendsOnExpense] = useState([])
   const [addFriend, setAddFriend] = useState('')
   const [title, setTitle] = useState('')
@@ -58,8 +59,9 @@ const AddExpenseModal = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (friends === undefined) {
+    if (!friendsUpdated) {
       dispatch(getFriends(userId))
+      setFriendsUpdated(true)
     }
   })
 

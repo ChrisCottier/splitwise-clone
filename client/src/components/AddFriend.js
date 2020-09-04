@@ -1,36 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { apiUrl } from '../config';
 import Friend from './Friend';
+import {getFriends} from '../actions/friends.js'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import 'bulma/css/bulma.css'
+import './styles/page-layout.css'
 
 const AddFriend = () => {
+  const dispatch=useDispatch()
+  const [friendsUpdated,setFriendsUpdated] = useState(false)
   const { userId, token } = useSelector(state => state.auth)
-  const [friends, setFriends] = useState([]);
+  const {friends} = useSelector(state => state.friends)
 
   useEffect(() => {
-    if (!token) return;
-    if (friends.length > 0) return;
-    const fetchData = async () => {
-      const res = await fetch(`${apiUrl}/friends/${userId}`);
-      const data = await res.json();
-      setFriends(data);
+    if (!friendsUpdated) {
+      dispatch(getFriends(userId))
+      setFriendsUpdated(true)
     }
-    fetchData();
+
   }, []);
 
+  if (!friends) return null;
   const friendsComponents = friends.map((friend) => <Friend key={friend.id} user={friend} />);
-  if (!token) {
-    return <Redirect to="/login"></Redirect>
-  }
-  return (
-    <div>
 
+  return (
+    <>
+
+      {/* make popup modal if time
       <div className="modal">
         <div className="modal-background"></div>
         <div className="modal-content">
@@ -40,11 +41,11 @@ const AddFriend = () => {
             </button>
         </div>
         <button className="modal-close is-large" aria-label="close"></button>
-      </div>
+      </div> */}
 
       <table className='.table table is-striped is-bordered is-widescreen'>
         <thead>
-          <tr><th>
+          <tr>Friends<th>
             <a className='add modal' href='#invite' >
               <i className='friend-icon'></i>
                   Add +
@@ -56,12 +57,12 @@ const AddFriend = () => {
           {friendsComponents}
         </tbody>
       </table>
-      <form method='post' type='email'>
+      <form method='post' type='email' id="invite-friends">
         <p>Invite Friends</p>
         <input placeholder='Enter An Email Address' />
         <button type='submit'>Send Invite</button>
       </form>
-    </div>
+    </>
 
   )
 }
