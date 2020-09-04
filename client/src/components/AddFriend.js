@@ -4,13 +4,17 @@ import { Redirect } from 'react-router-dom'
 
 import { apiUrl } from '../config';
 import Friend from './Friend';
+import {TextInput} from './sub-components/Form-Inputs'
 import { getFriends } from '../actions/friends.js'
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import 'bulma/css/bulma.css'
 import './styles/page-layout.css'
 
+
+// this is a friends list
 const AddFriend = () => {
   const dispatch = useDispatch()
   const [friendsUpdated, setFriendsUpdated] = useState(false)
@@ -31,26 +35,14 @@ const AddFriend = () => {
   return (
     <>
 
-      {/* make popup modal if time
-      <div className="modal">
-        <div className="modal-background"></div>
-        <div className="modal-content">
-          <button>
-            <img src="https://assets.splitwise.com/assets/fat_rabbit/email-db939b398a4bea03ee3f5fe956e3476f1d9eab86ca731b9293e53082be9f11e2.png" alt=""></img>
-              INVITE FRIENDS BY EMAIL ADDRESS
-            </button>
-        </div>
-        <button className="modal-close is-large" aria-label="close"></button>
-      </div> */}
-
       <table className='.table table is-striped is-bordered is-widescreen'>
         <thead>
           <tr>
-            <th>Friends 
+            <th>Friends
               <a className='add modal' href='#invite' >
                 <i className='friend-icon'></i>
               </a>
-                Add +
+                {/* Add + */}
             </th>
           </tr>
         </thead>
@@ -58,6 +50,7 @@ const AddFriend = () => {
           {friendsComponents}
         </tbody>
       </table>
+      <Friending/>
       <form method='post' type='email' id="invite-friends">
         <p>Invite Friends</p>
         <input placeholder='Enter An Email Address' />
@@ -65,6 +58,38 @@ const AddFriend = () => {
       </form>
     </>
 
+  )
+}
+
+// this is to add a friend
+export const Friending = () => {
+
+  const [friendQuery, setFriendQuery] = useState("");
+  const [friendUserId, setFriendUserId] = useState(null);
+  const [matchingUsers, setMatchingUsers] =useState([]);
+
+  const handleChange = (event) => {
+    console.log('handle change')
+    setFriendQuery(event.target.value)
+    async function getMatchingFriends(friendQuery) {
+
+      const res = await fetch(`${apiUrl}/users/?q=${friendQuery}`)
+      console.log(res)
+    }
+    getMatchingFriends()
+  }
+  return (
+    <>
+      <TextInput
+      label="Add A Friend"
+      placeHolder='Search for friend here...'
+      value={friendQuery}
+      onChange={handleChange}
+      required={false}
+      name='friending'
+      >
+      </TextInput>
+    </>
   )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import AddFriend from './AddFriend';
 import {useSelector} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
+import AddFriend from './AddFriend';
 import './styles/page-layout.css'
 import AddExpenseModal from './AddExpenseModal'
 import Navbar, {SideNav} from './Navbar'

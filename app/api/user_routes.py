@@ -63,6 +63,13 @@ def restore():
   else:
     return jsonify(None)
 
+@user_routes.route('/?q=<query>')
+def query_matching_users(query):
+  print(query)
+  matches = User.query.filter(User.name.ilike(query)).all()
+  matches_dict = [user.to_dict() for user in matches]
+  return jsonify(matches_dict)
+
 
 
 
