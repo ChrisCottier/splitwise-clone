@@ -1,20 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 
 import './styles/navbar.css'
 import {ACCESS_TOKEN, LOG_OUT} from '../actions/auth'
 
-export const SideNav = () => {
+export const SideNav = (props) => {
+  const {location} = props;
+  const [navSet, setNavSet] = useState(false);
+  const [dashboard, setDashboard] = useState("");
+  const [activity, setActivity] = useState("");
+  const [expenses, setExpenses] = useState("");
+
+  if (location === "dashboard" && !navSet) {
+    setDashboard("active-page")
+    setNavSet(true)
+  }  else if (location === "activities") {
+    setActivity("active-page")
+    setNavSet(true)
+  } else if (location === "expenses") {
+    setExpenses("active-page")
+    setNavSet(true)
+  }
+
   return (
   <nav>
     <ul>
-      <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
+      {/* <li><NavLink to="/users" activeclass="active">Users</NavLink></li> */}
       {/* <li><NavLink to="/sign-up" activeclass="active">Sign-Up</NavLink></li>
       <li><NavLink to="/login" activeclass="active">Login</NavLink></li> */}
-      <li><NavLink to="/dashboard" activeclass="active">Dashboard</NavLink></li>
-      <li><NavLink to="/dashboard" activeclass="active">Recent Activity</NavLink></li>
-      <li><NavLink to="/dashboard" activeclass="active">All Expenses</NavLink></li>
+      <li><i className={`${dashboard} fas fa-home`}></i><NavLink to="/dashboard" activeclass="active" className={`${dashboard} page-link`}>{'  Dashboard'}</NavLink></li>
+      <li><i className={`${activity} fas fa-flag`}></i><NavLink to="/dashboard" activeclass="active" className={`${activity} page-link`}>{'  Recent Activity'}</NavLink></li>
+      <li><i className={`${expenses} fas fa-list-alt`}></i><NavLink to="/dashboard" activeclass="active" className={`${expenses} page-link`}>{'  All Expenses'}</NavLink></li>
     </ul>
   </nav>
   )
@@ -35,7 +52,7 @@ const Navbar = () => {
         </NavLink>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div className="navbar-menu">
         <div className="navbar-start">
           {/* <a className="navbar-item">
             Home
