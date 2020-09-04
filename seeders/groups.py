@@ -3,7 +3,7 @@ from random import sample
 
 x = set()
 while len(x) < 30:
-    x.add(tuple(sample(range(30), k=6)))
+    x.add(tuple(sample(range(1, 31), k=6)))
 
 x = list(x)
 groups = [f'test_group{i}' for i in range(1, 31)]

@@ -15,13 +15,14 @@ with app.app_context():
     db.drop_all()
     db.create_all()
     # add the seed objects
+    # flush the session to ensure primary keys are generated then commit
     db.session.add_all(seed_users)
-    db.session.add_all(seed_friends)
-    db.session.add_all(seed_expenses)
-    db.session.add_all(seed_comments)
-    db.session.add_all(seed_groups)
-    db.session.add_all(seed_transactions)
-    db.session.add_all(seed_debts)
-    #  flush the session to ensure primary keys are generated then commit
     db.session.flush()
+    db.session.add_all(seed_friends)
+    db.session.add_all(seed_groups)
+    db.session.add_all(seed_expenses)
+    db.session.flush()
+    db.session.add_all(seed_comments)
+    db.session.add_all(seed_debts)
+    db.session.add_all(seed_transactions)
     db.session.commit()
