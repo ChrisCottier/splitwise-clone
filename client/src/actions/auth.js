@@ -1,6 +1,7 @@
 import { apiUrl } from "../config"
 export const ACCESS_TOKEN = "ACCESS_TOKEN";
 export const SIGN_IN = "SIGNED_IN"
+export const LOG_OUT='LOG_OUT'
 
 export const signUp = (name, email, password) =>
   async (dispatch) => {
