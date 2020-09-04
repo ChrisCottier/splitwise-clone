@@ -1,8 +1,9 @@
 from app.models.friends import Friend
+from random import sample
 
-seed_friends = [
-    Friend(user1_id=1, user2_id=2),
-    Friend(user1_id=1, user2_id=3),
-    Friend(user1_id=1, user2_id=5),
-    Friend(user1_id=1, user2_id=6),
-]
+x = set()
+while len(x) < 30:
+    x.add(tuple(sample(range(30), k=2)))
+
+x = list(x)
+seed_friends = [Friend(user1_id=n[0], user2_id=n[1]) for n in x]
