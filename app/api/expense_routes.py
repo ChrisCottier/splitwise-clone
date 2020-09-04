@@ -10,68 +10,75 @@ expense_routes = Blueprint('expenses', __name__)
 
 @expense_routes.route("", methods=["post"])
 def post_expense():
-  data = request.json
-  print('recieved data', data)
+    data = request.json
+    print('recieved data', data)
 
-  friends_on_expense = data['friendsOnExpense']
-  amount = Decimal(data['amount'])
-  title = data['title']
-  user_id=data['userId']
-  split_type=data['splitType']
-  note=data['note']
-  settled_up=data['settledUp']
+    friends_on_expense = data['friendsOnExpense']
+    amount = Decimal(data['amount'])
+    title = data['title']
+    user_id = data['userId']
+    split_type = data['splitType']
+    note = data['note']
+    settled_up = data['settledUp']
 
-  num_of_shares=len(friends_on_expense) + 1
-  debt_per_person = amount/num_of_shares
+    num_of_shares = len(friends_on_expense) + 1
+    debt_per_person = amount/num_of_shares
 
-  # new expense
-  new_expense=Expense(
-  title=title,
-  note=note,
-  amount=amount,
-  split_type=split_type,
-  settled_up=settled_up,
-  creator_id=user_id)
+    # new expense
+    new_expense = Expense(
+        title=title,
+        note=note,
+        amount=amount,
+        split_type=split_type,
+        settled_up=settled_up,
+        creator_id=user_id)
 
-  db.session.add(new_expense)
-  db.session.commit()
+    db.session.add(new_expense)
+    db.session.commit()
 
-  # make new debts for each friend in friends on expense
-  new_expense = Expense.query.filter(Expense.creator_id == user_id).order_by(Expense.created_at.desc()).first().to_dict()
-  print(new_expense)
-  new_expense_id=new_expense['id']
+    # make new debts for each friend in friends on expense
+    new_expense = Expense.query.filter(Expense.creator_id == user_id).order_by(
+        Expense.created_at.desc()).first().to_dict()
+    print(new_expense)
+    new_expense_id = new_expense['id']
 
-  for friend in friends_on_expense:
-    new_debt = Debt(
-    amount=debt_per_person,
-    lender_id=user_id,
-    borrower_id=friend['id'],
-    expense_id=new_expense_id)
-    db.session.add(new_debt)
+    for friend in friends_on_expense:
+        new_debt = Debt(
+            amount=debt_per_person,
+            lender_id=user_id,
+            borrower_id=friend['id'],
+            expense_id=new_expense_id)
+        db.session.add(new_debt)
 
-  db.session.commit()
+    db.session.commit()
 
-  return jsonify('success')
+    return jsonify('success')
 
-  ################################# Expense & Comment Routes ################
+    ################################# Expense & Comment Routes ################
 
-  ## Returns all activity/expenses for a specific user
-  @expense_routes.route('/expenses/all/:id')
-  def all_expenses():
-    all_user_expenses = Expense.query.filter_by(id=Expenses.id).all()
+# Returns all activity/expenses for a specific user
+# Not working Yet
+
+
+@expense_routes.route('/<id>/all')
+def all_expenses():
+    all_user_expenses = Expense.query.filter(Expense.id == int(id)).all()
+    expenses = [expense.to_dict() for expense in all_user_expenses]
     return jsonify(all_user_expenses)
-    print(all_user_expenses)
-
-    # Delete expenses for a specific user
 
 
+# works
+# Return all comments associated with an expense
 @expense_routes.route('/<id>/comments')
 def get_all(id):
     get_comments = Comment.query.filter(Comment.expense_id == int(id)).all()
+    print(get_comments)
     comments = [comment.to_dict() for comment in get_comments]
     return jsonify(comments)
 
 
+# Delete expenses for a specific user
+# Not Tested
 @expense_routes.route('/<id>', methods=['DELETE', 'GET'])
 def delete_expense():
     delete_me = Expense(expense=data['expense'])
@@ -80,24 +87,28 @@ def delete_expense():
     db.session.commit()
 
     # Returns a specific activity/expense for a user
-    def get_expense():
-        user_expense = Expense.query.filter_by(amount=Expense.amount).all()
+    # Not Tested
+    def get_expense(amount):
+        user_expense = Expense.query.filter(Expense.amount == amount).all()
+        expense = [Expense.to_dict() for expense in user_expense]
         return jsonify(user_expense)
 
-    # Post a new comment to an expense
 
 
-# @expense_routes.route('/<id>/comments', methods=['POST'])
-# def post_comment():
-#     new_comment = Comment(comments=data['comments'])
-#     db.session()
-#     db.session.add(new_comment)
-#     db.session.commit()
-#     return jsonify('Your comment was posted')
+# Post a new comment to an expense
+# Not Tested
+@expense_routes.route('/<id>/comments', methods=['POST'])
+def post_comment():
+    new_comment = Comment(comments=data['comments'])
+    db.session()
+    db.session.add(new_comment)
+    db.session.commit()
+    return jsonify('Your comment was posted')
 
-    # Delete a comment from an expense
 
 
+# Delete a comment from an expense
+# Not Tested
 @expense_routes.route('/comments/<id>', methods=['DELETE'])
 def delete_comment():
     delete_comment = Comment(comment=data['comment'])
@@ -106,9 +117,9 @@ def delete_comment():
     db.session.commit()
     return jsonify('Comment was deleted')
 
-    # Update the title or amount associated with an amount
 
 
+# Update the title or amount associated with an amount
 @expense_routes.route('/<id>', methods=['PUT'])
 def update_title():
     update_title = Expense.query.filter_by(
@@ -119,8 +130,6 @@ def update_title():
         id=Expense.id).update(Expense.amount)
     db.session.commit()
     return jsonify('Amount Updated')
-
-    # Return all comments associated with an expense
 
 
 # return jsonify(new_expense)
