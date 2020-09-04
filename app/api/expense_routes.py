@@ -114,4 +114,4 @@ def get_all():
   return jsonify(get_comment)
 
 
-return jsonify(new_expense)
+# return jsonify(new_expense)
