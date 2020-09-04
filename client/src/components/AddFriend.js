@@ -1,33 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { apiUrl } from '../config';
 import Friend from './Friend';
+import {getFriends} from '../actions/friends.js'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import 'bulma/css/bulma.css'
 
 const AddFriend = () => {
+  const dispatch=useDispatch()
+  const [friendsUpdated,setFriendsUpdated] = useState(false)
   const { userId, token } = useSelector(state => state.auth)
-  const [friends, setFriends] = useState([]);
+  const {friends} = useSelector(state => state.friends)
 
   useEffect(() => {
-    if (!token) return;
-    if (friends.length > 0) return;
-    const fetchData = async () => {
-      const res = await fetch(`${apiUrl}/friends/${userId}`);
-      const data = await res.json();
-      setFriends(data);
+    if (!friendsUpdated) {
+      dispatch(getFriends(userId))
+      setFriendsUpdated(true)
     }
-    fetchData();
+
   }, []);
 
+  if (!friends) return null;
   const friendsComponents = friends.map((friend) => <Friend key={friend.id} user={friend} />);
-  if (!token) {
-    return <Redirect to="/login"></Redirect>
-  }
+
   return (
     <div>
 
