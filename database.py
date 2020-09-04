@@ -3,6 +3,7 @@ from seeders.comments import seed_comments
 from seeders.debts import seed_debts
 from seeders.expenses import seed_expenses
 from seeders.friends import seed_friends
+from seeders.groups import seed_groups
 from seeders.users import seed_users
 from seeders.transactions import seed_transactions
 from dotenv import load_dotenv
@@ -17,9 +18,10 @@ with app.app_context():
     db.session.add_all(seed_users)
     db.session.add_all(seed_friends)
     db.session.add_all(seed_expenses)
+    db.session.add_all(seed_comments)
+    db.session.add_all(seed_groups)
     db.session.add_all(seed_transactions)
     db.session.add_all(seed_debts)
-    db.session.add_all(seed_comments)
     #  flush the session to ensure primary keys are generated then commit
     db.session.flush()
     db.session.commit()
