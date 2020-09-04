@@ -30,6 +30,7 @@ const AddFriend = () => {
   return (
     <div>
 
+      {/* make popup modal if time
       <div className="modal">
         <div className="modal-background"></div>
         <div className="modal-content">
@@ -39,11 +40,11 @@ const AddFriend = () => {
             </button>
         </div>
         <button className="modal-close is-large" aria-label="close"></button>
-      </div>
+      </div> */}
 
       <table className='.table table is-striped is-bordered is-widescreen'>
         <thead>
-          <tr><th>
+          <tr>Friends<th>
             <a className='add modal' href='#invite' >
               <i className='friend-icon'></i>
                   Add +
