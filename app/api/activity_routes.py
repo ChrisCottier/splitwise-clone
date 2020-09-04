@@ -14,7 +14,6 @@ activity_routes = Blueprint('activities', __name__)
 
 @activity_routes.route("/<id>")
 def index(id):
-    user_activity = []
 
     # Get all comments associated with the current user
     user_comments = Comment.query.filter(Comment.user_id == int(id)).all()
@@ -63,3 +62,12 @@ def index(id):
     all_user_transactions = user_recieved.union(user_sent)
     transactions = [all_user_transactions.to_dict()
                     for transaction in all_user_transactions]
+
+    return jsonify(
+        comments=comments,
+        debts=debts,
+        expenses=expenses,
+        friends=friends,
+        groups=groups,
+        transactions=transactions,
+    )

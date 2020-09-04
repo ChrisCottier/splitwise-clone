@@ -28,7 +28,11 @@ pyjwt = "*"
 flask-migrate = "*"
 sqlalchemy = "*"
 simplejson = "*"
+<<<<<<< HEAD
 jsonify = "*"
+=======
+faker = "*"
+>>>>>>> ee233c66084b26ef1b493e6821380daf03287da0
 
 [requires]
 python_version = "3.8"
