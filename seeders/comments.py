@@ -1,4 +1,8 @@
 from app.models.comments import Comment
+from . import fake
+
+messages = [fake.paragraph() for i in range(30)]
+print(messages)
 
 seed_comments = [
     Comment(message="I've already paid my portion",
