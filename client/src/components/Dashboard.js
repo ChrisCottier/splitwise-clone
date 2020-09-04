@@ -8,6 +8,7 @@ import { EXPENSE_MODAL } from '../actions/modals'
 import AddExpenseModal from './AddExpenseModal'
 import {getUserDebts} from '../actions/debts'
 import Navbar, {SideNav} from './Navbar'
+import PageLayout from './PageLayout'
 
 export const ExpenseHeader = (props) => {
   const { title } = props;
@@ -73,7 +74,7 @@ const IOweDebtTile = (props) => {
   )
 }
 
-const Dashboard = () => {
+const DashboardCenter = () => {
   const dispatch = useDispatch()
   const [debtsUpdated, setDebtsUpdated] = useState(false)
 
@@ -85,10 +86,6 @@ const Dashboard = () => {
     setDebtsUpdated(true)
   })
 
-  const updateDash = () => {
-
-  }
-
   if (loggedOut) {
     return <Redirect to="/sign-up"></Redirect>
   }
@@ -96,52 +93,103 @@ const Dashboard = () => {
     return null;
   }
   return (
+
     <>
-      <Navbar></Navbar>
-      <main>
-        <div className="container is-widescreen">
-          <AddExpenseModal></AddExpenseModal>
-          <div className="columns">
-            <div className="column is-one-fifth">
-              <SideNav></SideNav>
-              <div><AddFriend onClick={updateDash} /> </div>
-            </div>
-
-            {/* this is the center */}
-            <div className="column is-three-fifths">
-              <ExpenseHeader title={'Dashboard'}></ExpenseHeader>
-              <Balances netOwed={netOwed} totalIOwe={totalIOwe} totalIAmOwed={totalIAmOwed} ></Balances>
-              <div className="columns">
-                <div className="column is-half">
-                  <div>YOU OWE </div>
-                  {iOwe.map(debt => {
-                    return <IOweDebtTile key={debt.id} debt={debt}></IOweDebtTile>
-                  })}
-                </div>
-                <div className="column is-half">
-                  <div>YOU ARE OWED </div>
-                  {iAmOwed.map(debt => {
-                    return <IAmOwedDebtTile key={debt.id} debt={debt}></IAmOwedDebtTile>
-                  })}
-                </div>
-              </div>
-            </div>
-            {/* This is the end of the center */}
-
-            <div className="column is-one-fifth">
-              <div>FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER </div>
-            </div>
-          </div>
+      <ExpenseHeader title={'Dashboard'}></ExpenseHeader>
+      <Balances netOwed={netOwed} totalIOwe={totalIOwe} totalIAmOwed={totalIAmOwed} ></Balances>
+      <div className="columns">
+        <div className="column is-half">
+          <div>YOU OWE </div>
+          {iOwe.map(debt => {
+            return <IOweDebtTile key={debt.id} debt={debt}></IOweDebtTile>
+          })}
         </div>
-      </main>
+        <div className="column is-half">
+          <div>YOU ARE OWED </div>
+          {iAmOwed.map(debt => {
+            return <IAmOwedDebtTile key={debt.id} debt={debt}></IAmOwedDebtTile>
+          })}
+        </div>
+      </div>
     </>
+
   )
 }
 
-
-
+const Dashboard = () => {
+  return <PageLayout center={<DashboardCenter></DashboardCenter>}></PageLayout>
+}
 
 export default Dashboard;
+
+// const Dashboard = () => {
+//   const dispatch = useDispatch()
+//   const [debtsUpdated, setDebtsUpdated] = useState(false)
+
+//   const {userId, token, loggedOut} = useSelector(state=> state.auth);
+//   const {iOwe, iAmOwed, totalIAmOwed, totalIOwe, netOwed} = useSelector(state => state.debts)
+//   useEffect(()=>{
+//     if (!userId || debtsUpdated ) return;
+//     dispatch(getUserDebts(userId))
+//     setDebtsUpdated(true)
+//   })
+
+//   const updateDash = () => {
+
+//   }
+
+//   if (loggedOut) {
+//     return <Redirect to="/sign-up"></Redirect>
+//   }
+//   if (!token || !netOwed) {
+//     return null;
+//   }
+//   return (
+//     <>
+//       <Navbar></Navbar>
+//       <main>
+//         <div className="container is-widescreen">
+//           <AddExpenseModal></AddExpenseModal>
+//           <div className="columns">
+//             <div className="column is-one-fifth">
+//               <SideNav></SideNav>
+//               <div><AddFriend onClick={updateDash} /> </div>
+//             </div>
+
+//             {/* this is the center */}
+//             <div className="column is-three-fifths">
+//               <ExpenseHeader title={'Dashboard'}></ExpenseHeader>
+//               <Balances netOwed={netOwed} totalIOwe={totalIOwe} totalIAmOwed={totalIAmOwed} ></Balances>
+//               <div className="columns">
+//                 <div className="column is-half">
+//                   <div>YOU OWE </div>
+//                   {iOwe.map(debt => {
+//                     return <IOweDebtTile key={debt.id} debt={debt}></IOweDebtTile>
+//                   })}
+//                 </div>
+//                 <div className="column is-half">
+//                   <div>YOU ARE OWED </div>
+//                   {iAmOwed.map(debt => {
+//                     return <IAmOwedDebtTile key={debt.id} debt={debt}></IAmOwedDebtTile>
+//                   })}
+//                 </div>
+//               </div>
+//             </div>
+//             {/* This is the end of the center */}
+
+//             <div className="column is-one-fifth">
+//               <div>FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER </div>
+//             </div>
+//           </div>
+//         </div>
+//       </main>
+//     </>
+//   )
+// }
+
+
+
+
 
 // import React from 'react'
 // import 'bulma/css/bulma.css'

@@ -9,6 +9,7 @@ import {getFriends} from '../actions/friends.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import 'bulma/css/bulma.css'
+import './styles/page-layout.css'
 
 const AddFriend = () => {
   const dispatch=useDispatch()
@@ -28,7 +29,7 @@ const AddFriend = () => {
   const friendsComponents = friends.map((friend) => <Friend key={friend.id} user={friend} />);
 
   return (
-    <div>
+    <>
 
       {/* make popup modal if time
       <div className="modal">
@@ -56,12 +57,12 @@ const AddFriend = () => {
           {friendsComponents}
         </tbody>
       </table>
-      <form method='post' type='email'>
+      <form method='post' type='email' id="invite-friends">
         <p>Invite Friends</p>
         <input placeholder='Enter An Email Address' />
         <button type='submit'>Send Invite</button>
       </form>
-    </div>
+    </>
 
   )
 }
