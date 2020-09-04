@@ -53,6 +53,10 @@ def post_expense():
 
   ################################# Expense & Comment Routes ################
 
+  @expense_routes.route('/test')
+  def get_test():
+    return jsonify({ 'message': 'Hello Aaron'})
+
   ## Returns all activity/expenses for a specific user
   @expense_routes.route('/expenses/all/:id')
   def all_expenses():

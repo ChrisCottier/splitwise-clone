@@ -28,6 +28,7 @@ pyjwt = "*"
 flask-migrate = "*"
 sqlalchemy = "*"
 simplejson = "*"
+jsonify = "*"
 
 [requires]
 python_version = "3.8"
