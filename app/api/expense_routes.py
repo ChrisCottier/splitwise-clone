@@ -58,8 +58,6 @@ def post_expense():
 
 # Returns all activity/expenses for a specific user
 # Not working Yet
-
-
 @expense_routes.route('/<id>/all')
 def all_expenses():
     all_user_expenses = Expense.query.filter(Expense.id == int(id)).all()
