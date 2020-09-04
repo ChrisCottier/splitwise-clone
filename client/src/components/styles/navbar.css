@@ -1,3 +1,16 @@
 #navbar {
   background-color: #5BC5A7;
 }
+
+a.active-page {
+  font-weight: bold;
+
+}
+
+i.active-page {
+  box-shadow:-5px 0px 0px 0px lightgray;
+}
+
+.page-link {
+  color: #5BC5A7;
+}

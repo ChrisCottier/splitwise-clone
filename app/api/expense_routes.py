@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from decimal import Decimal
 
 from app.models import db
 from app.models.expenses import Expense
@@ -9,10 +10,10 @@ expense_routes = Blueprint('expenses', __name__)
 @expense_routes.route("", methods=["post"])
 def post_expense():
   data = request.json
-  print(data)
+  print('recieved data', data)
 
   friends_on_expense = data['friendsOnExpense']
-  amount = int(data['amount'])
+  amount = Decimal(data['amount'])
   title = data['title']
   user_id=data['userId']
   split_type=data['splitType']
@@ -108,5 +109,5 @@ def post_expense():
     get_comment = Comments.query.filter(id = Comment.id == Expense.id).all()
     return jsonify(get_comment)
 
-  
+
   return jsonify(new_expense)

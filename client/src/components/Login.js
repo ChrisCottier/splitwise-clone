@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { login } from '../actions/auth'
+import {SplashNav} from './Splash'
 
 const Login = () => {
 
@@ -32,33 +33,36 @@ const Login = () => {
         return <Redirect to="/dashboard"></Redirect>
     }
     return (
-        <div className="container is-widescreen">
-            <div className="control">
-                <p>WELCOME TO SPLITWISE</p>
-            </div>
-            <form action="sign-up" method="POST" onSubmit={submitLogin}>
-                <div className="field">
-                    <label className="label">Email address</label>
-                    <div className="control">
-                        <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField} />
-                    </div>
-                </div>
-                <div className="field">
-                    <label className="label">Password</label>
-                    <div className="control">
-                        <input className="input is-info" type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} />
-                    </div>
-                </div>
-                <div className="field is-grouped">
-                    <div className="control">
-                        <button className="button is-link">Login</button>
-                    </div>
-                    <div className="control">
-                        <button className="button is-link is-light">Login as Demo User</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        <>
+          <SplashNav></SplashNav>
+          <div className="container is-widescreen">
+              <div className="control">
+                  <p>WELCOME TO SPLITWISE</p>
+              </div>
+              <form action="sign-up" method="POST" onSubmit={submitLogin}>
+                  <div className="field">
+                      <label className="label">Email address</label>
+                      <div className="control">
+                          <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField} />
+                      </div>
+                  </div>
+                  <div className="field">
+                      <label className="label">Password</label>
+                      <div className="control">
+                          <input className="input is-info" type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} />
+                      </div>
+                  </div>
+                  <div className="field is-grouped">
+                      <div className="control">
+                          <button className="button is-link">Login</button>
+                      </div>
+                      <div className="control">
+                          <button className="button is-link is-light">Login as Demo User</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+        </>
     )
 }
 

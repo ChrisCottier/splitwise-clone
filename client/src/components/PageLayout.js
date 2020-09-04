@@ -11,10 +11,17 @@ import Navbar, {SideNav} from './Navbar'
 const PageLayout = (props) => {
 
   const {center, right} = props
-  const {userId, token, loggedOut} = useSelector(state=> state.auth);
+  const {loggedOut} = useSelector(state=> state.auth);
+  const location = window.location.pathname.slice(1)
+  console.log(location)
+
+
+  // if (loggedOut !== true || loggedOut !== false) {
+  //   return null;
+  // }
 
   if (loggedOut) {
-    return <Redirect to="/sign-up"></Redirect>
+    return <Redirect to="/"></Redirect>
   }
   return (
     <>
@@ -24,7 +31,7 @@ const PageLayout = (props) => {
           <AddExpenseModal></AddExpenseModal>
           <div className="columns">
             <div id="left-column" className="column is-one-fifth">
-              <SideNav></SideNav>
+              <SideNav location={location}></SideNav>
               <AddFriend/>
             </div>
 
