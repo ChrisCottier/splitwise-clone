@@ -1,18 +1,20 @@
 from flask import Blueprint, jsonify, request
-
+from decimal import Decimal
 from app.models import db
 from app.models.expenses import Expense
 from app.models.debts import Debt
+from app.models.comments import Comment
 
 expense_routes = Blueprint('expenses', __name__)
+
 
 @expense_routes.route("", methods=["post"])
 def post_expense():
   data = request.json
-  print(data)
+  print('recieved data', data)
 
   friends_on_expense = data['friendsOnExpense']
-  amount = int(data['amount'])
+  amount = Decimal(data['amount'])
   title = data['title']
   user_id=data['userId']
   split_type=data['splitType']
@@ -53,65 +55,72 @@ def post_expense():
 
   ################################# Expense & Comment Routes ################
 
-## WORKS
-@expense_routes.route('/test')
-def get_test():
-  return jsonify({ 'message': 'Hello Aaron'})
+  ## Returns all activity/expenses for a specific user
+  @expense_routes.route('/expenses/all/:id')
+  def all_expenses():
+    all_user_expenses = Expense.query.filter_by(id=Expenses.id).all()
+    return jsonify(all_user_expenses)
+    print(all_user_expenses)
 
-## Returns all activity/expenses for a specific user
-@expense_routes.route('/expenses/all/:id')
-def all_expenses():
-  all_user_expenses = Expense.query.filter(Expense.title).all()
-  expenses = [all_user_expenses.to_dict() for expense in expenses]
-  # return jsonify(all_user_expenses)
+    # Delete expenses for a specific user
 
-## Delete expenses for a specific user
-@expense_routes.route('/expenses/:id', methods=['DELETE', 'GET'])
+
+@expense_routes.route('/<id>/comments')
+def get_all(id):
+    get_comments = Comment.query.filter(Comment.expense_id == int(id)).all()
+    comments = [comment.to_dict() for comment in get_comments]
+    return jsonify(comments)
+
+
+@expense_routes.route('/<id>', methods=['DELETE', 'GET'])
 def delete_expense():
-  delete_me = Expenses(expense=data['expense'])
-  db.session()
-  db.session.delete(delete_me)
-  db.session.commit()
+    delete_me = Expense(expense=data['expense'])
+    db.session()
+    db.session.delete(delete_me)
+    db.session.commit()
 
-## Returns a specific activity/expense for a user
-def get_expense():
-  user_expense = Expense.query.filter_by(amount = Expenses.amount).all()
-  return jsonify(user_expenses)
+    # Returns a specific activity/expense for a user
+    def get_expense():
+        user_expense = Expense.query.filter_by(amount=Expense.amount).all()
+        return jsonify(user_expense)
 
-## Post a new comment to an expense
-@expense_routes.route('expenses/:id/comments', methods=['POST'])
-def post_comment():
-  new_comment = Comment(comments=data['comments'])
-  db.session()
-  db.session.add(new_comment)
-  db.session.commit()
-  return jsonify('Your comment was posted')
+    # Post a new comment to an expense
 
-## Delete a comment from an expense
-@expense_routes.routes('expenses/comments/:id', methods=['DELETE'])
+
+# @expense_routes.route('/<id>/comments', methods=['POST'])
+# def post_comment():
+#     new_comment = Comment(comments=data['comments'])
+#     db.session()
+#     db.session.add(new_comment)
+#     db.session.commit()
+#     return jsonify('Your comment was posted')
+
+    # Delete a comment from an expense
+
+
+@expense_routes.route('/comments/<id>', methods=['DELETE'])
 def delete_comment():
-  delete_comment = Comments(comment=data['comment'])
-  db.session()
-  db.session.delete(delete_comment)
-  db.session.commit()
-  return jsonify('Comment was deleted')
+    delete_comment = Comment(comment=data['comment'])
+    db.session()
+    db.session.delete(delete_comment)
+    db.session.commit()
+    return jsonify('Comment was deleted')
 
-## Update the title or amount associated with an amount
-@expense_routes.route('expenses/:id', methods=['PUT'])
+    # Update the title or amount associated with an amount
+
+
+@expense_routes.route('/<id>', methods=['PUT'])
 def update_title():
-  update_title = Expenses.query.filter_by(id = expense.id).update(expense.title)
-  db.session.commit()
-  return jsonify('Title Updated')
+    update_title = Expense.query.filter_by(
+        id=Expense.id).update(Expense.title)
+    db.session.commit()
+    return jsonify('Title Updated')
+    update_amount = Expense.query.filter_by(
+        id=Expense.id).update(Expense.amount)
+    db.session.commit()
+    return jsonify('Amount Updated')
 
-  update_amount = Expenses.query.filter_by(id = expense.id).update(expense.amount)
-  db.session.commit()
-  return jsonify('Amount Updated')
-
-## Return all comments associated with an expense
-@expense_routes.route('expenses/:id/comments/all')
-def get_all():
-  get_comment = Comments.query.filter(id = Comment.id == Expense.id).all()
-  return jsonify(get_comment)
+    # Return all comments associated with an expense
 
 
 # return jsonify(new_expense)

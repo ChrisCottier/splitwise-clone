@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import AddFriend from './AddFriend';
 import {useDispatch, useSelector} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
 
 import './styles/dashboard.css'
 import { EXPENSE_MODAL } from '../actions/modals'
-import AddExpenseModal from './AddExpenseModal'
 import {getUserDebts} from '../actions/debts'
-import Navbar, {SideNav} from './Navbar'
 import PageLayout from './PageLayout'
 
 export const ExpenseHeader = (props) => {
@@ -22,7 +19,7 @@ export const ExpenseHeader = (props) => {
     <div className="dashboard-header">
       <div className="title is-5">{title}</div>
       <div className="buttons">
-        <button className="button add-expense-button" onClick={showExpenseModal}>Add an Expense</button>
+        <button className="button add-expense-button is-warning" onClick={showExpenseModal}>Add an Expense</button>
         <button className="button settle-up-button">Settle Up</button>
       </div>
     </div>
@@ -52,25 +49,35 @@ export const Balances = (props) => {
 
 const IAmOwedDebtTile = (props) => {
   const {debt} = props;
+
   return (
-    <div>
-      {/* <div>PROFILE PIC</div> */}
-      <div>{debt.created_at}</div>
-      <div>{debt.borrower.name}</div>
-      <div>{debt.amount}</div>
-    </div>
+    <NavLink to={`/friend/${debt.borrower_id}`}>
+      <div className='i-am-owed debt-background'>
+        {/* <div>PROFILE PIC</div> */}
+        {/* <div>{debt.created_at}</div> */}
+        <div>
+          <div>{debt.borrower.name}</div>
+          <div className='debt-owes-you'>{`owes you $${debt.amount}`}</div>
+        </div>
+      </div>
+    </NavLink>
   )
 }
 
 const IOweDebtTile = (props) => {
   const {debt} = props;
+
   return (
-    <div>
-      {/* <div>PROFILE PIC</div> */}
-      <div>{debt.created_at}</div>
-      <div>{debt.lender.name}</div>
-      <div>{debt.amount}</div>
-    </div>
+    <NavLink to={`/friend/${debt.lender_id}`}>
+      <div className='i-owe debt-background'>
+        {/* <div>PROFILE PIC</div> */}
+        {/* <div>{debt.created_at}</div> */}
+        <div>
+          <div>{debt.lender.name}</div>
+          <div className='debt-i-owe'>{`you owe $${debt.amount}`}</div>
+        </div>
+      </div>
+    </NavLink>
   )
 }
 
@@ -97,15 +104,18 @@ const DashboardCenter = () => {
     <>
       <ExpenseHeader title={'Dashboard'}></ExpenseHeader>
       <Balances netOwed={netOwed} totalIOwe={totalIOwe} totalIAmOwed={totalIAmOwed} ></Balances>
+      <header className="dashboard-owe-header">
+        <div>YOU OWE </div>
+        <div>YOU ARE OWED </div>
+      </header>
       <div className="columns">
-        <div className="column is-half">
-          <div>YOU OWE </div>
+        <div id="dashboard-left" className="column is-half">
           {iOwe.map(debt => {
             return <IOweDebtTile key={debt.id} debt={debt}></IOweDebtTile>
           })}
         </div>
-        <div className="column is-half">
-          <div>YOU ARE OWED </div>
+        <div id="dashboard-right" className="column is-half">
+
           {iAmOwed.map(debt => {
             return <IAmOwedDebtTile key={debt.id} debt={debt}></IAmOwedDebtTile>
           })}

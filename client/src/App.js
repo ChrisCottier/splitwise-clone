@@ -14,6 +14,7 @@ import Login from './components/Login'
 import Footer from './components/Footer'
 import Dashboard from './components/Dashboard'
 import Navbar from './components/Navbar'
+import Splash from './components/Splash'
 
 import { hasAccessToken } from "./actions/auth"
 
@@ -28,7 +29,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/users" component={UserList} />
-        <Route exact path="/"><h1>Welcome to Splitwise</h1></Route>
+        <Route exact path="/" component={Splash}></Route>
         <Route path="/sign-up" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path='/add-friend' component={AddFriend} />
