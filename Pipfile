@@ -28,6 +28,7 @@ pyjwt = "*"
 flask-migrate = "*"
 sqlalchemy = "*"
 simplejson = "*"
+jsonify = "*"
 faker = "*"
 
 [requires]
