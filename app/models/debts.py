@@ -1,5 +1,6 @@
 from . import db, func
 
+
 class Debt(db.Model):
     __tablename__ = "debts"
 
@@ -17,8 +18,6 @@ class Debt(db.Model):
                           onupdate=func.now())
     lender = db.relationship("User", foreign_keys=[lender_id])
     borrower = db.relationship("User", foreign_keys=[borrower_id])
-
-
 
     def to_dict(self):
         return {
