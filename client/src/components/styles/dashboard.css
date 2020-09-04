@@ -2,11 +2,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: #EEEEEE;
   }
   .balance-header {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    background-color: #EEEEEE;
   }
   .balance-box{
     display: flex;
@@ -15,3 +17,41 @@
     border: 1px solid lightgray;
     width: 33%
   }
+
+  .dashboard-owe-header {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+  .debt-background {
+    display: flex;
+    justify-content: center;
+  }
+
+  .debt-background :hover {
+    background-color: #F8F8F8;
+  }
+
+  .i-am-owed {
+    border-left: 1px solid lightgray;
+  }
+
+  .i-owe {
+    border-right: 1px solid lightgray;
+  }
+
+  .debt-owes-you {
+    color: #5BC5A7
+  }
+
+  .debt-i-owe {
+    color: coral
+  }
+
+  .settle-up-button {
+    background-color: #5BC5A7
+  }
+
