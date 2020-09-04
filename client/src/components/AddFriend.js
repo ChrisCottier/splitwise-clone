@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import { apiUrl } from '../config';
 import Friend from './Friend';
-import {getFriends} from '../actions/friends.js'
+import { getFriends } from '../actions/friends.js'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -12,10 +12,10 @@ import 'bulma/css/bulma.css'
 import './styles/page-layout.css'
 
 const AddFriend = () => {
-  const dispatch=useDispatch()
-  const [friendsUpdated,setFriendsUpdated] = useState(false)
+  const dispatch = useDispatch()
+  const [friendsUpdated, setFriendsUpdated] = useState(false)
   const { userId, token } = useSelector(state => state.auth)
-  const {friends} = useSelector(state => state.friends)
+  const { friends } = useSelector(state => state.friends)
 
   useEffect(() => {
     if (!friendsUpdated) {
@@ -45,12 +45,13 @@ const AddFriend = () => {
 
       <table className='.table table is-striped is-bordered is-widescreen'>
         <thead>
-          <tr>Friends<th>
-            <a className='add modal' href='#invite' >
-              <i className='friend-icon'></i>
-                  Add +
+          <tr>
+            <th>Friends 
+              <a className='add modal' href='#invite' >
+                <i className='friend-icon'></i>
               </a>
-          </th>
+                Add +
+            </th>
           </tr>
         </thead>
         <tbody>
