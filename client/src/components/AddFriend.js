@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { apiUrl } from '../config';
 import Friend from './Friend';
 import {TextInput} from './sub-components/Form-Inputs'
-import { getFriends } from '../actions/friends.js'
+import { getFriends, getMatchingUsers, CLEAR_MATCHES, addFriend } from '../actions/friends.js'
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -63,32 +63,53 @@ const AddFriend = () => {
 
 // this is to add a friend
 export const Friending = () => {
-
+  const dispatch = useDispatch()
   const [friendQuery, setFriendQuery] = useState("");
-  const [friendUserId, setFriendUserId] = useState(null);
-  const [matchingUsers, setMatchingUsers] =useState([]);
+  const [matchingUsersLocal, setMatchingUsersLocal] = useState(null);
+  const {matchingUsers, matchingUsersQuery} = useSelector(state=> state.friends)
+  const {userId} = useSelector(state => state.auth)
 
-  const handleChange = (event) => {
-    console.log('handle change')
+  const handleChange = async (event) => {
+    console.log('handle change', event.target.value)
     setFriendQuery(event.target.value)
-    async function getMatchingFriends(friendQuery) {
 
-      const res = await fetch(`${apiUrl}/users/?q=${friendQuery}`)
-      console.log(res)
-    }
-    getMatchingFriends()
   }
+
+  const addNewFriend = (event) => {
+    const friendId = event.target.getAttribute('data-id');
+    dispatch(addFriend(userId, friendId))
+
+  }
+
+  useEffect(() => {
+    console.log('hi', friendQuery)
+    if (friendQuery === "") {
+      dispatch({type: CLEAR_MATCHES})
+      return;
+    }
+    dispatch(getMatchingUsers(userId,friendQuery))
+
+  },[friendQuery])
+  console.log('hi2', friendQuery)
+
+
   return (
     <>
       <TextInput
       label="Add A Friend"
       placeHolder='Search for friend here...'
       value={friendQuery}
-      onChange={handleChange}
+      handleChange={handleChange}
       required={false}
       name='friending'
       >
       </TextInput>
+      {matchingUsers.map(user => {
+        return (
+          <div key={user.id}>{user.name}<button data-id={user.id} onClick={addNewFriend}>Add Friend</button></div>
+
+        )
+      })}
     </>
   )
 }
