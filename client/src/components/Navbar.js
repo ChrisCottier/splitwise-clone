@@ -30,7 +30,7 @@ export const SideNav = (props) => {
       {/* <li><NavLink to="/sign-up" activeclass="active">Sign-Up</NavLink></li>
       <li><NavLink to="/login" activeclass="active">Login</NavLink></li> */}
       <li><i className={`${dashboard} fas fa-home`}></i><NavLink to="/dashboard" activeclass="active" className={`${dashboard} page-link`}>{'  Dashboard'}</NavLink></li>
-      <li><i className={`${activity} fas fa-flag`}></i><NavLink to="/dashboard" activeclass="active" className={`${activity} page-link`}>{'  Recent Activity'}</NavLink></li>
+      <li><i className={`${activity} fas fa-flag`}></i><NavLink to="/activities" activeclass="active" className={`${activity} page-link`}>{'  Recent Activity'}</NavLink></li>
       <li><i className={`${expenses} fas fa-list-alt`}></i><NavLink to="/dashboard" activeclass="active" className={`${expenses} page-link`}>{'  All Expenses'}</NavLink></li>
     </ul>
   </nav>
