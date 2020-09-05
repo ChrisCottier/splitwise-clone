@@ -1,4 +1,4 @@
-import {EXPENSE_MODAL} from '../actions/modals'
+import {EXPENSE_MODAL, CLOSE_EXPENSE_MODAL} from '../actions/modals'
 
 const defaultState = {
   expenseDisplay: "none"

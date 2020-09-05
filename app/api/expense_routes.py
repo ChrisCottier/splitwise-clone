@@ -52,7 +52,8 @@ def post_expense():
 
     db.session.commit()
 
-    return jsonify('success')
+
+    return jsonify(new_expense)
 
     ################################# Expense & Comment Routes ################
 # Return all comments associated with an user
