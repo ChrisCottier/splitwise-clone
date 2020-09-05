@@ -35,7 +35,7 @@ const AddFriend = () => {
   return (
     <>
 
-      <table className='.table table is-striped is-bordered is-widescreen'>
+      <table className='friends-table table is-striped is-bordered is-widescreen'>
         <thead>
           <tr>
             <th>Friends
@@ -51,11 +51,11 @@ const AddFriend = () => {
         </tbody>
       </table>
       <Friending/>
-      <form method='post' type='email' id="invite-friends">
+      {/* <form method='post' type='email' id="invite-friends">
         <p>Invite Friends</p>
-        <input placeholder='Enter An Email Address' />
+        <input className="input" placeholder='Enter An Email Address' />
         <button type='submit'>Send Invite</button>
-      </form>
+      </form> */}
     </>
 
   )
@@ -104,12 +104,20 @@ export const Friending = () => {
       name='friending'
       >
       </TextInput>
-      {matchingUsers.map(user => {
-        return (
-          <div key={user.id}>{user.name}<button data-id={user.id} onClick={addNewFriend}>Add Friend</button></div>
-
-        )
-      })}
+      <div className="matches-root">
+        <div className="matches-container">
+          {matchingUsers.map(user => {
+            return (
+              <div key={user.id} className="">
+                <span>{user.name}</span>
+                <button data-id={user.id} onClick={addNewFriend}>
+                  Add Friend
+                </button>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </>
   )
 }

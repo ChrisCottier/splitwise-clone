@@ -31,8 +31,22 @@
     justify-content: center;
   }
 
+  
+  .debt-background {
+    width: 100%;
+    /* border-bottom: 1px solid lightgray; */
+    text-align: center;
+  }
+
+  .debt-background div{
+    width: 100%;
+    margin-top: 5px;
+  }
+
+
   .debt-background :hover {
-    background-color: #F8F8F8;
+    background-color: lightgray
+
   }
 
   .i-am-owed {

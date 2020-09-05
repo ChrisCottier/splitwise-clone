@@ -84,7 +84,8 @@ def query_matching_users(user_id,query):
       friend_id for friend_id in all_ids if friend_id != int(user_id)]
 
   matches = User.query.filter(User.name.contains(query),
-                              User.id.in_(all_friend_ids) == False).limit(10)
+                              User.id.in_(all_friend_ids) == False,
+                              User.id != int(user_id)).limit(10)
   matches_dict = [user.to_dict() for user in matches]
   print(matches_dict)
   return jsonify({'matches':matches_dict, 'query':query})

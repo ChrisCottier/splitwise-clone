@@ -9,7 +9,7 @@ export const getUserDebts = (userId) => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     // const {iOwe, iAmOwed, totalIamOwed, totalIOwe, netOwed} = data;
-    console.log(data)
+    console.log('updated debts', data)
     dispatch({type: USER_DEBTS,  data: data})
   }
 }

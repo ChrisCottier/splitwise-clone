@@ -1,9 +1,12 @@
 import {apiUrl} from '../config'
+import {EXPENSE_MODAL} from './modals'
+import {USER_DEBTS} from './debts'
 
 export const NEW_EXPENSE='NEW_EXPENSE'
 
 export const newExpense = (data) => async dispatch => {
   console.log(data)
+  const {userId} = data
   const res = await fetch(`${apiUrl}/expenses`, {
     method: "post",
 
@@ -14,7 +17,20 @@ export const newExpense = (data) => async dispatch => {
   })
 
   if (res.ok) {
-    const data = await res.json()
-    console.log(data)
+    const newExpense = await res.json()
+    console.log('new exp', newExpense)
+    dispatch({type: NEW_EXPENSE, newExpense})
+    dispatch({type: EXPENSE_MODAL, display: "none"})
+
+    //now update dashboard debts
+    const res2 = await fetch(`${apiUrl}/debts/user/${userId}`)
+
+    if (res2.ok) {
+      const data2 = await res2.json();
+      console.log('updated debts', data2)
+      dispatch({type: USER_DEBTS,  data: data2})
+    }
+
+
   }
 }
