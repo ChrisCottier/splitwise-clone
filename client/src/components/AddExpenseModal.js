@@ -5,6 +5,7 @@ import { TextAreaInput, TextInput, NumberInput, FileInput, CategoryInput} from '
 import {EXPENSE_MODAL} from '../actions/modals'
 import {getFriends} from '../actions/friends.js'
 import {newExpense} from '../actions/expenses'
+import {getUserDebts} from '../actions/debts'
 import './styles/expense-modal.css'
 
 
@@ -106,6 +107,7 @@ const AddExpenseModal = () => {
     event.preventDefault();
     console.log('submitting')
     dispatch(newExpense({friendsOnExpense, amount, title, userId, splitType:'even', note, settledUp: false}))
+    dispatch(getUserDebts(userId))
   }
 
    if (!expenseDisplay, friends === undefined) {
