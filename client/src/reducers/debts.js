@@ -1,4 +1,5 @@
 import {USER_DEBTS, CLEAR_DEBT_INFO} from '../actions/debts'
+import {NEW_EXPENSE} from "../actions/expenses"
 
 const debts = (state = {}, action) => {
   switch (action.type) {
@@ -16,7 +17,6 @@ const debts = (state = {}, action) => {
     case CLEAR_DEBT_INFO: {
       return {}
     }
-
     default:
       return { ...state };
   }

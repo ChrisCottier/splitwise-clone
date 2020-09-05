@@ -4,6 +4,7 @@ import auth from "./auth"
 import modals from './modals'
 import friends from './friends'
 import debts from './debts'
+import expenses from './expenses'
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   auth,
   modals,
   friends,
-  debts
+  debts,
+  expenses
 });
 
 export default rootReducer;

@@ -28,3 +28,14 @@ def index(id):
     friend_users = User.query.filter(User.id.in_(all_friend_ids)).all()
     friend_users_dict = [user.to_dict() for user in friend_users]
     return jsonify(friend_users_dict)
+
+@friend_routes.route('/<user_id>/<friend_id>', methods=['post'])
+def add_friend(user_id, friend_id):
+  new_friendship=Friend(user1_id=int(user_id), user2_id=int(friend_id))
+  db.session.add(new_friendship)
+  db.session.commit()
+
+  friend=User.query.filter(User.id == int(friend_id)).first().to_dict()
+
+  return jsonify(friend)
+

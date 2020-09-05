@@ -1,7 +1,7 @@
 #left-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 
 #center-column {
@@ -17,5 +17,31 @@
   align-items: center;
 }
 
+.matches-root {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;;
+}
 
+.matches-container {
+  position: absolute;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  width: 100%;
+  border: 1px solid #5DC5A6;
+  background-color: white;
+  z-index: 5;
+}
 
+.matches-container div {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+}
+
+table.friends-table {
+  width: 100%;
+  margin-top: 15px;
+}
