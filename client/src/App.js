@@ -18,6 +18,7 @@ import Navbar from './components/Navbar'
 import Splash from './components/Splash'
 import Expenses from './components/Expense'
 import RecentActivity from './components/Activites'
+import Splashpage from './components/Splashpage'
 
 import { hasAccessToken } from "./actions/auth"
 
@@ -32,6 +33,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Splash}></Route>
+        <Route exact path="/landing" component={Splashpage}></Route>
         <Route path="/users" component={UserList} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/login" component={Login} />
