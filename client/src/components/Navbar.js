@@ -15,10 +15,10 @@ export const SideNav = (props) => {
   if (location === "dashboard" && !navSet) {
     setDashboard("active-page")
     setNavSet(true)
-  }  else if (location === "activities") {
+  }  else if (location === "activities" && !navSet) {
     setActivity("active-page")
     setNavSet(true)
-  } else if (location === "expenses") {
+  } else if (location === "expenses" && !navSet) {
     setExpenses("active-page")
     setNavSet(true)
   }
@@ -31,7 +31,7 @@ export const SideNav = (props) => {
       <li><NavLink to="/login" activeclass="active">Login</NavLink></li> */}
       <li><i className={`${dashboard} fas fa-home`}></i><NavLink to="/dashboard" activeclass="active" className={`${dashboard} page-link`}>{'  Dashboard'}</NavLink></li>
       <li><i className={`${activity} fas fa-flag`}></i><NavLink to="/dashboard" activeclass="active" className={`${activity} page-link`}>{'  Recent Activity'}</NavLink></li>
-      <li><i className={`${expenses} fas fa-list-alt`}></i><NavLink to="/dashboard" activeclass="active" className={`${expenses} page-link`}>{'  All Expenses'}</NavLink></li>
+      <li><i className={`${expenses} fas fa-list-alt`}></i><NavLink to="/expenses" activeclass="active" className={`${expenses} page-link`}>{'  All Expenses'}</NavLink></li>
     </ul>
   </nav>
   )
