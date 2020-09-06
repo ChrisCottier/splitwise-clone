@@ -1,0 +1,23 @@
+.navbar-links{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.main-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; 
+}
+
+.header-one{
+  border: 1px black solid;
+}
+.header-two{
+  border: 1px black solid;
+}
+.header-three{
+  border: 1px black solid;
+}
+.header-four{
+  border: 1px black solid;
+}
