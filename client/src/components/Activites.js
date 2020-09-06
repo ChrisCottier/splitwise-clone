@@ -1,76 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, NavLink } from 'react-router-dom';
+import { apiUrl } from '../config';
 
-import './styles/dashboard.css'
-import { EXPENSE_MODAL } from '../actions/modals'
-import { getUserDebts } from '../actions/debts'
-import PageLayout from './PageLayout'
-
-export const ActivityHeader = (props) => {
-    const { title } = props;
-
-    return (
-        //   just return a header
-        <div className="dashboard-header">
-            <div className="title is-5">{title}</div>
-        </div>
-    )
-}
-
-const commentComponent = () => {
-
-}
-
-const debtComponent = () => {
-
-}
-
-const expenseComponent = () => {
-
-}
-
-const friendComponent = () => {
-
-}
-
-const groupComponent = () => {
-
-}
-
-const transactionComponent = () => {
-
-}
+import './styles/dashboard.css';
+import { Comment, Debt, Expense, Group, Transaction } from './sub-components/ActivityTypes'
+import { getRecentActivity } from '../actions/user';
 
 
-const DashboardCenter = () => {
-    const dispatch = useDispatch()
-    const [recentActivity, setrecentActivity] = useState([])
+const RecentActivity = (props) => {
+    const dispatch = useDispatch();
+    const { userId, name, token } = useSelector(state => state.auth);
+    const [activityUpdated, setActivityUpdated] = useState(false);
+    const { activity } = useSelector(state => state.users)
 
-    const { userId, token, loggedOut } = useSelector(state => state.auth);
-    const { iOwe, iAmOwed, totalIAmOwed, totalIOwe, netOwed } = useSelector(state => state.debts)
     useEffect(() => {
-        if (!userId || debtsUpdated) return;
-        dispatch(getUserDebts(userId))
-        setDebtsUpdated(true)
-    })
+        if (userId === undefined) return;
+        if (!activityUpdated) {
+            dispatch(getRecentActivity(userId))
+            setActivityUpdated(true)
+        }
+    }, [userId]);
 
-    if (loggedOut) {
-        return <Redirect to="/sign-up"></Redirect>
-    }
-    if (!token || !netOwed) {
+
+
+    if (activity) {
+        let currentUser = { userId, name };
+        const { comments, debts, expenses, groups, transactions } = activity;
+
+        const commentComponents = comments.map((comment) => <Comment key={comment.id} comment={comment} />);
+        const debtComponents = debts.map((debt) => <Debt key={debt.id} debt={debt} currentUser={currentUser} />);
+        const expenseComponents = expenses.map((expense) => <Expense key={expense.id} expense={expense} />);
+        const groupComponents = groups.map((group) => <Group key={group.id} group={group} currentUser={currentUser} />);
+        const transactionComponents = transactions.map((transaction) => <Transaction key={transaction.id} transaction={transaction} currentUser={currentUser} />)
+
+        const allActivityComponents = { // I have this ready for modularity if necessary
+            comments: commentComponents,
+            debts: debtComponents,
+            expenses: expenseComponents,
+            groups: groupComponents,
+            transactions: transactionComponents,
+
+        };
+        return (
+            <>
+                <h1 style={{ fontSize: '30px' }}> Recent Activity </h1>
+                <div style={{ width: '600px' }}>
+                    <div>{commentComponents}</div>
+                    <div>{debtComponents}</div>
+                    <div>{expenseComponents}</div>
+                    <div>{groupComponents}</div>
+                    <div>{transactionComponents}</div>
+                </div>
+            </>
+        );
+    } else {
         return null;
     }
 
-    return (
-        <>
-            <ActivityHeader title={'Recent Activity'} />
-        </>
-    )
-}
+};
 
-const Dashboard = () => {
-    return <PageLayout center={<DashboardCenter></DashboardCenter>}></PageLayout>
-}
-
-export default Dashboard;
+export default RecentActivity;

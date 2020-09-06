@@ -18,16 +18,18 @@ class Debt(db.Model):
                           onupdate=func.now())
     lender = db.relationship("User", foreign_keys=[lender_id])
     borrower = db.relationship("User", foreign_keys=[borrower_id])
+    expense = db.relationship("Expense", foreign_keys=[expense_id])
 
     def to_dict(self):
         return {
             "id": self.id,
             "amount": str(self.amount),
             "lender_id": self.lender_id,
+            "lender": self.lender.to_dict(),
             "borrower_id": self.borrower_id,
+            "borrower": self.borrower.to_dict(),
             "expense_id": self.expense_id,
+            "expense": self.expense.to_dict(),
             "created_at": self.created_at,
             "update_at": self.update_at,
-            "lender": self.lender.to_dict(),
-            "borrower": self.borrower.to_dict()
         }

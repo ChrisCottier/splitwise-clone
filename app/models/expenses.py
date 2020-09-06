@@ -11,8 +11,10 @@ class Expense(db.Model):
     split_type = db.Column(db.String)
     settled_up = db.Column(db.Boolean, default=False)
     expense_img = db.Column(db.Integer, db.ForeignKey('images.id'))
+    image_url = db.relationship('Image', foreign_keys=[expense_img])
     creator_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
+    creator = db.relationship('User', foreign_keys=[creator_id])
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
@@ -27,7 +29,9 @@ class Expense(db.Model):
             "split_type": self.split_type,
             "settled_up": self.settled_up,
             "expense_img": self.expense_img,
+            "image_url": self.image_url.to_dict(),
             "creator_id": self.creator_id,
+            "creator": self.creator.to_dict(),
             "created_at": self.created_at,
             "update_at": self.update_at,
         }
