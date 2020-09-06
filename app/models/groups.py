@@ -26,6 +26,7 @@ class Group(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "name": self.name,
             "user1_id": self.user1_id,
             "user2_id": self.user2_id,
             "user3_id": self.user3_id,
