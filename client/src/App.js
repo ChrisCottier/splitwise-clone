@@ -30,7 +30,6 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        {/* <Route path='/all' component={All} /> */}
         <Route path="/users" component={UserList} />
         <Route exact path="/" component={Splash}></Route>
         <Route path="/sign-up" component={SignUp} />
@@ -38,6 +37,7 @@ function App() {
         <Route path='/add-friend' component={AddFriend} />
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/activities' component={RecentActivity} />
+        <Route path='/all' component={All} />
         <Route path='/footer' component={Footer} />
       </Switch>
     </BrowserRouter>

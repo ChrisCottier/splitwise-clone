@@ -1,50 +1,91 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, NavLink } from 'react-router-dom';
+import { apiUrl } from '../config';
 
-import './styles/dashboard.css'
+// import './styles/dashboard.css';
+import './styles/page-layout.css'
 import { EXPENSE_MODAL } from '../actions/modals'
-import { getUserDebts } from '../actions/debts'
 import PageLayout from './PageLayout'
+import '.././components/styles/dashboard.css'
+import Expense from './sub-components/Expenses'
+import { getExpenses } from '../actions/all';
+import { getRecentActivity } from '../actions/user';
+import Navbar, {SideNav} from './Navbar';
+import AddFriend from './AddFriend';
 
-export const AllHeader = (props) => {
+export const ExpenseHeader = (props) => {
   const { title } = props;
+  const dispatch = useDispatch();
+
+  const showExpenseModal = () => {
+    dispatch({ type: EXPENSE_MODAL, display: "block" })
+  }
 
   return (
     <div className="dashboard-header">
       <div className="title is-5">{title}</div>
+      <div className="buttons">
+        <button className="button add-expense-button is-warning" onClick={showExpenseModal}>Add an Expense</button>
+        <button className="button settle-up-button">Settle Up</button>
+      </div>
     </div>
   )
 }
 
-// const DashboardCenter = () => {
-//   const dispatch = useDispatch()
-//   const [recentActivity, setrecentActivity] = useState([])
+const All = (props) => {
+  const dispatch = useDispatch();
+  const { userId, name, token } = useSelector(state => state.auth);
+  const [activityUpdated, setActivityUpdated] = useState(false);
+  const { activity } = useSelector(state => state.users)
 
-//   const { userId, token, loggedOut } = useSelector(state => state.auth);
-//   const { iOwe, iAmOwed, totalIAmOwed, totalIOwe, netOwed } = useSelector(state => state.debts)
-//   useEffect(() => {
-//     if (!userId || debtsUpdated) return;
-//     dispatch(getUserDebts(userId))
-//     setDebtsUpdated(true)
-//   })
+  useEffect(() => {
+    if (userId === undefined) return;
+    if (!activityUpdated) {
+      // dispatch(getExpenses(userId))
+      dispatch(getRecentActivity(userId))
+      setActivityUpdated(true)
+    }
+  }, [userId]);
 
-//   if (loggedOut) {
-//     return <Redirect to="/sign-up"></Redirect>
-//   }
-//   if (!token || !netOwed) {
-//     return null;
-//   }
 
-//   return (
-//     <>
-//       <ActivityHeader title={'Expenses'} />
-//     </>
-//   )
-// }
 
-// const Dashboard = () => {
-//   return <PageLayout center={<DashboardCenter></DashboardCenter>}></PageLayout>
-// }
+  if (activity) {
+    let currentUser = { userId, name };
+    const { expenses } = activity;
 
-// export default Dashboard;
+    const expenseComponents = expenses.map((expense) => <Expense key={expense.id} expense={expense} />);
+
+    const allActivityComponents = { 
+      expenses: expenseComponents,
+    };
+    return (
+      <>
+        <Navbar/>
+        <div className='container is-widescreen'>
+        </div>
+        <div className='columns'>
+          <div id='left-column' className='column is-one-fifth'>
+            <SideNav/>
+            <AddFriend />
+          </div>
+          <div id='center-column' className='column is-three-fifths'>
+            <ExpenseHeader title={'All Expenses'}/>
+          </div>
+          <div className='column is-one-fifth'>
+            <p>YOUR TOTAL BALANCE</p>
+            <div> you are owed</div>
+            <div>$8625.00</div>
+          </div>
+
+        </div>
+        <div>{expenseComponents}</div>
+      </>
+    );
+  } else {
+    return null;
+  }
+
+};
+
+export default All
