@@ -13,6 +13,7 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Footer from './components/Footer'
 import Dashboard from './components/Dashboard'
+import All from './components/All'
 import Navbar from './components/Navbar'
 import Splash from './components/Splash'
 
@@ -28,6 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        {/* <Route path='/all' component={All} /> */}
         <Route path="/users" component={UserList} />
         <Route exact path="/" component={Splash}></Route>
         <Route path="/sign-up" component={SignUp} />
