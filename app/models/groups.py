@@ -8,6 +8,7 @@ class Group(db.Model):
     name = db.Column(db.String(50), nullable=False)
     user1_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
+    creator = db.relationship('User', foreign_keys=[user1_id])
     user2_id = db.Column(
         db.Integer, db.ForeignKey('users.id'))
     user3_id = db.Column(
@@ -28,6 +29,7 @@ class Group(db.Model):
             "id": self.id,
             "name": self.name,
             "user1_id": self.user1_id,
+            "creator": self.creator.to_dict(),
             "user2_id": self.user2_id,
             "user3_id": self.user3_id,
             "user4_id": self.user4_id,

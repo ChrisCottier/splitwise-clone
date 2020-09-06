@@ -27,27 +27,30 @@ const RecentActivity = (props) => {
     if (activity) {
         let currentUser = { userId, name };
         const { comments, debts, expenses, groups, transactions } = activity;
+
         const commentComponents = comments.map((comment) => <Comment key={comment.id} comment={comment} />);
         const debtComponents = debts.map((debt) => <Debt key={debt.id} debt={debt} currentUser={currentUser} />);
         const expenseComponents = expenses.map((expense) => <Expense key={expense.id} expense={expense} />);
         const groupComponents = groups.map((group) => <Group key={group.id} group={group} currentUser={currentUser} />);
         const transactionComponents = transactions.map((transaction) => <Transaction key={transaction.id} transaction={transaction} currentUser={currentUser} />)
+
+        const allActivityComponents = { // I have this ready for modularity if necessary
+            comments: commentComponents,
+            debts: debtComponents,
+            expenses: expenseComponents,
+            groups: groupComponents,
+            transactions: transactionComponents,
+
+        };
         return (
             <>
-                <h1> Recent Activity </h1>
+                <h1 style={{ fontSize: '30px' }}> Recent Activity </h1>
                 <div style={{ width: '600px' }}>
-                    <div>
-                        {commentComponents}
-                    </div>
-                    <div>
-                        {debtComponents}
-                    </div>
-                    <div>
-                        {expenseComponents}
-                    </div>
-                    <div>
-                        {groupComponents}
-                    </div>
+                    <div>{commentComponents}</div>
+                    <div>{debtComponents}</div>
+                    <div>{expenseComponents}</div>
+                    <div>{groupComponents}</div>
+                    <div>{transactionComponents}</div>
                 </div>
             </>
         );
