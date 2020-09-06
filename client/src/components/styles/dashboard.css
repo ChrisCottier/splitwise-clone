@@ -31,7 +31,7 @@
     justify-content: center;
   }
 
-  
+
   .debt-background {
     width: 100%;
     /* border-bottom: 1px solid lightgray; */
@@ -69,3 +69,10 @@
     background-color: #5BC5A7
   }
 
+  #dashboard-right {
+    padding-left:0px;
+  }
+
+  #dashboard-left {
+    padding-right:0px;
+  }

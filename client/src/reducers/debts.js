@@ -1,14 +1,14 @@
-import {USER_DEBTS, CLEAR_DEBT_INFO} from '../actions/debts'
-import {NEW_EXPENSE} from "../actions/expenses"
+import { USER_DEBTS, CLEAR_DEBT_INFO } from '../actions/debts'
+// import { NEW_EXPENSE, USER_EXPENSES } from "../actions/expenses"
 
 const debts = (state = {}, action) => {
   switch (action.type) {
     case USER_DEBTS: {
       return {
         ...state,
-        iOwe:action.data.iOwe,
-        iAmOwed:action.data.iAmOwed,
-        totalIAmOwed:action.data.totalIAmOwed,
+        iOwe: action.data.iOwe,
+        iAmOwed: action.data.iAmOwed,
+        totalIAmOwed: action.data.totalIAmOwed,
         totalIOwe: action.data.totalIOwe,
         netOwed: action.data.netOwed
       }
@@ -17,6 +17,7 @@ const debts = (state = {}, action) => {
     case CLEAR_DEBT_INFO: {
       return {}
     }
+
     default:
       return { ...state };
   }

@@ -1,20 +1,27 @@
-import {NEW_EXPENSE} from '../actions/expenses'
+import { NEW_EXPENSE, USER_EXPENSES } from '../actions/expenses'
 
 const defaultState = {
   expenses: []
 }
 
 const expenses = (state = defaultState, action) => {
-    switch (action.type) {
-      case NEW_EXPENSE: {
-        return {
-          ...state,
-          expenses: [...state.expenses, action.newExpense]
-        }
+  switch (action.type) {
+    case NEW_EXPENSE: {
+      return {
+        ...state,
+        expenses: [...state.expenses, action.newExpense]
       }
-      default:
-        return state;
     }
-  };
 
-  export default expenses;
+    case USER_EXPENSES: {
+      return {
+        ...state,
+        expenses: action.expenses
+      }
+    }
+    default:
+      return state;
+  }
+};
+
+export default expenses;
