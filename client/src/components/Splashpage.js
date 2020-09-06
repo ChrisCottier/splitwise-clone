@@ -44,7 +44,7 @@ const Splashpage = () => {
           <p className='header-one__paragraph'>Keep track of your shared expenses and balances with housemates,
             trips, groups, friends, and family.
           </p>
-          <button type='submit'><a href='/signup'>Sign Up</a></button>
+          <button className='header-one__button' type='submit'><a href='/signup'>Sign Up</a></button>
           <p> Free for iphone, Android, and web.</p>
         </div>
       </div>
@@ -77,7 +77,22 @@ const Splashpage = () => {
             <img src='https://secure.splitwise.com/assets/home_page/fixtures/asset1.png' />
           </div>
         </div>
-
+        <div className='pro-box'>
+          <div className='pro-box-left'>
+            <h1 className='pro-box-left__header'>Get even more with PRO</h1>
+            <p className='pro-box-left__pari'> Get even more organing with reciept scanning, charts, and graphs,
+              currency conversion, and more!
+            </p>
+            <div className='pro-box__button'>
+              <button type='submit'><a href='/signup'>Sign Up</a></button>
+            </div>
+          </div>
+          <div className='pro-box-right'>
+            <div className='pro-box-right__image'>
+              <img src='https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png' />
+            </div>
+          </div>
+        </div>
       </div>
       
     </div>

@@ -43,6 +43,7 @@ button{
 
 .under-icons{
   background-color: #F6F7F7;
+  width: 42%;
 }
 
 .fas {
@@ -53,23 +54,37 @@ button{
 
 .balances{
   background-color: #383e41;
+  color: white;
 }
 
 .expenses{
   background-color: #39c3a2;
+  color: white;
 }
 
 .friends{
   background-color: #f17445;
+  color: white;
 }
 
 .add-expenses{
   background-color: #383e41;
+  color: white;
+}
 
+.under-icons{
+  display: flex;
+  flex-direction: column;
 }
 
 .header-one{
   border: 1px black solid;
+}
+
+.header-one__button{
+  display: flex;
+  justify-content: center;
+
 }
 
 .header-two{
@@ -82,4 +97,34 @@ button{
 
 .header-four{
   border: 1px black solid;
+}
+
+.pro-box{
+  background-color: #8356C7;
+  color: white;
+  width: 1835px;
+  height: 600px;
+  display: flex;
+}
+
+.pro-box-left__header{
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.pro-box-left__pari{
+  font-size: 20px;
+}
+
+.pro-box__button{
+  display: flex;
+  justify-content: center;
+}
+
+.pro-box-right{
+  display: flex;
+}
+
+.pro-box-right__image{
+  align-self: flex-end;
 }
