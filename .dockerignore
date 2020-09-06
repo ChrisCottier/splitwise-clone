@@ -1,0 +1,4 @@
+./client/node_modules
+./app/__pycache__
+.venv/
+.vscode/

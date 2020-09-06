@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import {Redirect, NavLink} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect, NavLink } from 'react-router-dom'
 
 import './styles/dashboard.css'
 import { EXPENSE_MODAL } from '../actions/modals'
-import {getUserDebts} from '../actions/debts'
+import { getUserDebts } from '../actions/debts'
 import PageLayout from './PageLayout'
 
 export const ExpenseHeader = (props) => {
@@ -48,7 +48,7 @@ export const Balances = (props) => {
 }
 
 const IAmOwedDebtTile = (props) => {
-  const {debt} = props;
+  const { debt } = props;
 
   return (
     <NavLink to={`/friend/${debt.borrower_id}`}>
@@ -65,7 +65,7 @@ const IAmOwedDebtTile = (props) => {
 }
 
 const IOweDebtTile = (props) => {
-  const {debt} = props;
+  const { debt } = props;
 
   return (
     <NavLink to={`/friend/${debt.lender_id}`}>
@@ -85,10 +85,10 @@ const DashboardCenter = () => {
   const dispatch = useDispatch()
   const [debtsUpdated, setDebtsUpdated] = useState(false)
 
-  const {userId, token, loggedOut} = useSelector(state=> state.auth);
-  const {iOwe, iAmOwed, totalIAmOwed, totalIOwe, netOwed} = useSelector(state => state.debts)
-  useEffect(()=>{
-    if (!userId || debtsUpdated ) return;
+  const { userId, token, loggedOut } = useSelector(state => state.auth);
+  const { iOwe, iAmOwed, totalIAmOwed, totalIOwe, netOwed } = useSelector(state => state.debts)
+  useEffect(() => {
+    if (!userId || debtsUpdated) return;
     dispatch(getUserDebts(userId))
     setDebtsUpdated(true)
   })
