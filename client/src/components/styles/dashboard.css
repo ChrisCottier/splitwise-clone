@@ -1,3 +1,6 @@
+body{
+  /* background-color: #5BC5A7; */
+}
 .dashboard-header {
     display: flex;
     flex-direction: row;
