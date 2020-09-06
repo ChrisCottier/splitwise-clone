@@ -27,5 +27,5 @@ with app.app_context():
     db.session.flush()
     db.session.add_all(seed_comments)
     db.session.add_all(seed_debts)
-    db.session.add_all(seed_transactions)
+    # db.session.add_all(seed_transactions)
     db.session.commit()
