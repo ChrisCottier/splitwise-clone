@@ -1,7 +1,7 @@
-import {apiUrl} from '../config'
+import { apiUrl } from '../config'
 
-export const USER_DEBTS='USER_DEBTS'
-export const CLEAR_DEBT_INFO='CLEAR_DEBT_INFO'
+export const USER_DEBTS = 'USER_DEBTS'
+export const CLEAR_DEBT_INFO = 'CLEAR_DEBT_INFO'
 
 export const getUserDebts = (userId) => async dispatch => {
   const res = await fetch(`${apiUrl}/debts/user/${userId}`)
@@ -9,7 +9,6 @@ export const getUserDebts = (userId) => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     // const {iOwe, iAmOwed, totalIamOwed, totalIOwe, netOwed} = data;
-    console.log('updated debts', data)
-    dispatch({type: USER_DEBTS,  data: data})
+    dispatch({ type: USER_DEBTS, data: data })
   }
 }

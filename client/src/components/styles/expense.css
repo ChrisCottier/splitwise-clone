@@ -1,0 +1,5 @@
+.expense-tile {
+  display: flex;
+  flex-direction: row;
+
+}

@@ -11,7 +11,6 @@ expense_routes = Blueprint('expenses', __name__)
 @expense_routes.route("", methods=["post"])
 def post_expense():
     data = request.json
-    print('recieved data', data)
 
     friends_on_expense = data['friendsOnExpense']
     amount = Decimal(data['amount'])
@@ -39,7 +38,6 @@ def post_expense():
     # make new debts for each friend in friends on expense
     new_expense = Expense.query.filter(Expense.creator_id == user_id).order_by(
         Expense.created_at.desc()).first().to_dict()
-    print(new_expense)
     new_expense_id = new_expense['id']
 
     for friend in friends_on_expense:
@@ -71,6 +69,65 @@ def get_expense(id):
   user_expense = Expense.query.filter(Expense.creator_id == int(id)).all()
   expense = [Expense.to_dict() for expense in user_expense]
   return jsonify(user_expense)
+
+
+
+
+
+
+# Returns all expenses for a specific user; the ones they created and the ones
+# they have debts on, in a single array ordered by date
+@expense_routes.route('/user/<id>')
+def all_expenses(id):
+    user_expenses = Expense.query.filter(Expense.creator_id == int(id)).all()
+    expenses = [expense.to_dict() for expense in user_expenses]
+    all_user_debts = Debt.query.filter(Debt.borrower_id == int(id)).all()
+    owed_expenses = [debt.expense.to_dict() for debt in all_user_debts]
+    all_user_expenses= sorted(owed_expenses + expenses, key=lambda expense: expense['id'], reverse=True)
+
+    return jsonify(all_user_expenses)
+
+# returns an expense with all comments and debts eager loaded
+@expense_routes.route('/<id>')
+def expense_details(id):
+  expense=Expense.query.filter(Expense.id == int(id)).first().to_dict()
+
+  debts = Debt.query.filter(Debt.expense_id == int(id)).all()
+  debts = [debt.to_dict() for debt in debts]
+
+  comments= Comment.query.filter(Comment.expense_id == int(id)).all()
+  comments = [comment.to_dict() for comment in comments]
+
+  return jsonify({'expense': expense, 'debts':debts, 'comments':comments})
+
+
+
+
+
+# # works
+# # Return all comments associated with an expense
+# @expense_routes.route('/<id>/comments')
+# def get_all(id):
+#     get_comments = Comment.query.filter(Comment.expense_id == int(id)).all()
+#     comments = [comment.to_dict() for comment in get_comments]
+#     return jsonify(comments)
+
+
+# Delete expenses for a specific user
+# Not Tested
+@expense_routes.route('/<id>', methods=['DELETE'])
+def delete_expense():
+    delete_me = Expense(expense=data['expense'])
+    db.session()
+    db.session.delete(delete_me)
+    db.session.commit()
+
+# # Returns a specific activity/expense for a user
+# # Not Tested
+# def get_expense(amount):
+#     user_expense = Expense.query.filter(Expense.amount == amount).all()
+#     expense = [Expense.to_dict() for expense in user_expense]
+#     return jsonify(user_expense)
 
 
 # Delete expenses for a specific user
@@ -118,6 +175,7 @@ def update_title():
     return jsonify('Amount Updated')
 
 
+<<<<<<< HEAD
 
 # Not Needed
 # Returns all expenses for a specific user
@@ -126,3 +184,27 @@ def all_expenses():
   all_user_expenses = Expense.query.filter(Expense.id == int(id)).all()
   expenses = [expense.to_dict() for expense in all_user_expenses]
   return jsonify(all_user_expenses)
+=======
+# return jsonify(new_expense)
+
+# # Returns all expenses related to a user, with associated comments and debts. Need for all expenses route
+# @expense_routes.route('/user/<id>')
+# def get_all_expenses(id):
+#     all_user_expenses = Expense.query.filter(Expense.id == int(id)).order_by(Expense.created_at.desc()).all()
+#     expenses_dict = [expense.to_dict() for expense in all_user_expenses]
+#     # with_comments = [comment.to_dict]
+#     for expense in expenses_dict:
+#         # get all of the comments for each expense
+#         comments = Comment.query.filter(Comment.expense_id == expense['id']).order_by(Comment.created_at.desc()).all()
+#         comments_dict = [comment.to_dict() for comment in comments]
+#         expense['comments'] = comments_dict
+
+#         # get all the debts for each expense
+#         debts = Debt.query.filter(Debt.expense_id == expense['id']).order_by(Debt.created_at.desc()).all()
+#         debts_dict = [debt.to_dict() for debt in debts]
+#         expense['debts'] = debts_dict
+
+
+
+#     return jsonify(expenses_dict)
+>>>>>>> e5056ce27dabb4f5ecfea0beba1a5a3d3ed926d6

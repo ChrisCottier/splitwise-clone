@@ -16,7 +16,6 @@ def index():
 @user_routes.route('', methods=['post'])
 def sign_up():
   data = request.json
-  print(data)
   # Create a hashed password
   password=data['password'].encode()
   hashed_password=bcrypt.hashpw(password, bcrypt.gensalt(14)).decode('utf-8')
@@ -31,10 +30,8 @@ def sign_up():
 
   # get user and create jwt to return
   user=User.query.filter(User.email == data['email']).first().to_dict()
-  print(user)
 
   jwt=create_jwt(user)
-  print(jwt)
 
   return jsonify({ "user": user, "token": str(jwt)})
 
@@ -43,15 +40,13 @@ def login():
   data=request.json
   user=User.query.filter(User.email == data['email']).first()
   hashed_password = user.hashed_password
-  print('submitted pw', data['password'])
-  print('db hashed pw', hashed_password)
   if bcrypt.checkpw(data['password'].encode(), hashed_password.encode()):
-    print('match')
+
     user_data=user.to_dict()
     jwt=create_jwt(user_data)
     return jsonify({ "user": user_data, "token": str(jwt)})
   else:
-    print('invalid login')
+
     return jsonify('Bad Login')
 
 @user_routes.route('/restore')
@@ -67,7 +62,6 @@ def restore():
 
 @user_routes.route('/query/<user_id>/<query>')
 def query_matching_users(user_id,query):
-  print('query', user_id, query)
 
   # get list of frienships
   friendships = Friend.query.filter(
@@ -87,7 +81,6 @@ def query_matching_users(user_id,query):
                               User.id.in_(all_friend_ids) == False,
                               User.id != int(user_id)).limit(10)
   matches_dict = [user.to_dict() for user in matches]
-  print(matches_dict)
   return jsonify({'matches':matches_dict, 'query':query})
 
 
