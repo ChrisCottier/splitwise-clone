@@ -6,7 +6,6 @@ export const NEW_EXPENSE = 'NEW_EXPENSE'
 export const USER_EXPENSES = 'USER_EXPENSES'
 
 export const newExpense = (data) => async dispatch => {
-  console.log(data)
   const { userId } = data
   const res = await fetch(`${apiUrl}/expenses`, {
     method: "post",
@@ -19,7 +18,6 @@ export const newExpense = (data) => async dispatch => {
 
   if (res.ok) {
     const newExpense = await res.json()
-    console.log('new exp', newExpense)
     dispatch({ type: NEW_EXPENSE, newExpense })
     dispatch({ type: EXPENSE_MODAL, display: "none" })
 
@@ -28,7 +26,6 @@ export const newExpense = (data) => async dispatch => {
 
     if (res2.ok) {
       const data2 = await res2.json();
-      console.log('updated debts', data2)
       dispatch({ type: USER_DEBTS, data: data2 })
     }
 
@@ -41,7 +38,6 @@ export const getExpenses = (userId) => async dispatch => {
 
   if (res.ok) {
     const expenses = await res.json();
-    // console.log(data)
     dispatch({ type: USER_EXPENSES, expenses })
   }
 }

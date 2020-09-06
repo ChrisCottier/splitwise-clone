@@ -1,19 +1,18 @@
 import React from 'react';
-import {useSelector} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import AddFriend from './AddFriend';
 import './styles/page-layout.css'
 import AddExpenseModal from './AddExpenseModal'
-import Navbar, {SideNav} from './Navbar'
+import Navbar, { SideNav } from './Navbar'
 
 
 const PageLayout = (props) => {
 
-  const {center, right} = props
-  const {loggedOut} = useSelector(state=> state.auth);
+  const { center, right } = props
+  const { loggedOut } = useSelector(state => state.auth);
   const location = window.location.pathname.slice(1)
-  console.log(location)
 
 
   // if (loggedOut !== true || loggedOut !== false) {
@@ -32,7 +31,7 @@ const PageLayout = (props) => {
           <div className="columns">
             <div id="left-column" className="column is-one-fifth">
               <SideNav location={location}></SideNav>
-              <AddFriend/>
+              <AddFriend />
             </div>
 
             {/* this is the center */}

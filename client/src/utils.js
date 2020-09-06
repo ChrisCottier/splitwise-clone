@@ -9,4 +9,3 @@ export const dateTimeObj = (string) => {
   }
 }
 
-// console.log(dateTimeObj('Sun, 06 Sep 2020 15:15:36 GMT'))

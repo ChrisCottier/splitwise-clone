@@ -11,7 +11,6 @@ expense_routes = Blueprint('expenses', __name__)
 @expense_routes.route("", methods=["post"])
 def post_expense():
     data = request.json
-    print('recieved data', data)
 
     friends_on_expense = data['friendsOnExpense']
     amount = Decimal(data['amount'])
@@ -39,7 +38,6 @@ def post_expense():
     # make new debts for each friend in friends on expense
     new_expense = Expense.query.filter(Expense.creator_id == user_id).order_by(
         Expense.created_at.desc()).first().to_dict()
-    print(new_expense)
     new_expense_id = new_expense['id']
 
     for friend in friends_on_expense:
@@ -68,10 +66,8 @@ def post_expense():
 def all_expenses(id):
     user_expenses = Expense.query.filter(Expense.creator_id == int(id)).all()
     expenses = [expense.to_dict() for expense in user_expenses]
-    # print('exp', expenses)
     all_user_debts = Debt.query.filter(Debt.borrower_id == int(id)).all()
     owed_expenses = [debt.expense.to_dict() for debt in all_user_debts]
-    # print(owed_expenses)
     all_user_expenses= sorted(owed_expenses + expenses, key=lambda expense: expense['id'], reverse=True)
 
     return jsonify(all_user_expenses)
@@ -98,7 +94,6 @@ def expense_details(id):
 # @expense_routes.route('/<id>/comments')
 # def get_all(id):
 #     get_comments = Comment.query.filter(Comment.expense_id == int(id)).all()
-#     print(get_comments)
 #     comments = [comment.to_dict() for comment in get_comments]
 #     return jsonify(comments)
 
