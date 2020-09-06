@@ -14,9 +14,9 @@ class Transaction(db.Model):
         db.Integer, db.ForeignKey('debts.id'), nullable=False)
     expense_id = db.Column(
         db.Integer, db.ForeignKey('expenses.id'), nullable=False)
-    reciever = db.Relationship('User', foreign_keys=[reciever_id])
-    sender = db.Relationship('User', foreign_keys=[sender_id])
-    expense = db.Relationship('Expense', foreign_keys=[expense_id])
+    reciever = db.relationship('User', foreign_keys=[reciever_id])
+    sender = db.relationship('User', foreign_keys=[sender_id])
+    expense = db.relationship('Expense', foreign_keys=[expense_id])
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
@@ -30,9 +30,9 @@ class Transaction(db.Model):
             "reciever_id": self.reciever_id,
             "debt_id": self.debt_id,
             "expense_id": self.expense_id,
-            "reciever": self.reciever,
-            "sender": self.sender,
-            "expense": self.expense,
+            "reciever": self.reciever.to_dict(),
+            "sender": self.sender.to_dict(),
+            "expense": self.expense.to_dict(),
             "created_at": self.created_at,
             "update_at": self.update_at,
         }
