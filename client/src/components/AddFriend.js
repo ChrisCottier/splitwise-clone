@@ -78,7 +78,7 @@ export const Friending = () => {
   const addNewFriend = (event) => {
     const friendId = event.target.getAttribute('data-id');
     dispatch(addFriend(userId, friendId))
-
+    setFriendQuery("")
   }
 
   useEffect(() => {

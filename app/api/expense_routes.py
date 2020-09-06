@@ -57,6 +57,31 @@ def post_expense():
 
     ################################# Expense & Comment Routes ################
 
+# Returns all expenses related to a user, with associated comments and debts. Need for all expenses route
+@expense_routes.route('/user/<id>')
+def get_all_expenses(id):
+    all_user_expenses = Expense.query.filter(Expense.id == int(id)).order_by(Expense.created_at.desc()).all()
+    expenses_dict = [expense.to_dict() for expense in all_user_expenses]
+    # with_comments = [comment.to_dict]
+    for expense in expenses_dict:
+        # get all of the comments for each expense
+        comments = Comment.query.filter(Comment.expense_id == expense['id']).order_by(Comment.created_at.desc()).all()
+        comments_dict = [comment.to_dict() for comment in comments]
+        expense['comments'] = comments_dict
+
+        # get all the debts for each expense
+        debts = Debt.query.filter(Debt.expense_id == expense['id']).order_by(Debt.created_at.desc()).all()
+        debts_dict = [debt.to_dict() for debt in debts]
+        expense['debts'] = debts_dict
+
+
+    
+    return jsonify(expenses_dict)
+
+
+
+
+
 # Returns all activity/expenses for a specific user
 # Not working Yet
 @expense_routes.route('/<id>/all')
