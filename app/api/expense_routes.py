@@ -64,7 +64,7 @@ def get_all(id):
 
 
 # Returns a specific expense for a user
-@expense_routes.route('/<id>', methods=['DELETE', 'GET'])
+@expense_routes.route('/<id>', methods=['DELETE'])
 def get_expense(id):
   user_expense = Expense.query.filter(Expense.creator_id == int(id)).all()
   expense = [Expense.to_dict() for expense in user_expense]
@@ -115,12 +115,12 @@ def expense_details(id):
 
 # Delete expenses for a specific user
 # Not Tested
-@expense_routes.route('/<id>', methods=['DELETE'])
-def delete_expense():
-    delete_me = Expense(expense=data['expense'])
-    db.session()
-    db.session.delete(delete_me)
-    db.session.commit()
+# @expense_routes.route('/<id>', methods=['DELETE'])
+# def delete_expense():
+#     delete_me = Expense(expense=data['expense'])
+#     db.session()
+#     db.session.delete(delete_me)
+#     db.session.commit()
 
 # # Returns a specific activity/expense for a user
 # # Not Tested
@@ -175,16 +175,14 @@ def update_title():
     return jsonify('Amount Updated')
 
 
-<<<<<<< HEAD
 
 # Not Needed
 # Returns all expenses for a specific user
-@expense_routes.route('/<id>/all')
-def all_expenses():
-  all_user_expenses = Expense.query.filter(Expense.id == int(id)).all()
-  expenses = [expense.to_dict() for expense in all_user_expenses]
-  return jsonify(all_user_expenses)
-=======
+# @expense_routes.route('/<id>/all')
+# def all_expenses():
+#   all_user_expenses = Expense.query.filter(Expense.id == int(id)).all()
+#   expenses = [expense.to_dict() for expense in all_user_expenses]
+#   return jsonify(all_user_expenses)
 # return jsonify(new_expense)
 
 # # Returns all expenses related to a user, with associated comments and debts. Need for all expenses route
@@ -207,4 +205,3 @@ def all_expenses():
 
 
 #     return jsonify(expenses_dict)
->>>>>>> e5056ce27dabb4f5ecfea0beba1a5a3d3ed926d6
