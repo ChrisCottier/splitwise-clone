@@ -9,6 +9,7 @@ class Friend(db.Model):
         db.Integer, db.ForeignKey('users.id'), nullable=False)
     user2_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
+    friends = db.Relationship('User', foreign_keys=[user1_id, user2_id])
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
     update_at = db.Column(db.DateTime(timezone=True),
@@ -19,6 +20,7 @@ class Friend(db.Model):
             "id": self.id,
             "user1_id": self.user1_id,
             "user2_id": self.user2_id,
+            "friends": self.friends,
             "created_at": self.created_at,
             "update_at": self.update_at,
         }

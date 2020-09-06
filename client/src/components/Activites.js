@@ -4,42 +4,88 @@ import { Redirect, NavLink } from 'react-router-dom';
 import { apiUrl } from '../config';
 
 import './styles/dashboard.css';
+import { Comment, Debt, Expense, Friend, Group, Transaction } from './sub-components/ActivityTypes'
 import { getRecentActivity } from '../actions/user';
 
 
 const RecentActivity = (props) => {
     const dispatch = useDispatch();
-    const [recentActivity, setRecentActivity] = useState([]);
-    const { userId, token } = useSelector(state => state.auth);
+    // const [recentActivity, setRecentActivity] = useState([]);
+    const { userId, name, token } = useSelector(state => state.auth);
+    const [activityUpdated, setActivityUpdated] = useState(false);
+    const { activity } = useSelector(state => state.users)
 
+    // console.log(userId)
     useEffect(() => {
-        const getActivity = async () => {
-            // const res = await fetch(`${apiUrl}/activities/${userId}`);
-            const res = await fetch(`${apiUrl}/activities/1`);
-            const data = await res.json();
-            setRecentActivity(data);
+        if (userId === undefined) return;
+        if (!activityUpdated) {
+            console.log('about to dispatch')
+            dispatch(getRecentActivity(userId))
+            setActivityUpdated(true)
         }
-        getActivity();
-    }, []);
+    }, [userId]);
+    // console.log(userId)
+    console.log(activity)
+    // // console.log(state)
 
-    // useEffect(() => {
-    //     const activity = dispatch(getRecentActivity(userId))
-    //     setRecentActivity(activity)
-    // });
 
-    if (!token || recentActivity.length) {
+
+    if (activity) {
+        const { comments, debts, expenses, friends, groups, transactions } = activity;
+        console.log(comments)
+        return (
+            <>
+                <h1> Recent Activity </h1>
+                {comments.map(comment=>{
+                    return (
+                    <p key={comment.id}  >{name} commented on {comment.message}</p>
+                    )
+                })}
+                {/* <p></p> */}
+            </>
+        );
+    } else {
         return null;
     }
-    const { comments, debts, expenses, friends, groups, transactions } = recentActivity;
-    const allActivity = [comments, debts, expenses, friends, groups, transactions];
-    console.log(recentActivity);
-    console.log(allActivity);
 
-    return (
-        <>
-            <h1> Recent Activity </h1>
-        </>
-    );
+
+
+    // useEffect(() => {
+
+    //     const getActivity = async () => {
+    //         // const res = await fetch(`${apiUrl}/activities/${userId}`);
+    //         const res = await fetch(`${apiUrl}/activities/1`);
+    //         const data = await res.json();
+    //         console.log(data)
+    //         setRecentActivity(data);
+    //         // const { comments, debts, expenses, friends, groups, transactions } = recentActivity;
+    //         // const allActivity = [comments, debts, expenses, friends, groups, transactions];
+    //     }
+    //     getActivity();
+    //     // getActivity.preventDefault();
+    // }, []);
+
+
+    // console.log(recentActivity);
+    // console.log(allActivity);
+
+    // if (true) {
+    //     return (
+    //         <>
+    //             <h1> Recent Activity </h1>
+    //             <p>No Recent Activiy</p>
+    //         </>
+    //     )
+    // } else {
+    //     return (
+    //         <>
+    //             <h1> Recent Activity </h1>
+    //         </>
+    //     );
+
+
+
+
 
 
 };

@@ -23,4 +23,11 @@ const Group = () => {
 const Transaction = () => {
 
 }
-export default 
+export default {
+    Comment,
+    Debt,
+    Expense,
+    Friend,
+    Group,
+    Transaction
+}
