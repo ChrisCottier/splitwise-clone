@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 import { apiUrl } from '../config';
-
-import './styles/dashboard.css';
+import PageLayout from './PageLayout';
 import { Comment, Debt, Expense, Group, Transaction } from './sub-components/ActivityTypes'
+import './styles/dashboard.css';
 import { getRecentActivity } from '../actions/user';
 
 
-const RecentActivity = (props) => {
+const RecentActivityCenter = (props) => {
     const dispatch = useDispatch();
     const { userId, name, token } = useSelector(state => state.auth);
     const [activityUpdated, setActivityUpdated] = useState(false);
@@ -21,8 +21,6 @@ const RecentActivity = (props) => {
             setActivityUpdated(true)
         }
     }, [userId]);
-
-
 
     if (activity) {
         let currentUser = { userId, name };
@@ -57,7 +55,11 @@ const RecentActivity = (props) => {
     } else {
         return null;
     }
-
 };
 
+const RecentActivity = () => {
+    return (
+        <PageLayout center={<RecentActivityCenter></RecentActivityCenter>}></PageLayout>
+    )
+}
 export default RecentActivity;
