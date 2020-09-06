@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import { signUp } from '../actions/auth'
-import {SplashNav} from './Splash'
+import { SplashNav } from './Splash'
 
 const SignUp = () => {
 
@@ -16,7 +16,6 @@ const SignUp = () => {
   const submitSignUp = (event) => {
     event.stopPropagation()
     event.preventDefault()
-    console.log('args1', name, email, password)
     dispatch(signUp(name, email, password))
 
 

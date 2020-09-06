@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import { apiUrl } from '../config';
 import Friend from './Friend';
-import {TextInput} from './sub-components/Form-Inputs'
+import { TextInput } from './sub-components/Form-Inputs'
 import { getFriends, getMatchingUsers, CLEAR_MATCHES, addFriend } from '../actions/friends.js'
 
 
@@ -42,7 +42,7 @@ const AddFriend = () => {
               <a className='add modal' href='#invite' >
                 <i className='friend-icon'></i>
               </a>
-                {/* Add + */}
+              {/* Add + */}
             </th>
           </tr>
         </thead>
@@ -50,7 +50,7 @@ const AddFriend = () => {
           {friendsComponents}
         </tbody>
       </table>
-      <Friending/>
+      <Friending />
       {/* <form method='post' type='email' id="invite-friends">
         <p>Invite Friends</p>
         <input className="input" placeholder='Enter An Email Address' />
@@ -66,11 +66,10 @@ export const Friending = () => {
   const dispatch = useDispatch()
   const [friendQuery, setFriendQuery] = useState("");
   const [matchingUsersLocal, setMatchingUsersLocal] = useState(null);
-  const {matchingUsers, matchingUsersQuery} = useSelector(state=> state.friends)
-  const {userId} = useSelector(state => state.auth)
+  const { matchingUsers, matchingUsersQuery } = useSelector(state => state.friends)
+  const { userId } = useSelector(state => state.auth)
 
   const handleChange = async (event) => {
-    console.log('handle change', event.target.value)
     setFriendQuery(event.target.value)
 
   }
@@ -78,30 +77,28 @@ export const Friending = () => {
   const addNewFriend = (event) => {
     const friendId = event.target.getAttribute('data-id');
     dispatch(addFriend(userId, friendId))
-
+    setFriendQuery("")
   }
 
   useEffect(() => {
-    console.log('hi', friendQuery)
     if (friendQuery === "") {
-      dispatch({type: CLEAR_MATCHES})
+      dispatch({ type: CLEAR_MATCHES })
       return;
     }
-    dispatch(getMatchingUsers(userId,friendQuery))
+    dispatch(getMatchingUsers(userId, friendQuery))
 
-  },[friendQuery])
-  console.log('hi2', friendQuery)
+  }, [friendQuery])
 
 
   return (
     <>
       <TextInput
-      label="Add A Friend"
-      placeHolder='Search for friend here...'
-      value={friendQuery}
-      handleChange={handleChange}
-      required={false}
-      name='friending'
+        label="Add A Friend"
+        placeHolder='Search for friend here...'
+        value={friendQuery}
+        handleChange={handleChange}
+        required={false}
+        name='friending'
       >
       </TextInput>
       <div className="matches-root">

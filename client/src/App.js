@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import Dashboard from './components/Dashboard'
 import Navbar from './components/Navbar'
 import Splash from './components/Splash'
+import Expenses from './components/Expense'
 import RecentActivity from './components/Activites'
 
 import { hasAccessToken } from "./actions/auth"
@@ -29,15 +30,16 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/users" component={UserList} />
         <Route exact path="/" component={Splash}></Route>
+        <Route path="/users" component={UserList} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path='/add-friend' component={AddFriend} />
         <Route path='/dashboard' component={Dashboard} />
+        <Route path='/expenses' component={Expenses} />
         <Route path='/activities' component={RecentActivity} />
-        <Route path='/footer' component={Footer} />
       </Switch>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }
