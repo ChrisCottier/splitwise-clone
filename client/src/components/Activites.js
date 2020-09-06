@@ -42,13 +42,17 @@ const RecentActivityCenter = (props) => {
         };
         return (
             <>
-                <h1 style={{ fontSize: '30px' }}> Recent Activity </h1>
-                <div style={{ width: '600px' }}>
-                    <div>{commentComponents}</div>
-                    <div>{debtComponents}</div>
-                    <div>{expenseComponents}</div>
-                    <div>{groupComponents}</div>
-                    <div>{transactionComponents}</div>
+                <div>
+                    <div>
+                        <h1 style={{ fontSize: '30px' }}> Recent Activity </h1>
+                    </div>
+                    <div style={{ width: '600px' }}>
+                        <div>{commentComponents}</div>
+                        <div>{debtComponents}</div>
+                        <div>{expenseComponents}</div>
+                        <div>{groupComponents}</div>
+                        <div>{transactionComponents}</div>
+                    </div>
                 </div>
             </>
         );
