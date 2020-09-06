@@ -1,28 +1,33 @@
 import React from 'react';
 
-const Comment = () => {
+export const Comment = (props) => {
+    const {comment} = props;
+    return (
+        <p key={comment.id}><strong>{comment.commentor.name}</strong> commented on <strong>"{comment.expense.title}":</strong> "{comment.message}"</p>
+        )
+    }
+
+    export const Debt = (props) => {
+        const {debt} = props;
 
 }
 
-const Debt = () => {
+export const Expense = () => {
 
 }
 
-const Expense = () => {
+export const Friend = () => {
 
 }
 
-const Friend = () => {
+export const Group = () => {
 
 }
 
-const Group = () => {
+export const Transaction = () => {
 
 }
 
-const Transaction = () => {
-
-}
 export default {
     Comment,
     Debt,
@@ -30,4 +35,4 @@ export default {
     Friend,
     Group,
     Transaction
-}
+};

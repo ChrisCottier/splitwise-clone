@@ -10,38 +10,30 @@ import { getRecentActivity } from '../actions/user';
 
 const RecentActivity = (props) => {
     const dispatch = useDispatch();
-    // const [recentActivity, setRecentActivity] = useState([]);
     const { userId, name, token } = useSelector(state => state.auth);
     const [activityUpdated, setActivityUpdated] = useState(false);
     const { activity } = useSelector(state => state.users)
 
-    // console.log(userId)
     useEffect(() => {
         if (userId === undefined) return;
         if (!activityUpdated) {
-            console.log('about to dispatch')
             dispatch(getRecentActivity(userId))
             setActivityUpdated(true)
         }
     }, [userId]);
-    // console.log(userId)
-    console.log(activity)
-    // // console.log(state)
 
 
 
     if (activity) {
         const { comments, debts, expenses, friends, groups, transactions } = activity;
-        console.log(comments)
+        const commentComponents = comments.map((comment) => <Comment key={comment.id} comment={comment} />)
+        const debtComponents = comments.map((comment) => <Debt key={debt.id} debt={debt} />)
         return (
             <>
                 <h1> Recent Activity </h1>
-                {comments.map(comment=>{
-                    return (
-                    <p key={comment.id}  >{name} commented on {comment.message}</p>
-                    )
-                })}
-                {/* <p></p> */}
+                <div>
+                {commentComponents}
+                </div>
             </>
         );
     } else {
