@@ -14,3 +14,8 @@ i.active-page {
 .page-link {
   color: #5BC5A7;
 }
+
+.side-nav li {
+  display: flex;
+  flex-direction: row;
+}

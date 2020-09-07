@@ -24,7 +24,7 @@ button{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  padding: 0 20px 0 35px; 
+  padding: 0 20px 0 35px;
 }
 
 .area-1{
@@ -81,7 +81,7 @@ button{
   color: #A60328;
 }
 
-.fas {
+.landing-page-container .fas {
   font-size: 50px;
   display: flex;
   flex-direction: row;

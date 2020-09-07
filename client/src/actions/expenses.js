@@ -4,6 +4,7 @@ import { USER_DEBTS } from './debts'
 
 export const NEW_EXPENSE = 'NEW_EXPENSE'
 export const USER_EXPENSES = 'USER_EXPENSES'
+export const EXPENSE_DATA = 'EXPENSE_DATA'
 
 export const newExpense = (data) => async dispatch => {
   const { userId } = data
@@ -40,4 +41,17 @@ export const getExpenses = (userId) => async dispatch => {
     const expenses = await res.json();
     dispatch({ type: USER_EXPENSES, expenses })
   }
+}
+
+export const getExpenseData = (expenseId) => async dispatch => {
+  const res = await fetch(`${apiUrl}/expenses/${expenseId}`)
+
+  if (res.ok) {
+    const data = await res.json();
+
+    dispatch({ type: EXPENSE_DATA, data })
+
+  }
+
+
 }

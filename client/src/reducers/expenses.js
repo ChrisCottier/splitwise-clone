@@ -1,4 +1,4 @@
-import { NEW_EXPENSE, USER_EXPENSES } from '../actions/expenses'
+import { NEW_EXPENSE, USER_EXPENSES, EXPENSE_DATA, CLEAR_EXPENSE_DATA } from '../actions/expenses'
 
 const defaultState = {
   expenses: []
@@ -19,6 +19,14 @@ const expenses = (state = defaultState, action) => {
         expenses: action.expenses
       }
     }
+
+    case EXPENSE_DATA: {
+      return {
+        ...state,
+        expense: action.data
+      }
+    }
+
     default:
       return state;
   }
