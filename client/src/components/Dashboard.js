@@ -16,18 +16,35 @@ export const ExpenseHeader = (props) => {
   };
 
   return (
-    <div className="dashboard-header">
-      <div className="title is-5">{title}</div>
-      <div className="buttons">
-        <button
-          className="button add-expense-button is-warning"
-          onClick={showExpenseModal}
-        >
-          Add an Expense
-        </button>
-        <button className="button settle-up-button">Settle Up</button>
+    <>
+      <div className="month-divider">
+        <div className="dashboard-header">
+          <div className="title is-5">{title}</div>
+          <div className="buttons">
+            <div className="composite-button">
+              <button
+                className="button add-expense-button"
+                onClick={showExpenseModal}
+              >
+                <p>Add an expense</p>
+              </button>
+              <button className="button caret">
+                <a className="caret">
+                  <span className="caret">
+                    <i className="fa fa-caret-down"></i>
+                  </span>
+                </a>
+              </button>
+            </div>
+            <div className="settle-up">
+              <button className="button settle-up-button">
+                <p>Settle up</p>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -73,7 +73,7 @@ const PageLayout = (props) => {
             </div>
             {/* This is the end of the center */}
 
-            <div className="column is-one-fifth">
+            <div id="right-column" className="column is-one-fifth">
               {right}
               <RightColumn></RightColumn>
             </div>
