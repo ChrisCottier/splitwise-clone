@@ -48,7 +48,7 @@ const Navbar = () => {
     <nav id="navbar" className="navbar container is-widescreen" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <NavLink to="/" className="navbar-item">
-          <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/logo-horizontal.svg" width="auto" height="auto" />
+          <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/logo-horizontal.svg" width="108px" height="22px" />
         </NavLink>
       </div>
 

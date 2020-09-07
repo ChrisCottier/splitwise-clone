@@ -11,8 +11,8 @@ body{
     background-color: #EEEEEE;
     position: relative;
     padding: 10px 10px 10px;
-    /* box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.20); */
-    /* border: 1px solid lightgrey; */
+    box-shadow: inset 0px 0px 5px 0px whitesmoke;
+    border-bottom: 1px solid lightgrey;
   }
 
   .balance-header {
@@ -142,8 +142,7 @@ body{
     flex-direction: row;
     align-items: center;
     margin-bottom: 0;
-    margin-inline-start: 0.67em;
-    font-size: 25px;
+    font-size: 24px;
     color: #333333;
   }
 

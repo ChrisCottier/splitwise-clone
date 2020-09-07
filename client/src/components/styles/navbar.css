@@ -34,6 +34,7 @@ div.navbar-brand{
   height: 33px;
   min-height: unset;
   position: relative;
+  width: auto;
 }
 
 div.navbar-brand .navbar-item{
@@ -43,7 +44,12 @@ div.navbar-brand .navbar-item{
 
 div.navbar-brand img {
   height: 22px;
-  width: auto;
   min-height: unset;
-  padding-left: 10px;
+  vertical-align: middle;
+  padding-left: 15px;
+  /* float: left; */
+  /* position: sticky;
+  position: relative;
+  left: 150%; */
+
 }
