@@ -4,7 +4,7 @@ import '../components/styles/splash.css'
 const Splashpage = () => {
   return (
     <div>
-      <div classname='landing-page-container'>
+      <div className='landing-page-container'>
         <div className='nav-bar'>
           <h1>LOGO Goes Here</h1>
         </div>
@@ -40,6 +40,10 @@ const Splashpage = () => {
             </ul>
           </div>
         </div>
+        <div className='column2'>
+          <i className='fas fa-heart heart-2' />
+          <div> Heart Image goes here</div> 
+        </div>
         <div className='under-icons'>
           <p className='header-one__paragraph'>Keep track of your shared expenses and balances with housemates,
             trips, groups, friends, and family.
@@ -52,6 +56,8 @@ const Splashpage = () => {
         <div className='balances'>
           <div className='header header-one'>
             <h1>Track Balances</h1>
+          </div>
+          <div className='header-content'>
             <p>Keep track of shared expenses, balances, and who owes who.</p>
             <img src='https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png' />
           </div>
@@ -59,6 +65,8 @@ const Splashpage = () => {
         <div className='expenses'>
           <div className='header header-two'>
             <h1>Organize Expenses</h1>
+          </div>
+          <div className='header-content'>
             <p>Split expenses with any group: trips, housemates, friends,and family.</p>
             <img src='https://secure.splitwise.com/assets/home_page/fixtures/asset1.png' />
           </div>
@@ -66,6 +74,8 @@ const Splashpage = () => {
         <div className='friends'>
           <div className='header header-three'>
             <h1>Pay friends back</h1>
+          </div>
+          <div className='header-content'>
             <p>Settle up with a friend and record any cash or online payment.</p>
             <img src='https://secure.splitwise.com/assets/home_page/fixtures/asset1.png' />
           </div>
@@ -73,6 +83,8 @@ const Splashpage = () => {
         <div className='add-expenses'>
           <div className='header header-four'>
             <h1>Add expenses Easily</h1>
+          </div>
+          <div className='header-content'>
             <p>Quickly add expenses on the go before you forget who paid.</p>
             <img src='https://secure.splitwise.com/assets/home_page/fixtures/asset1.png' />
           </div>
