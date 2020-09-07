@@ -19,3 +19,31 @@ i.active-page {
   display: flex;
   flex-direction: row;
 }
+
+nav#navbar.navbar.container.is-widescreen {
+  height: 33px;
+  padding: 0px;
+  width: 100%;
+  max-width: unset;
+  min-height: unset;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.20);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+div.navbar-brand{
+  height: 33px;
+  min-height: unset;
+  position: relative;
+}
+
+div.navbar-brand .navbar-item{
+  height: 33px;
+  min-height: unset;
+}
+
+div.navbar-brand img {
+  height: 22px;
+  width: auto;
+  min-height: unset;
+  padding-left: 10px;
+}

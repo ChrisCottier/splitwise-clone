@@ -7,11 +7,11 @@ const Footer = () => {
   return(
 
     <div>
-      <footer class="footer">
-        <div class="container">
-          <div class="content has-text-centered">
-            <div class="columns">
-              <div class="column">
+      <footer className="footer">
+        <div className="container">
+          <div className="content has-text-centered">
+            <div className="columns">
+              <div className="column">
                 <p>Splitwise</p>
                 <p>
                   <a href='/'>About</a>
@@ -32,7 +32,7 @@ const Footer = () => {
                   <a href='/'>API</a>
                 </p>
               </div>
-              <div class="column">
+              <div className="column">
                 <p>Account</p>
                 <p>
                   <a href='/'>Log In</a>
@@ -50,7 +50,7 @@ const Footer = () => {
                   <a href='/'>Splitwise Pro</a>
                 </p>
               </div>
-              <div class="column">
+              <div className="column">
                 <p>More</p>
                 <p>
                   <a href='/'>Contact Us</a>
@@ -73,7 +73,7 @@ const Footer = () => {
                   <a href='https://www.instagram.com/splitwise'>Instagram</a>
                 </p>
               </div>
-              <div class="column">
+              <div className="column">
                 <button>Get It On Google Play</button>
                 <button>Download on the App Store</button>
                 <p>Made with </p>

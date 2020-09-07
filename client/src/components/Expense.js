@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PageLayout from './PageLayout'
 import { ExpenseHeader } from './Dashboard'
 import { getExpenses, getExpenseData, CLEAR_EXPENSE_DATA } from '../actions/expenses'
-import { dateTimeObj } from '../utils'
+import { dateTimeObj, splitAmount } from '../utils'
 import './styles/expense.css'
 
 
@@ -36,8 +36,8 @@ const ExpenseDisplay = (props) => {
         </div>
       </div>
       <div id="expense-display-body" className="columns">
-        <div className="column is-half">debts...</div>
-        <div className="column is-half">notes and comments...</div>
+        <div className="column is-half">debts...</div> {/*The users involved with the transaction go here*/}
+        <div className="column is-half">notes and comments...</div>{/*The users involved with the transaction go here*/}
       </div>
     </div>
   )
@@ -60,18 +60,30 @@ const ExpenseTile = (props) => {
 
   return (
     <>
-      <div className="expense-tile" onClick={setView}>
-        <div className="expense-date">
-          <div>{dateTime.month}</div>
-          <div className="day-of-month">{dateTime.dayOfMonth}</div>
+      <span className="expense">
+        <div className="expense-tile" onClick={setView}>
+          <div className="expense-tile-left">
+            <div className="expense-date">
+              <div className="month">{dateTime.month}</div>
+              <div className="day">{dateTime.dayOfMonth}</div>
+            </div>
+            <i className="fas fa-file-invoice-dollar fa-2x"></i>
+            <div className="expense-title">{expense.title}</div>
+          </div>
+          <div className="expense-tile-right" >
+            <div className="expense-tile-stats">
+              <div className="expense-tile-left">
+                <div className="expense-tile-lender">{expense.creator.name} paid</div>
+                <div className="expense-tile-amount"> ${expense.amount}</div>
+              </div>
+              <div className="expense-tile-right">
+                <div className="expense-tile-lender">{expense.creator.name} lent {}</div>
+                <div className="expense-tile-amount"> ${splitAmount(expense.amount)}</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <i className="fas fa-file-invoice-dollar fa-2x"></i>
-        <div className="expense-title">{expense.title}</div>
-        <div className="expense-tile-stats">
-          <div className="expense-tile-lender">{`${expense.creator.name} lent`}</div>
-          <div className="expense-tile-amount">{expense.amount}</div>
-        </div>
-      </div>
+      </span>
       {view
         ? <ExpenseDisplay
           expenseId={expense.id}
@@ -101,7 +113,7 @@ const ExpensesCenter = () => {
   if (!expensesUpdated || !expenses) return null;
   return (
     <>
-      <ExpenseHeader title={'All Expenses'}></ExpenseHeader>
+      <ExpenseHeader title={'All expenses'}></ExpenseHeader>
       <div className="expenses-container">
         {expenses.map(expense => {
           return (

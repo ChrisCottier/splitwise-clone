@@ -5,10 +5,13 @@
 }
 
 #center-column {
-  border-right: 1px solid lightgray;
+  /* border-right: 1px solid lightgray; */
   border-left: 1px solid lightgray;
-  box-shadow: 3px 0px 8px 1px lightgray, -3px 0px 8px 1px lightgray;
   height: 100vh;
+  padding: 0px;
+  margin-top: 12px;
+  width: 558px;
+  /* max-width: 558px; */
 }
 
 #invite-friends {
@@ -44,4 +47,27 @@
 table.friends-table {
   width: 100%;
   margin-top: 15px;
+}
+
+#right-column.is-one-fifth  {
+  width: 180px;
+  height: auto;
+  background-color: #FFFFFF;
+  position: relative;
+  box-shadow: inset 65px 0px 43px -71px rgba(0, 0, 0, 0.25);
+  border-left: 1px solid lightgray;
+}
+#left-column.is-one-fifth {
+  width: 180px;
+  height: auto;
+  background-color: #FFFFFF;
+  position: relative;
+  box-shadow: inset -65px 0px 43px -71px rgba(0, 0, 0, 0.25);
+}
+
+div.container.is-widescreen{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 960px;
 }
