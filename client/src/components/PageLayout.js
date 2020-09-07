@@ -27,16 +27,18 @@ const RightColumn = () => {
 
   return (
     <div className="net-owed">
-      <h1>YOUR TOTAL BALANCE</h1>
+      <h1 className="net-owed-header">YOUR TOTAL BALANCE</h1>
       {positiveAmount ? (
         <>
-          <div>you are owed </div>
-          <div>{`$${netOwed}`}</div>
+          <div className="net-owed-positive">you are owed </div>
+          <div className="net-owed-positive net-owed-number">{`$${netOwed}`}</div>
         </>
       ) : (
         <>
-          <div>you owe </div>
-          <div>{`$${netOwed}`}</div>
+          <div className="net-owed-negative">you owe </div>
+          <div className="net-owed-negative net-owed-number">{`$${
+            netOwed * -1
+          }`}</div>
         </>
       )}
     </div>

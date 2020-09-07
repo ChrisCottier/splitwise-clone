@@ -11,12 +11,15 @@ import {
 import { dateTimeObj, splitAmount, getMonth } from "../utils";
 import "./styles/expense.css";
 import { Comment, Debt } from "./sub-components/Comment";
+import { TextAreaInput } from "./sub-components/Form-Inputs";
+import { postComment } from "../actions/comments";
 
 const ExpenseDisplay = (props) => {
   const dispatch = useDispatch();
   const [expenseUpdated, setExpenseUpdated] = useState(false);
-
+  const [comment, setComment] = useState("");
   const { expense } = useSelector((state) => state.expenses);
+  const { userId } = useSelector((state) => state.auth);
   const { expenseId } = props;
 
   useEffect(() => {
@@ -24,6 +27,23 @@ const ExpenseDisplay = (props) => {
     dispatch(getExpenseData(expenseId));
     setExpenseUpdated(true);
   });
+
+  const handleChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    dispatch(
+      postComment({
+        expenseId: expense.expense.id,
+        userId,
+        comment,
+      })
+    );
+    setComment("");
+  };
 
   if (!expense || !expenseUpdated) return null;
   const { expense: theExpense, comments, debts } = expense;
@@ -41,16 +61,31 @@ const ExpenseDisplay = (props) => {
       <div className="expense-header">
         <i className="fas fa-file-invoice-dollar fa-3x"></i>
         <div>
-          <div>{theExpense.title}</div>
-          <div>{`$${theExpense.amount}`}</div>
-          <div>{`Added by ${theExpense.creator.name} on ${dateTime.month} ${dateTime.dayOfMonth}, ${dateTime.year}`}</div>
+          <div className="expense-header-title">{theExpense.title}</div>
+          <div className="expense-header-amount">{`$${theExpense.amount}`}</div>
+          <div className="expense-header-creator">{`Added by ${theExpense.creator.name} on ${dateTime.month} ${dateTime.dayOfMonth}, ${dateTime.year}`}</div>
         </div>
       </div>
       <div id="expense-display-body" className="columns">
         <div className="column is-half">{debtComponents}</div>{" "}
         {/*The users involved with the transaction go here*/}
         {/* we will take debt.lender.name paid debt.expense.amount */}
-        <div className="column is-half">{commentComponent}</div>
+        <div className="column is-half">
+          {commentComponent}
+          <form onSubmit={handleSubmit}>
+            <TextAreaInput
+              placeHolder={"Write your comment here"}
+              value={comment}
+              handleChange={handleChange}
+              require={true}
+              name={"comment"}
+              label={"Leave A Comment:"}
+            ></TextAreaInput>
+            <button type="submit" className="button is-primary">
+              Submit
+            </button>
+          </form>
+        </div>
         {/*The users involved with the transaction go here*/}
       </div>
     </div>
