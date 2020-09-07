@@ -1,26 +1,59 @@
-import React from 'react';
-import { useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import AddFriend from './AddFriend';
-import './styles/page-layout.css'
-import AddExpenseModal from './AddExpenseModal'
-import Navbar, { SideNav } from './Navbar'
+import AddFriend from "./AddFriend";
+import "./styles/page-layout.css";
+import AddExpenseModal from "./AddExpenseModal";
+import Navbar, { SideNav } from "./Navbar";
+import { getUserDebts } from "../actions/debts";
 
+const RightColumn = () => {
+  //static display of total balance
+  const dispatch = useDispatch();
+  const { userId } = useSelector((state) => state.auth);
+  const { netOwed } = useSelector((state) => state.debts);
+
+  const [columnUpdated, setColumnUpdated] = useState(false);
+
+  useEffect(() => {
+    if (!userId || columnUpdated) return;
+    dispatch(getUserDebts(userId));
+    setColumnUpdated(true);
+  });
+
+  if (!netOwed) return null;
+  const positiveAmount = netOwed > 0;
+
+  return (
+    <div className="net-owed">
+      <h1>YOUR TOTAL BALANCE</h1>
+      {positiveAmount ? (
+        <>
+          <div>you are owed </div>
+          <div>{`$${netOwed}`}</div>
+        </>
+      ) : (
+        <>
+          <div>you owe </div>
+          <div>{`$${netOwed}`}</div>
+        </>
+      )}
+    </div>
+  );
+};
 
 const PageLayout = (props) => {
-
-  const { center, right } = props
-  const { loggedOut } = useSelector(state => state.auth);
-  const location = window.location.pathname.slice(1)
-
+  const { center, right } = props;
+  const { loggedOut } = useSelector((state) => state.auth);
+  const location = window.location.pathname.slice(1);
 
   // if (loggedOut !== true || loggedOut !== false) {
   //   return null;
   // }
 
   if (loggedOut) {
-    return <Redirect to="/"></Redirect>
+    return <Redirect to="/"></Redirect>;
   }
   return (
     <>
@@ -42,16 +75,13 @@ const PageLayout = (props) => {
 
             <div id="right-column" className="column is-one-fifth">
               {right}
-              <div>FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER FILLER </div>
+              <RightColumn></RightColumn>
             </div>
           </div>
         </div>
       </main>
     </>
-  )
-}
-
-
-
+  );
+};
 
 export default PageLayout;

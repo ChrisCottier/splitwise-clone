@@ -1,72 +1,106 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { TextAreaInput, TextInput, NumberInput, FileInput, CategoryInput } from './sub-components/Form-Inputs'
-import { EXPENSE_MODAL } from '../actions/modals'
-import { getFriends } from '../actions/friends.js'
-import { newExpense } from '../actions/expenses'
-import { getUserDebts } from '../actions/debts'
-import './styles/expense-modal.css'
-
+import {
+  TextAreaInput,
+  TextInput,
+  NumberInput,
+  FileInput,
+  CategoryInput,
+} from "./sub-components/Form-Inputs";
+import { EXPENSE_MODAL } from "../actions/modals";
+import { getFriends } from "../actions/friends.js";
+import { newExpense } from "../actions/expenses";
+import { getUserDebts } from "../actions/debts";
+import "./styles/expense-modal.css";
 
 const MatchingFriends = (props) => {
-  const { friends, string, friendsOnExpense, setFriendsOnExpense, setAddFriend } = props;
+  const {
+    friends,
+    string,
+    friendsOnExpense,
+    setFriendsOnExpense,
+    setAddFriend,
+  } = props;
 
-  const matches = friends.filter(friend => {
+  const matches = friends.filter((friend) => {
     const name = friend.name;
-    return name.includes(string) && string.length >= 1 && !friendsOnExpense.includes(friend)
-  })
+    return (
+      name.includes(string) &&
+      string.length >= 1 &&
+      !friendsOnExpense.includes(friend)
+    );
+  });
 
   const addToList = (event) => {
     event.stopPropagation();
     event.preventDefault();
 
-    const indexOfSelection = parseInt(event.target.getAttribute('name'))
-    const selection = matches[indexOfSelection]
-    const add = [...friendsOnExpense, selection]
-    setFriendsOnExpense(add)
-    setAddFriend('')
-  }
+    const indexOfSelection = parseInt(event.target.getAttribute("name"));
+    const selection = matches[indexOfSelection];
+    const add = [...friendsOnExpense, selection];
+    setFriendsOnExpense(add);
+    setAddFriend("");
+  };
   return (
     <div className="friend-options">
       {matches.map((friend, index) => {
-
         return (
-          <a className="hover-click" name={index} key={friend.id} onClick={addToList}>{friend.name}</a>
-        )
-      }
-      )}
+          <a
+            className="hover-click"
+            name={index}
+            key={friend.id}
+            onClick={addToList}
+          >
+            {friend.name}
+          </a>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
 const FriendOnExpense = (props) => {
-  const { friend } = props
+  const { friend, setFriendsOnExpense, index, friendsArray } = props;
+
+  const removeFriendFromExpense = () => {
+    friendsArray.splice(index, 1);
+    setFriendsOnExpense(friendsArray);
+    console.log("fa", friendsArray);
+  };
+
+  //remove friend not yet working; it adjusts the state of setFriends, but it
+  // doesnt the render is the same
   return (
-    <div>{friend.name}<span>**Cancel icon here**</span></div>
-  )
-}
+    <div>
+      {friend.name}
+      <i
+        className="fas fa-window-close expense-remove-friend"
+        onClick={removeFriendFromExpense}
+      ></i>
+    </div>
+  );
+};
 
 const AddExpenseModal = () => {
-  const [friendsUpdated, setFriendsUpdated] = useState(false)
-  const [friendsOnExpense, setFriendsOnExpense] = useState([])
-  const [addFriend, setAddFriend] = useState('')
-  const [title, setTitle] = useState('')
-  const [amount, setAmount] = useState('')
-  const [note, setNote] = useState('')
+  const [friendsUpdated, setFriendsUpdated] = useState(false);
+  const [friendsOnExpense, setFriendsOnExpense] = useState([]);
+  const [addFriend, setAddFriend] = useState("");
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
+  const [note, setNote] = useState("");
 
-  const { expenseDisplay } = useSelector(state => state.modals)
-  const { friends } = useSelector(state => state.friends)
-  const { userId, token } = useSelector(state => state.auth)
+  const { expenseDisplay } = useSelector((state) => state.modals);
+  const { friends } = useSelector((state) => state.friends);
+  const { userId, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!friendsUpdated) {
-      dispatch(getFriends(userId))
-      setFriendsUpdated(true)
+      dispatch(getFriends(userId));
+      setFriendsUpdated(true);
     }
-  })
-
+  });
 
   const modalOff = (event) => {
     event.stopPropagation();
@@ -77,10 +111,9 @@ const AddExpenseModal = () => {
       event.target.classList.contains("cancel") ||
       event.target.classList.contains("delete")
     ) {
-      dispatch({ type: EXPENSE_MODAL, display: "none" })
+      dispatch({ type: EXPENSE_MODAL, display: "none" });
     }
-
-  }
+  };
 
   const handleChange = (event) => {
     switch (event.target.name) {
@@ -101,19 +134,30 @@ const AddExpenseModal = () => {
         return;
       }
     }
-  }
+  };
 
   const handleSubmit = (event) => {
     event.stopPropagation();
     event.preventDefault();
-    dispatch(newExpense({ friendsOnExpense, amount, title, userId, splitType: 'even', note, settledUp: false }))
-    dispatch(getUserDebts(userId))
-  }
+    dispatch(
+      newExpense({
+        friendsOnExpense,
+        amount,
+        title,
+        userId,
+        splitType: "even",
+        note,
+        settledUp: false,
+      })
+    );
+    dispatch(getUserDebts(userId));
+  };
 
-  if (!expenseDisplay, friends === undefined) {
+  if ((!expenseDisplay, friends === undefined)) {
     return null;
   }
 
+  console.log("foe", friendsOnExpense);
 
   return (
     <div className="modal" style={{ display: expenseDisplay }}>
@@ -121,7 +165,11 @@ const AddExpenseModal = () => {
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title">Create An Expense</p>
-          <button className="delete" aria-label="close" onClick={modalOff}></button>
+          <button
+            className="delete"
+            aria-label="close"
+            onClick={modalOff}
+          ></button>
         </header>
         <section className="modal-card-body">
           {/* <h1 className="title is-5">Create An Expense</h1> */}
@@ -139,10 +187,20 @@ const AddExpenseModal = () => {
               friends={friends}
               friendsOnExpense={friendsOnExpense}
               setFriendsOnExpense={setFriendsOnExpense}
-              setAddFriend={setAddFriend}></MatchingFriends>
+              setAddFriend={setAddFriend}
+            ></MatchingFriends>
             <div>FRIENDS ADDED BELOW</div>
-            {friendsOnExpense.map(friend => {
-              return <FriendOnExpense key={friend.id} friend={friend}></FriendOnExpense>
+            {friendsOnExpense.map((friend, index, friendsArray) => {
+              return (
+                <FriendOnExpense
+                  key={friend.id}
+                  friend={friend}
+                  setFriendsOnExpense={setFriendsOnExpense}
+                  friendsArray={friendsArray}
+                  index={index}
+                  friendsOnExpense={friendsOnExpense}
+                ></FriendOnExpense>
+              );
             })}
             <TextInput
               label="Title"
@@ -159,8 +217,7 @@ const AddExpenseModal = () => {
               value={amount}
               handleChange={handleChange}
               required={false}
-            >
-            </NumberInput>
+            ></NumberInput>
             <TextInput
               label="Note"
               name="note"
@@ -169,15 +226,18 @@ const AddExpenseModal = () => {
               handleChange={handleChange}
               require={true}
             ></TextInput>
-            <button className="button is-success" type="submit">Split It!</button>
-            <button className="button cancel" onClick={modalOff}>Cancel</button>
+            <button className="button is-success" type="submit">
+              Split It!
+            </button>
+            <button className="button cancel" onClick={modalOff}>
+              Cancel
+            </button>
           </form>
         </section>
-        <footer className="modal-card-foot">
-        </footer>
+        <footer className="modal-card-foot"></footer>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddExpenseModal
+export default AddExpenseModal;
