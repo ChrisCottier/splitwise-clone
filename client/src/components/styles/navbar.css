@@ -23,6 +23,7 @@ i.active-page {
   height: 35px;
   width: 120px;
   max-height: fit-content;
+  margin-bottom: 15px;
 }
 
 nav#navbar.navbar.container.is-widescreen {
