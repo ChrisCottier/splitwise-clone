@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import PageLayout from './PageLayout'
-import { ExpenseHeader } from './Dashboard'
-import { getExpenses, getExpenseData, CLEAR_EXPENSE_DATA } from '../actions/expenses'
-import { dateTimeObj } from '../utils'
-import './styles/expense.css'
-
+import PageLayout from "./PageLayout";
+import { ExpenseHeader } from "./Dashboard";
+import {
+  getExpenses,
+  getExpenseData,
+  CLEAR_EXPENSE_DATA,
+} from "../actions/expenses";
+import { dateTimeObj } from "../utils";
+import "./styles/expense.css";
 
 const ExpenseDisplay = (props) => {
-  const dispatch = useDispatch()
-  const [expenseUpdated, setExpenseUpdated] = useState(false)
+  const dispatch = useDispatch();
+  const [expenseUpdated, setExpenseUpdated] = useState(false);
 
-  const { expense } = useSelector(state => state.expenses)
+  const { expense } = useSelector((state) => state.expenses);
   const { expenseId } = props;
 
   useEffect(() => {
     if (expenseUpdated) return;
-    dispatch(getExpenseData(expenseId))
-    setExpenseUpdated(true)
-
-  })
+    dispatch(getExpenseData(expenseId));
+    setExpenseUpdated(true);
+  });
 
   if (!expense || !expenseUpdated) return null;
   const { expense: theExpense, comments, debts } = expense;
-  const dateTime = dateTimeObj(theExpense.created_at)
+  const dateTime = dateTimeObj(theExpense.created_at);
   return (
     <div className="expense-display">
       <div className="expense-header">
@@ -40,8 +42,8 @@ const ExpenseDisplay = (props) => {
         <div className="column is-half">notes and comments...</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ExpenseTile = (props) => {
   const { expense, viewExpense, setViewExpense } = props;
@@ -49,14 +51,13 @@ const ExpenseTile = (props) => {
 
   const setView = () => {
     if (viewExpense !== expense.id) {
-      setViewExpense(expense.id)
+      setViewExpense(expense.id);
     } else {
-      setViewExpense(null)
+      setViewExpense(null);
     }
-  }
+  };
 
-  const view = viewExpense === expense.id
-
+  const view = viewExpense === expense.id;
 
   return (
     <>
@@ -72,38 +73,38 @@ const ExpenseTile = (props) => {
           <div className="expense-tile-amount">{expense.amount}</div>
         </div>
       </div>
-      {view
-        ? <ExpenseDisplay
+      {view ? (
+        <ExpenseDisplay
           expenseId={expense.id}
           viewExpense={viewExpense}
         ></ExpenseDisplay>
-        : <></>}
+      ) : (
+        <></>
+      )}
     </>
-
-  )
-}
+  );
+};
 
 const ExpensesCenter = () => {
   const dispatch = useDispatch();
-  const { userId } = useSelector(state => state.auth)
-  const { expenses } = useSelector(state => state.expenses)
+  const { userId } = useSelector((state) => state.auth);
+  const { expenses } = useSelector((state) => state.expenses);
 
-  const [expensesUpdated, setExpensesUpdated] = useState(null)
-  const [viewExpense, setViewExpense] = useState(false)
+  const [expensesUpdated, setExpensesUpdated] = useState(null);
+  const [viewExpense, setViewExpense] = useState(false);
 
   useEffect(() => {
     if (!userId || expensesUpdated) return;
-    dispatch(getExpenses(userId))
-    setExpensesUpdated(true)
-
-  }, [])
+    dispatch(getExpenses(userId));
+    setExpensesUpdated(true);
+  }, []);
 
   if (!expensesUpdated || !expenses) return null;
   return (
     <>
-      <ExpenseHeader title={'All Expenses'}></ExpenseHeader>
+      <ExpenseHeader title={"All Expenses"}></ExpenseHeader>
       <div className="expenses-container">
-        {expenses.map(expense => {
+        {expenses.map((expense) => {
           return (
             <ExpenseTile
               key={expense.id}
@@ -111,18 +112,16 @@ const ExpensesCenter = () => {
               viewExpense={viewExpense}
               setViewExpense={setViewExpense}
             ></ExpenseTile>
-          )
+          );
         })}
       </div>
     </>
-  )
-}
+  );
+};
 
 const Expenses = () => {
   // return <div>hi</div>
-  return (
-    <PageLayout center={<ExpensesCenter></ExpensesCenter>} right={<div>hi</div>}></PageLayout>
-  )
-}
+  return <PageLayout center={<ExpensesCenter></ExpensesCenter>}></PageLayout>;
+};
 
 export default Expenses;

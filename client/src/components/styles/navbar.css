@@ -1,21 +1,26 @@
 #navbar {
-  background-color: #5BC5A7;
+  background-color: #5bc5a7;
 }
 
 a.active-page {
   font-weight: bold;
-
 }
 
 i.active-page {
-  box-shadow:-5px 0px 0px 0px lightgray;
+  box-shadow: -5px 0px 0px 0px lightgray;
 }
 
 .page-link {
-  color: #5BC5A7;
+  color: #5bc5a7;
 }
 
 .side-nav li {
   display: flex;
   flex-direction: row;
+}
+
+#logo {
+  height: 35px;
+  width: 120px;
+  max-height: fit-content;
 }

@@ -1,8 +1,12 @@
-div.hover-click :hover{
+div.hover-click :hover {
   cursor: pointer;
 }
 
 .friend-options {
   display: flex;
   flex-direction: column;
+}
+
+.expense-remove-friend {
+  margin-left: 15px;
 }
