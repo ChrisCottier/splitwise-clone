@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bulma/css/bulma.css'
+import '../components/styles/footer.css'
 
 const Footer = () => {
 
@@ -75,7 +76,9 @@ const Footer = () => {
               <div class="column">
                 <button>Get It On Google Play</button>
                 <button>Download on the App Store</button>
-                <p>Made with love from Chris, Conrad, Aaron</p> 
+                <p>Made with </p>
+                  <i className='fab fa-react footer-i' /> <i className='fab fa-python footer-i' />
+                <p className='creators'>Chris C., Conrad O., & Aaron C.</p>
               </div>
             </div>
           </div>
