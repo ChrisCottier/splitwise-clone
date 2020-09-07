@@ -17,7 +17,7 @@ button{
   display: flex;
   flex-wrap: wrap;
   /* flex-direction: column;  */
-  flex-direction: row; 
+  flex-direction: row;
 }
 
 .area-1{
@@ -46,7 +46,7 @@ button{
   width: 42%;
 }
 
-.fas {
+.landing-page-container .fas {
   font-size: 50px;
   display: flex;
   flex-direction: row;

@@ -1,5 +1,57 @@
 .expense-tile {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-top: 20px;
+}
 
+.expense-tile :hover {
+  background-color: lightgray;
+
+}
+
+.expense-date {
+  color: #B29999;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.day-of-month {
+  font-size: 30px;
+  /* padding-right: 30px; */
+}
+
+.expense-tile i {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.expense-title {
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.expense-tile-stats {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+
+}
+
+.expense-tile-lender {
+  color: lightgray
+}
+
+.expense-tile-amount {
+  color: green;
+  font-weight: 600;
 }
