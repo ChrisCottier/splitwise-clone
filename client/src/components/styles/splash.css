@@ -1,3 +1,10 @@
+.landing-page-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 20px 0 35px;
+}
+
 .navbar-links{
   display: flex;
   flex-direction: row;
@@ -16,8 +23,8 @@ button{
 .main-container{
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column;  */
   flex-direction: row;
+  padding: 0 20px 0 35px;
 }
 
 .area-1{
@@ -25,6 +32,12 @@ button{
   background-color: #F6F7F7;
   height: 250px;
   width: 42%
+}
+
+.header{
+  font-size: 1.5rem;
+  text-align:center;
+  font-weight: 700
 }
 
 .header-one__paragraph{
@@ -35,8 +48,19 @@ button{
   line-height: normal;
 }
 
+.header-content{
+  font-size: 1.125rem;
+  max-width: 28.5rem;
+  margin-top: 1.5rem;
+  line-height: normal;
+  text-align: center;
+  padding: 0 2rem 0 2rem;
+  margin-bottom: 2.25rem;
+  margin-top: 0.5rem;
+  color: #fff;
+}
+
 .area-1-span{
-  font-family: Montserrat;
   font-size: 2.5rem;
   color: #373b3f;
 }
@@ -44,6 +68,17 @@ button{
 .under-icons{
   background-color: #F6F7F7;
   width: 42%;
+}
+
+.column2{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 0 650px 0 0;
+}
+
+.heart-2{
+  color: #A60328;
 }
 
 .landing-page-container .fas {
@@ -77,8 +112,8 @@ button{
   flex-direction: column;
 }
 
-.header-one{
-  border: 1px black solid;
+.header{
+  /* border: 1px black solid; */
 }
 
 .header-one__button{
@@ -87,22 +122,10 @@ button{
 
 }
 
-.header-two{
-  border: 1px black solid;
-}
-
-.header-three{
-  border: 1px black solid;
-}
-
-.header-four{
-  border: 1px black solid;
-}
-
 .pro-box{
   background-color: #8356C7;
   color: white;
-  width: 1835px;
+  width: 1825px;
   height: 600px;
   display: flex;
 }
