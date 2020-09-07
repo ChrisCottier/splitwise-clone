@@ -11,11 +11,12 @@ import {
 import { dateTimeObj, splitAmount, getMonth } from "../utils";
 import "./styles/expense.css";
 import { Comment, Debt } from "./sub-components/Comment";
+import { TextAreaInput } from "./sub-components/Form-Inputs";
 
 const ExpenseDisplay = (props) => {
   const dispatch = useDispatch();
   const [expenseUpdated, setExpenseUpdated] = useState(false);
-
+  const [comment, setComment] = useState("");
   const { expense } = useSelector((state) => state.expenses);
   const { expenseId } = props;
 
@@ -24,6 +25,12 @@ const ExpenseDisplay = (props) => {
     dispatch(getExpenseData(expenseId));
     setExpenseUpdated(true);
   });
+
+  const handleChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = (event) => {};
 
   if (!expense || !expenseUpdated) return null;
   const { expense: theExpense, comments, debts } = expense;
@@ -50,7 +57,22 @@ const ExpenseDisplay = (props) => {
         <div className="column is-half">{debtComponents}</div>{" "}
         {/*The users involved with the transaction go here*/}
         {/* we will take debt.lender.name paid debt.expense.amount */}
-        <div className="column is-half">{commentComponent}</div>
+        <div className="column is-half">
+          {commentComponent}
+          <form onSubmit={handleSubmit}>
+            <TextAreaInput
+              placeHolder={"Write your comment here"}
+              value={comment}
+              handleChange={handleChange}
+              require={true}
+              name={"comment"}
+              label={"Leave A Comment:"}
+            ></TextAreaInput>
+            <button type="submit" className="button is-primary">
+              Submit
+            </button>
+          </form>
+        </div>
         {/*The users involved with the transaction go here*/}
       </div>
     </div>
