@@ -28,7 +28,6 @@ while len(emails) < 300:  # This will create 300 unique email addresses
 emails = list(emails)
 hashed_passwords = [bcrypt.hashpw(fake.password(length=4).encode(), bcrypt.gensalt(
     4)).decode('utf-8') for i in range(300)]
-users = [('email', email) for email in emails]
-# users = list(zip(emails, all_names, hashed_passwords, range(1, 301)))
+# # users = dict(users)
+users = list(zip(emails, all_names, hashed_passwords, range(1, 301)))
 # users = list({'email': emails, 'name': all_names})
-

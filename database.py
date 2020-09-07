@@ -7,7 +7,7 @@ from seeders.groups import seed_groups
 from seeders.users import seed_users
 from seeders.transactions import seed_transactions
 from seeders.images import seed_images
-from seeders.aws import aws_seeds
+from seeders.aws import aws_seeds, user_img_seeds
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -19,9 +19,10 @@ with app.app_context():
     # add the seed objects
     # flush the session to ensure primary keys are generated then commit
     db.session.add_all(aws_seeds)
-    db.session.add_all(seed_images)
     db.session.flush()
     db.session.add_all(seed_users)
+    db.session.add_all(user_img_seeds)
+    # db.session.add_all(seed_images)
     db.session.flush()
     db.session.add_all(seed_friends)
     db.session.add_all(seed_groups)
