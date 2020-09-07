@@ -2,66 +2,111 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  justify-content: space-between;
+  width: auto;
+  height: 60px;
   position: relative;
-  margin-top: 20px;
-}
-
-.expense-tile :hover {
-  background-color: lightgray;
-
-}
-
-.expense-date {
-  color: #B29999;
-  font-weight: 500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.day-of-month {
-  font-size: 25px;
-  /* padding-right: 30px; */
-}
-
-.expense-tile i {
-  margin-left: 20px;
-  margin-right: 20px;
+  border-bottom: 1px solid lightgray;
 }
 
 .expense-title {
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: 500;
   margin-right: 20px;
+}
+
+/* span.expense :not(.expense-tile-left):not(.expense-tile-right):hover {
+  background: #f7f7f7;
+} */
+#hoverArea :hover {
+  background: #EEEEEE;
+}
+
+.expense-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3px 10px 0px
+}
+
+.day {
+  font-size: 21px;
+  font-weight: 400;
+  margin-top: -10px;
+  font-kerning: none;
+}
+
+.month {
+  font-size: 11px;
+}
+
+.expense-tile i {
+  margin-right: 10px;
 }
 
 .expense-tile-stats {
   display: flex;
-  flex-direction: column;
-  justify-self: flex-end;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 0;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 45px;
+}
 
+.expense-tile-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-left: 5px;
+}
+.expense-tile-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .expense-tile-lender {
-  color: lightgray
+  font-size: 11px;
+  font-weight: 600;
 }
-
+#dark {
+  color: black;
+}
 .expense-tile-amount {
-  color: green;
+  color: #5BC5A7;
   font-weight: 600;
 }
 
 .expense-header {
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid lightgray;
 }
 
-#expense-display-body {
-  margin-top: 15px;
-  border-top: 1px solid lightgray;
+#expense-display {
+  border-bottom: 1px solid lightgray;
+  background-color: #EEEEEE;
 }
+/* #expense-display-body:enabled{
+} */
+
+.expense-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-left: 4px;
+}
+.expense-left {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-right: 4px;
+}
+.month-holder {
+  background-color: #EEEEEE;
+  box-shadow: inset 0px 0px 5px 0px whitesmoke;
+  border-bottom: 1px solid lightgrey;
+}
+textarea {
+  height: fit-auto;
+  resize: none;
+}
+
