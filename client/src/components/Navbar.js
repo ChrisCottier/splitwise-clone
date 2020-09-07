@@ -25,7 +25,7 @@ export const SideNav = (props) => {
 
   return (
     <nav>
-      <ul>
+      <ul className="side-nav">
         {/* <li><NavLink to="/users" activeclass="active">Users</NavLink></li> */}
         {/* <li><NavLink to="/sign-up" activeclass="active">Sign-Up</NavLink></li>
       <li><NavLink to="/login" activeclass="active">Login</NavLink></li> */}
