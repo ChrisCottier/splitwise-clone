@@ -32,8 +32,8 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Splash}></Route>
-        <Route exact path="/landing" component={Splashpage}></Route>
+        <Route exact path="/" component={Splashpage}></Route>
+        {/* <Route exact path="/landing" component={Splashpage}></Route> */}
         <Route path="/users" component={UserList} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/login" component={Login} />
