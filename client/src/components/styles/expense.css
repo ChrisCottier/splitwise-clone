@@ -22,7 +22,7 @@
 }
 
 .day-of-month {
-  font-size: 30px;
+  font-size: 25px;
   /* padding-right: 30px; */
 }
 
@@ -54,4 +54,14 @@
 .expense-tile-amount {
   color: green;
   font-weight: 600;
+}
+
+.expense-header {
+  display: flex;
+  flex-direction: row;
+}
+
+#expense-display-body {
+  margin-top: 15px;
+  border-top: 1px solid lightgray;
 }

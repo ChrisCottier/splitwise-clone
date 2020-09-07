@@ -23,10 +23,21 @@ const ExpenseDisplay = (props) => {
   })
 
   if (!expense || !expenseUpdated) return null;
+  const { expense: theExpense, comments, debts } = expense;
+  const dateTime = dateTimeObj(theExpense.created_at)
   return (
     <div className="expense-display">
       <div className="expense-header">
-        <div>{expense.expense.title}</div>
+        <i className="fas fa-file-invoice-dollar fa-3x"></i>
+        <div>
+          <div>{theExpense.title}</div>
+          <div>{`$${theExpense.amount}`}</div>
+          <div>{`Added by ${theExpense.creator.name} on ${dateTime.month} ${dateTime.dayOfMonth}, ${dateTime.year}`}</div>
+        </div>
+      </div>
+      <div id="expense-display-body" className="columns">
+        <div className="column is-half">debts...</div>
+        <div className="column is-half">notes and comments...</div>
       </div>
     </div>
   )
@@ -54,7 +65,7 @@ const ExpenseTile = (props) => {
           <div>{dateTime.month}</div>
           <div className="day-of-month">{dateTime.dayOfMonth}</div>
         </div>
-        <i className="fas fa-file-invoice-dollar"></i>
+        <i className="fas fa-file-invoice-dollar fa-2x"></i>
         <div className="expense-title">{expense.title}</div>
         <div className="expense-tile-stats">
           <div className="expense-tile-lender">{`${expense.creator.name} lent`}</div>
