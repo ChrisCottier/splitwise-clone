@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0 20px 0 35px;
+  padding: 0 45px 0 35px;
 }
 
 .navbar-links{
@@ -27,11 +27,17 @@ button{
   padding: 0 20px 0 35px;
 }
 
+.area-1-container{
+  background-color: #F6F7F7;
+  padding-left: 500px;
+  width: 100%;
+}
+
 .area-1{
   display: flex;
   background-color: #F6F7F7;
   height: 250px;
-  width: 42%
+  /* width: 42% */
 }
 
 .header{
@@ -40,12 +46,41 @@ button{
   font-weight: 700
 }
 
+.icon-list{
+  display: flex;
+  max-width: 50%;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.fa-plane{
+  color: #5BC5A7;
+}
+
+.fa-asterisk{
+  color: #B0B1B3;
+}
+
+.fa-heart{
+  color: #DAA3B2;
+}
+
+.fa-home{
+  color: #CFBEEA
+}
+
+.fas:hover{
+  color: black;
+}
+
 .header-one__paragraph{
   font-size: 1.125rem;
   max-width: 20rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   line-height: normal;
+  font-weight: 500;
+  text-align: center;
 }
 
 .header-content{
@@ -63,28 +98,74 @@ button{
 .area-1-span{
   font-size: 2.5rem;
   color: #373b3f;
+  font-weight: 700;
 }
 
 .under-icons{
   background-color: #F6F7F7;
-  width: 42%;
+  display: flex;
+  flex-direction: row;
+  max-width: 50%;
+  padding-left: 200px;
+  
+}
+
+.header-one__button{
+  display: flex;
+  flex-direction: row;
+  margin-left: 100px;
+  width: 30%;
+  height: 50px;
+}
+
+.header-one__link{
+  color: white;
+  padding-top: 10px;
+}
+
+.under-button{
+  padding-top: 10px;
+  margin-left: 60px;
 }
 
 .column2{
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  padding: 0 650px 0 0;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 50%;
+  font-weight: 500;
+  margin-left: 480px;
+  background-color: #F6F7F7;
+  box-shadow: 10px 12px 0.5rem rgba(0,0,0,0.5);
+  margin-top: 20px;
+
 }
 
-.heart-2{
-  color: #A60328;
+blockquote{
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+.testimonial-customer__name{
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+
+}
+
+.testimonial-customer__image{
+  padding-right: 10px;
 }
 
 .landing-page-container .fas {
   font-size: 50px;
   display: flex;
   flex-direction: row;
+  
 }
 
 .balances{
@@ -114,34 +195,53 @@ button{
 
 .header{
   /* border: 1px black solid; */
+  text-decoration: underline;
+
 }
 
 .header-one__button{
   display: flex;
   justify-content: center;
+}
 
+.button-one{
+  padding-bottom: 10px;
 }
 
 .pro-box{
   background-color: #8356C7;
   color: white;
   width: 1825px;
-  height: 600px;
+  /* height: 600px; */
+  height: 500px;
   display: flex;
 }
 
 .pro-box-left__header{
   font-weight: bold;
   font-size: 40px;
+  display: flex;
+  padding-top: 150px;
+  margin-right: 700px;
+  margin-left: 200px;
 }
 
 .pro-box-left__pari{
   font-size: 20px;
+  margin-left: 200px;
 }
 
 .pro-box__button{
   display: flex;
   justify-content: center;
+  margin-left: 270px;
+  margin-top: 50px;
+  width: 35%;
+  height: 50px;
+}
+
+.button-link{
+  color: white;
 }
 
 .pro-box-right{
@@ -150,4 +250,66 @@ button{
 
 .pro-box-right__image{
   align-self: flex-end;
+}
+
+
+/* Chris's Code for the navbar */
+#navbar {
+  background-color: #5bc5a7;
+}
+
+a.active-page {
+  font-weight: bold;
+}
+
+i.active-page {
+  box-shadow: -5px 0px 0px 0px lightgray;
+}
+
+.page-link {
+  color: #5bc5a7;
+}
+
+.side-nav li {
+  display: flex;
+  flex-direction: row;
+}
+
+#logo {
+  height: 35px;
+  width: 120px;
+  max-height: fit-content;
+}
+
+nav#navbar.navbar.container.is-widescreen {
+  height: 33px;
+  padding: 0px;
+  width: 100%;
+  max-width: unset;
+  min-height: unset;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+div.navbar-brand {
+  height: 33px;
+  min-height: unset;
+  position: relative;
+  width: auto;
+}
+
+div.navbar-brand .navbar-item {
+  height: 50px;
+  min-height: unset;
+}
+
+div.navbar-brand img {
+  height: 22px;
+  min-height: unset;
+  vertical-align: middle;
+  padding-left: 15px;
+  /* float: left; */
+  /* position: sticky;
+  position: relative;
+  left: 150%; */
 }

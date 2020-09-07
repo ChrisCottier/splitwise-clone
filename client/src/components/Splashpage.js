@@ -45,15 +45,33 @@ const Splashpage = () => {
               <p className='header-one__paragraph'>Keep track of your shared expenses and balances with housemates,
                 trips, groups, friends, and family.
               </p>
-              <button className='header-one__button' type='submit'><a href='/signup'>Sign Up</a></button>
-              <p> Free for iphone, Android, and web.</p>
+              <div className='button-one'>
+                <button className='header-one__button' type='submit'><a className='header-one__link' href='/login'>Log In</a></button>
+              </div>
+              <div className='button-two'>
+                <button className='header-one__button' type='submit'><a className='header-one__link' href='/signup'>Sign Up</a></button>
+              </div>
+              <p className='under-button'> Free for
+              : <i className='fab fa-apple' /> and <i className='fab fa-android' />
+              , and web.
+              </p>
             </div>
           </div>
-          <div className='area-1__right column2'>
-            <i className='fas fa-heart heart-2' />
-            <div> Heart Image goes here</div> 
+
           </div>
         </div>
+          <div className='area-1__right column2'>
+            <div className='quote'>
+              <blockquote> "I never fight with roommates over bills because of this genius
+                expense-splitting app. This is quite literally the best financial app out
+                on the market. Being backed by Elon Musk, Jack Dorsey, and the top venture
+                capital firm isn't a bad thing, either. Sign Up Today!"
+              </blockquote>
+            </div>
+            <div className='image-and-name'>
+              <span className='testimonial-customer__name'>Business Insider</span>
+              <img className='testimonial-customer__image' src='https://secure.splitwise.com/assets/home_page/logos/bi.png' />
+            </div>
       </div>
       <div className='main-container'>
         <div className='balances'>
@@ -99,7 +117,7 @@ const Splashpage = () => {
               currency conversion, and more!
             </p>
             <div className='pro-box__button'>
-              <button type='submit'><a href='/signup'>Sign Up</a></button>
+              <button type='submit'><a className='button-link' href='/signup'>Sign Up</a></button>
             </div>
           </div>
           <div className='pro-box-right'>

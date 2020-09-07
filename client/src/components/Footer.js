@@ -65,12 +65,10 @@ const Footer = () => {
                   <a href='/'>Privacy Policy</a>
                 </p>
                 <p>
-                  <i>Twitter</i>
-                  <a href='https:/www.twitter.com/splitwise'>Twitter</a>
-                  <i>Facebook</i>
-                  <a href='https://www.facebook.com/splitwise'>Facebook</a>
-                  <i>Instagram</i>
-                  <a href='https://www.instagram.com/splitwise'>Instagram</a>
+                  
+                  <a href='https:/www.twitter.com/splitwise'><i className='fab fa-twitter' /></a>
+                  <a href='https:/www.twitter.com/splitwise'><i className='fab fa-facebook' /></a>
+                  <a href='https:/www.twitter.com/splitwise'><i className='fab fa-instagram' /></a>
                 </p>
               </div>
               <div className="column">
