@@ -1,17 +1,17 @@
 from dotenv import load_dotenv
-from seeders.demo_user import demo_user
+# from seeders.demo_user import demo_user
 from app.models.users import User
 from seeders.aws import asset_seeds, user_img_seeds
-from seeders.images import seed_images
+from seeders.images import seed_images, demo_user_img
 from seeders.transactions import seed_transactions
+from seeders.comments import seed_comments
 from seeders.users import seed_users
 from seeders.groups import seed_groups
 from seeders.friends import seed_friends
 from seeders.expenses import seed_expenses
 from seeders.debts import seed_debts
 from app import app, db
-seeders.comments import seed_comments
-# import demo_password
+import bcrypt
 load_dotenv()
 
 
@@ -36,7 +36,19 @@ with app.app_context():
     db.session.flush()
     db.session.add_all(seed_transactions)
     db.session.commit()
+
+    db.session.add_all(demo_user_img)
+    db.session.flush()
+
     create_demo_user = db.session.query(User).get(1)
+    create_demo_user.name = "DemoUser"
+    pswrd = 'demopassword'.encode()
+    create_demo_user.hashed_password = bcrypt.hashpw(
+        pswrd, bcrypt.gensalt(4)).decode('utf-8')
+    create_demo_user.email = 'DemoUserEmail@demo.com'
+    create_demo_user.profile_img = 301
+    db.session.commit()
+
     # .query.filter(
     #     User.id == 1).first()  # THIS OBJ
     # .update({User.name: demo_user.name, User.email: demo_user.email,     User.hashed_password: demo_user.hashed_password, User.profile_img: demo_user.profile_img}, synchronize_session=False)
@@ -47,9 +59,3 @@ with app.app_context():
     # print(demo_user)
     # create_demo_user = demo_user
     # print(create_demo_user)
-    create_demo_user.name = "DemoUser"
-    create_demo_user.hashed_password = bcrypt.hashpw(
-        pswrd, bcrypt.gensalt(4)).decode('utf-8')
-    create_demo_user.email = 'DemoUserEmail@demo.com'
-    create_demo_user.profile_img = 301
-    db.session.commit()

@@ -37,5 +37,5 @@ hashed_passwords = [bcrypt.hashpw(fake.password(length=4).encode(), bcrypt.gensa
     4)).decode('utf-8') for i in range(300)]
 users = list(zip(emails, all_names, hashed_passwords, range(1, 301)))
 
-pswrd = 'demopassword'.encode()
-demo_password = bcrypt.hashpw(pswrd, bcrypt.gensalt(4)).decode('utf-8')
+# pswrd = 'demopassword'.encode()
+# demo_password = bcrypt.hashpw(pswrd, bcrypt.gensalt(4)).decode('utf-8')
