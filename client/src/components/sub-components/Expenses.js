@@ -7,7 +7,7 @@ export const Expense = (props) => {
     <>
       <span key={id} style={{ display: 'flex', flexDirection: 'row' }}>
         <div>
-          <img src={image_url.url} style={{ height: '60px', width: '60px' }}></img>
+          <img src={image_url.url} style={{ height: '60px', width: '60px' }} alt=''></img>
         </div>
         <div>
           <p><strong>{creator.name}</strong> added <strong>"{title}."</strong></p>

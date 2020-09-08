@@ -1,10 +1,7 @@
 import React from 'react';
-import { imageUrl } from '../../config';
 import { splitAmount, getCommentDate } from '../../utils';
 export const Comment = (props) => {
     const { message, created_at, commentor } = props.message;
-    // const { name } = commentor;
-    console.log(commentor)
     return (
         <>
             <div>
@@ -19,7 +16,6 @@ export const Debt = (props) => {
     const { url: lenderUrl } = lender.image_url;
     const { url: borrowerUrl } = borrower.image_url;
     const owed = splitAmount(expense.amount)
-    // console.log(lender, borrower, lenderUrl, borrowerUrl, expense)
     return (
         <>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>

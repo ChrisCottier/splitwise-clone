@@ -5,6 +5,7 @@ import { apiUrl } from '../config';
 import PageLayout from './PageLayout';
 import { Comment, Debt, Expense, Group, Transaction } from './sub-components/ActivityTypes'
 import './styles/dashboard.css';
+import './styles/recent-activity.css';
 import { getRecentActivity } from '../actions/user';
 
 
@@ -43,15 +44,15 @@ const RecentActivityCenter = (props) => {
         return (
             <>
                 <div>
-                    <div>
+                    <div className='dashboard-header'>
                         <h1 style={{ fontSize: '30px' }}> Recent Activity </h1>
                     </div>
-                    <div style={{ width: '600px' }}>
-                        <div>{commentComponents}</div>
-                        <div>{debtComponents}</div>
-                        <div>{expenseComponents}</div>
-                        <div>{groupComponents}</div>
-                        <div>{transactionComponents}</div>
+                    <div style={{ width: '600px'}}>
+                        <div id='comment' className='activity'>{commentComponents}</div>
+                        <div id='debt' className='activity'>{debtComponents}</div>
+                        <div id='expense' className='activity'>{expenseComponents}</div>
+                        <div id='group' className='activity'>{groupComponents}</div>
+                        <div id='transaction' className='activity'>{transactionComponents}</div>
                     </div>
                 </div>
             </>

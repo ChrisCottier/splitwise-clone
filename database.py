@@ -44,7 +44,7 @@ with app.app_context():
     create_demo_user.name = "DemoUser"
     pswrd = 'demopassword'.encode()
     create_demo_user.hashed_password = bcrypt.hashpw(
-        pswrd, bcrypt.gensalt(4)).decode('utf-8')
+        pswrd, bcrypt.gensalt(14)).decode('utf-8')
     create_demo_user.email = 'DemoUserEmail@demo.com'
     create_demo_user.profile_img = 301
     db.session.commit()

@@ -7,12 +7,12 @@ export const Comment = (props) => {
     return (  // We render the component with inline style for now.
         <>
             <span key={id} style={{ display: 'flex', flexDirection: 'row' }}>
-                <div style={{ minWidth: '10%' }}>
-                    <img src={commentor.image_url.url} style={{ height: '60px', width: '60px' }}></img>
+                <div id='profileImg' style={{ minWidth: '10%' }}>
+                    <img src={commentor.image_url.url} style={{ height: '55px', width: '55px' }} alt=''></img>
                 </div>
-                <div>
-                    <p style={{ wordWrap: 'break-word' }}><strong>{commentor.name}</strong> commented on <strong>"{expense.title}":</strong> "{trimmedMessage}"</p>
-                    <p>{created_at}</p>
+                <div id='content' className='comment'>
+                    <p style={{ wordWrap: 'break-word' }}><strong>{commentor.name}</strong> commented on <strong id='expense'>"{expense.title}":</strong> "{trimmedMessage}"</p>
+                    <p id='timestamp'>{created_at}</p>
                 </div>
             </span>
         </>
@@ -34,13 +34,13 @@ export const Debt = (props) => {
     return (
         <>
             <span key={id} style={{ display: 'flex', flexDirection: 'row' }}>
-                <div>
-                    <img src={lender.image_url.url} style={{ height: '60px', width: '60px' }}></img>
+                <div id='profileImg'>
+                    <img src={lender.image_url.url} style={{ height: '55px', width: '55px' }}></img>
                 </div>
-                <div>
-                    <p><strong>{expense.creator.name}</strong> added <strong>"{expense.title}."</strong></p>
+                <div id='content' className='debt'>
+                    <p><strong>{expense.creator.name}</strong> added <strong id='expense'>"{expense.title}."</strong></p>
                     <p>{currentUser.name} owes ${amount}.</p>
-                    <p>{created_at}</p>
+                    <p id='timestamp'>{created_at}</p>
                 </div>
             </span>
         </>
@@ -53,13 +53,13 @@ export const Expense = (props) => {
     return (  // therefore we do not need additional logic.
         <>
             <span key={id} style={{ display: 'flex', flexDirection: 'row' }}>
-                <div>
-                    <img src={image_url.url} style={{ height: '60px', width: '60px' }}></img>
+                <div id='profileImg'>
+                    <img src={image_url.url} style={{ height: '55px', width: '55px' }}></img>
                 </div>
-                <div>
+                <div id='content' className='expense'>
                     <p><strong>{creator.name}</strong> added <strong>"{title}."</strong></p>
-                    <p>{creator.name} paid ${amount}.</p>
-                    <p>{created_at}</p>
+                    <p>{creator.name} paid <strong id='expense'>${amount}</strong>.</p>
+                    <p id='timestamp'>{created_at}</p>
                 </div>
             </span>
         </>
@@ -76,12 +76,12 @@ export const Group = (props) => {
     return (
         <>
             <span key={id} style={{ display: 'flex', flexDirection: 'row' }}>
-                <div>
-                    <img src={creator.image_url.url} style={{ height: '60px', width: '60px' }}></img>
+                <div id='profileImg'>
+                    <img src={creator.image_url.url} style={{ height: '55px', width: '55px' }}></img>
                 </div>
-                <div>
+                <div id='content' className='group'>
                     <p><strong>{currentUser.name}</strong> {you} <strong>"{name}".</strong></p>
-                    <p>{created_at}</p>
+                    <p id='timestamp'>{created_at}</p>
                 </div>
             </span>
         </>
@@ -110,13 +110,13 @@ export const Transaction = (props) => {
     return (
         <>
             <span key={id} style={{ display: 'flex', flexDirection: 'row' }}>
-                <div>
-                    <img src={imageUrl} style={{ height: '60px', width: '60px' }}></img>
+                <div id='profileImg'>
+                    <img src={imageUrl} style={{ height: '55px', width: '55px' }}></img>
                 </div>
-                <div>
+                <div id='content' className='transaction'>
                     <p><strong>{currentUser.name}</strong> {paidOrPayer} <strong>{sender.name}.</strong></p>
-                    <p>{currentUser.name} {payOrRecieve} ${amount}.</p>
-                    <p>{created_at}</p>
+                    <p>{currentUser.name} {payOrRecieve} <strong id='expense'>${amount}</strong>.</p>
+                    <p id='timestamp'>{created_at}</p>
                 </div>
             </span>
         </>

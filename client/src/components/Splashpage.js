@@ -104,6 +104,7 @@ const Splashpage = () => {
           <img
             className="testimonial-customer__image"
             src="https://secure.splitwise.com/assets/home_page/logos/bi.png"
+            alt=''
           />
         </div>
       </div>
@@ -114,7 +115,7 @@ const Splashpage = () => {
           </div>
           <div className="header-content">
             <p>Keep track of shared expenses, balances, and who owes who.</p>
-            <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png" />
+            <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png" alt=''/>
           </div>
         </div>
         <div className="expenses">
@@ -126,7 +127,7 @@ const Splashpage = () => {
               Split expenses with any group: trips, housemates, friends,and
               family.
             </p>
-            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset2.png" />
+            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset2.png" alt='' />
           </div>
         </div>
         <div className="friends">
@@ -137,7 +138,7 @@ const Splashpage = () => {
             <p>
               Settle up with a friend and record any cash or online payment.
             </p>
-            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset3.png" />
+            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset3.png" alt=''/>
           </div>
         </div>
         <div className="add-expenses">
@@ -146,7 +147,7 @@ const Splashpage = () => {
           </div>
           <div className="header-content">
             <p>Quickly add expenses on the go before you forget who paid.</p>
-            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset4.png" />
+            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset4.png" alt=''/>
           </div>
         </div>
         <div className="pro-box">
@@ -167,7 +168,7 @@ const Splashpage = () => {
           </div>
           <div className="pro-box-right">
             <div className="pro-box-right__image">
-              <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset5.png" />
+              <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset5.png" alt=''/>
             </div>
           </div>
         </div>

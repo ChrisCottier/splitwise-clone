@@ -1,0 +1,32 @@
+.activity span{
+    background-color: #EEEEEE;
+    border-bottom: 1px solid lightgrey;
+    box-shadow: inset 0px 0px 5px 0px whitesmoke;
+}
+
+div#profileImg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+p#timestamp{
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 8px;
+}
+#content p:not(#timestamp){
+  font-size: 14px;
+  margin-left: 4px;
+}
+#content{
+    padding: 8px;
+    min-height: 70px;
+}
+span{
+    width: 558px;
+    padding: 4px;
+}
+div#content{
+    justify-content: space-between;
+}
