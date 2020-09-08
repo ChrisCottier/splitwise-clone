@@ -7,7 +7,8 @@
 #center-column {
   /* border-right: 1px solid lightgray; */
   border-left: 1px solid lightgray;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   padding: 0px;
   margin-top: 12px;
   width: 558px;
@@ -23,7 +24,7 @@
 .matches-root {
   position: relative;
   width: 100%;
-  margin-bottom: 20px;;
+  margin-bottom: 20px;
 }
 
 .matches-container {
@@ -33,7 +34,7 @@
   flex-direction: column;
   align-items: space-between;
   width: 100%;
-  border: 1px solid #5DC5A6;
+  border: 1px solid #5dc5a6;
   background-color: white;
   z-index: 5;
 }
@@ -49,10 +50,10 @@ table.friends-table {
   margin-top: 15px;
 }
 
-#right-column.is-one-fifth  {
+#right-column.is-one-fifth {
   width: 180px;
   height: auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: relative;
   box-shadow: inset 65px 0px 43px -71px rgba(0, 0, 0, 0.25);
   border-left: 1px solid lightgray;
@@ -60,14 +61,33 @@ table.friends-table {
 #left-column.is-one-fifth {
   width: 180px;
   height: auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: relative;
   box-shadow: inset -65px 0px 43px -71px rgba(0, 0, 0, 0.25);
 }
 
-div.container.is-widescreen{
+div.container.is-widescreen {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 960px;
+}
+
+.net-owed-header {
+  font-size: 12px;
+  font-weight: bold;
+  color: gray;
+  margin-bottom: 25px;
+}
+
+.net-owed-number {
+  font-size: 30px;
+}
+
+.net-owed-positive {
+  color: #5dc5a6;
+}
+
+.net-owed-negative {
+  color: #ec4724;
 }

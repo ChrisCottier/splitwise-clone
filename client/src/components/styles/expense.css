@@ -5,7 +5,6 @@
   justify-content: space-between;
   width: auto;
   height: 60px;
-  position: relative;
   border-bottom: 1px solid lightgray;
 }
 
@@ -19,14 +18,14 @@
   background: #f7f7f7;
 } */
 #hoverArea :hover {
-  background: #EEEEEE;
+  background: #eeeeee;
 }
 
 .expense-date {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3px 10px 0px
+  margin: 3px 10px 0px;
 }
 
 .day {
@@ -71,7 +70,7 @@
   color: black;
 }
 .expense-tile-amount {
-  color: #5BC5A7;
+  color: #5bc5a7;
   font-weight: 600;
 }
 
@@ -83,7 +82,7 @@
 
 #expense-display {
   border-bottom: 1px solid lightgray;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 /* #expense-display-body:enabled{
 } */
@@ -101,7 +100,7 @@
   margin-right: 4px;
 }
 .month-holder {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   box-shadow: inset 0px 0px 5px 0px whitesmoke;
   border-bottom: 1px solid lightgrey;
 }
@@ -110,3 +109,17 @@ textarea {
   resize: none;
 }
 
+#expense-display {
+  z-index: 80;
+  margin-bottom: 10px;
+}
+
+.expense-header-amount {
+  font-size: 24px;
+}
+
+.expense-header-creator {
+  color: gray;
+  font-size: 12px;
+  font-style: italic;
+}

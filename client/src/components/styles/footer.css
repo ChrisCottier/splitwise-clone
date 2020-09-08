@@ -1,12 +1,24 @@
-.footer-i{
+.footer-i {
   font-size: 30px;
 }
 
-.footer-flask{
+.footer-flask {
   background-size: 10px;
 }
 
-.creators{
+.creators {
   font-size: 20px;
   font-weight: 700;
+}
+
+.fab {
+  font-size: 30px;
+}
+
+p > a {
+  color: #9a9a9b;
+}
+
+.footer {
+  z-index: -1;
 }

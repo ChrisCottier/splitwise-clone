@@ -1,30 +1,36 @@
-import { NEW_EXPENSE, USER_EXPENSES, EXPENSE_DATA, CLEAR_EXPENSE_DATA } from '../actions/expenses'
+import {
+  NEW_EXPENSE,
+  USER_EXPENSES,
+  EXPENSE_DATA,
+  CLEAR_EXPENSE_DATA,
+} from "../actions/expenses";
+import { POST_COMMENT } from "../actions/comments";
 
 const defaultState = {
-  expenses: []
-}
+  expenses: [],
+};
 
 const expenses = (state = defaultState, action) => {
   switch (action.type) {
     case NEW_EXPENSE: {
       return {
         ...state,
-        expenses: [...state.expenses, action.newExpense]
-      }
+        expenses: [...state.expenses, action.newExpense],
+      };
     }
 
     case USER_EXPENSES: {
       return {
         ...state,
-        expenses: action.expenses
-      }
+        expenses: action.expenses,
+      };
     }
 
     case EXPENSE_DATA: {
       return {
         ...state,
-        expense: action.data
-      }
+        expense: action.data,
+      };
     }
 
     default:

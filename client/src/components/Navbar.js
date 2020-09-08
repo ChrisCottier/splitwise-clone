@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import './styles/navbar.css'
-import { ACCESS_TOKEN, LOG_OUT } from '../actions/auth'
+import "./styles/navbar.css";
+import { ACCESS_TOKEN, LOG_OUT } from "../actions/auth";
 
 export const SideNav = (props) => {
   const { location } = props;
@@ -13,14 +13,14 @@ export const SideNav = (props) => {
   const [expenses, setExpenses] = useState("");
 
   if (location === "dashboard" && !navSet) {
-    setDashboard("active-page")
-    setNavSet(true)
+    setDashboard("active-page");
+    setNavSet(true);
   } else if (location === "activities" && !navSet) {
-    setActivity("active-page")
-    setNavSet(true)
+    setActivity("active-page");
+    setNavSet(true);
   } else if (location === "expenses" && !navSet) {
-    setExpenses("active-page")
-    setNavSet(true)
+    setExpenses("active-page");
+    setNavSet(true);
   }
 
   return (
@@ -29,26 +29,61 @@ export const SideNav = (props) => {
         {/* <li><NavLink to="/users" activeclass="active">Users</NavLink></li> */}
         {/* <li><NavLink to="/sign-up" activeclass="active">Sign-Up</NavLink></li>
       <li><NavLink to="/login" activeclass="active">Login</NavLink></li> */}
-        <li><i className={`${dashboard} fas fa-home`}></i><NavLink to="/dashboard" activeclass="active" className={`${dashboard} page-link`}>{'  Dashboard'}</NavLink></li>
-        <li><i className={`${activity} fas fa-flag`}></i><NavLink to="/activities" activeclass="active" className={`${activity} page-link`}>{'  Recent Activity'}</NavLink></li>
-        <li><i className={`${expenses} fas fa-list-alt`}></i><NavLink to="/expenses" activeclass="active" className={`${expenses} page-link`}>{'  All Expenses'}</NavLink></li>
+        <li>
+          <i className={`${dashboard} fas fa-home`}></i>
+          <NavLink
+            to="/dashboard"
+            activeclass="active"
+            className={`${dashboard} page-link`}
+          >
+            {"  Dashboard"}
+          </NavLink>
+        </li>
+        <li>
+          <i className={`${activity} fas fa-flag`}></i>
+          <NavLink
+            to="/activities"
+            activeclass="active"
+            className={`${activity} page-link`}
+          >
+            {"  Recent Activity"}
+          </NavLink>
+        </li>
+        <li>
+          <i className={`${expenses} fas fa-list-alt`}></i>
+          <NavLink
+            to="/expenses"
+            activeclass="active"
+            className={`${expenses} page-link`}
+          >
+            {"  All Expenses"}
+          </NavLink>
+        </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
 const Navbar = () => {
-  const dispatch = useDispatch()
-  const { userId, token, name, loggedOut } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const { userId, token, name, loggedOut } = useSelector((state) => state.auth);
   const logOut = () => {
     document.cookie = `${ACCESS_TOKEN}=;`;
     dispatch({ type: LOG_OUT });
-  }
+  };
   return (
-    <nav id="navbar" className="navbar container is-widescreen" role="navigation" aria-label="main navigation">
+    <nav
+      id="navbar"
+      className="navbar container is-widescreen"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <NavLink to="/" className="navbar-item">
-          <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/logo-horizontal.svg" width="108px" height="22px" />
+          <img
+            id="logo"
+            src="https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png"
+          />
         </NavLink>
       </div>
 
@@ -61,15 +96,16 @@ const Navbar = () => {
 
         <div className="navbar-end">
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">
-              {name}
-            </a>
+            <a className="navbar-link">{name}</a>
 
             <div className="navbar-dropdown">
               <NavLink className="navbar-item" to="/dashboard">
                 Your Account
               </NavLink>
-              <a className="navbar-item" href="https://github.com/ChrisCottier/splitwise-clone">
+              <a
+                className="navbar-item"
+                href="https://github.com/ChrisCottier/splitwise-clone"
+              >
                 Github
               </a>
               <a className="navbar-item" onClick={logOut}>
@@ -80,10 +116,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-
-  )
-}
-
-
+  );
+};
 
 export default Navbar;
