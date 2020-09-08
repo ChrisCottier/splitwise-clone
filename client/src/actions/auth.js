@@ -10,8 +10,9 @@ export const signUp = (name, email, password) => async (dispatch) => {
     body: JSON.stringify({ name, email, password }),
   });
 
-  if (res.ok && data.token) {
+  if (res.ok) {
     const data = await res.json();
+    if (data === "Bad Login") return;
     data.token = data.token.slice(2, data.token.length - 1);
     document.cookie = `${ACCESS_TOKEN}=${data.token}`;
     dispatch({ type: SIGN_IN, token: data.token, user: data.user });
