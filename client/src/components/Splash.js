@@ -15,6 +15,7 @@ export const SplashNav = () => {
           <img
             id="logo"
             src="https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png"
+            alt=''
           />
         </NavLink>
       </div>

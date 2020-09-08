@@ -1,20 +1,18 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { apiUrl } from '../config';
+import React from "react";
+import { apiUrl } from "../config";
 
 const Friend = (props) => {
-    const url = `${apiUrl}/friends/${props.user.id}`
-    return (
-        <tr>
-            <td>
-                <a href={url}>
-                    <i className='user-icon'>
-                        {/* <FontAwesomeIcon icon='user' /> */}
-                    </i> {props.user.name}
-                </a>
-            </td>
-        </tr>
-    )
-}
+  const { url } = props.user.image_url
+  return (
+    <tr>
+      <td>
+        <a style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <img className="user-icon" src={url} alt='' style={{ width: '25px', height: '25px' }} />
+          <p style={{fontSize:"13px"}}>{props.user.name}</p>
+        </a>
+      </td>
+    </tr>
+  );
+};
 
 export default Friend;

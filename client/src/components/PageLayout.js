@@ -20,7 +20,7 @@ const RightColumn = () => {
     if (!userId || columnUpdated) return;
     dispatch(getUserDebts(userId));
     setColumnUpdated(true);
-  });
+  },[userId, columnUpdated, dispatch]);
 
   if (!netOwed) return null;
   const positiveAmount = netOwed > 0;
@@ -40,7 +40,7 @@ const RightColumn = () => {
             netOwed * -1
           }`}</div>
         </>
-      )}
+      )}  
     </div>
   );
 };
