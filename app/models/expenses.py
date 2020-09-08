@@ -10,7 +10,7 @@ class Expense(db.Model):
     amount = db.Column(db.DECIMAL(10, 2), nullable=False)
     split_type = db.Column(db.String)
     settled_up = db.Column(db.Boolean, default=False)
-    expense_img = db.Column(db.Integer, db.ForeignKey('images.id'))
+    expense_img = db.Column(db.Integer, db.ForeignKey('images.id'), default=1)
     image_url = db.relationship('Image', foreign_keys=[expense_img])
     creator_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
