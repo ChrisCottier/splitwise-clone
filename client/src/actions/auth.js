@@ -29,6 +29,7 @@ export const login = (email, password) =>
 
     if (res.ok) {
       const data = await res.json()
+      console.log(data)
       data.token = data.token.slice(2, data.token.length - 1)
       document.cookie = `${ACCESS_TOKEN}=${data.token}`;
       dispatch({ type: SIGN_IN, token: data.token, user: data.user })

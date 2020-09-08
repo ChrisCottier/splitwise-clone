@@ -39,6 +39,7 @@ def sign_up():
 def login():
   data=request.json
   user=User.query.filter(User.email == data['email']).first()
+  print(user)
   hashed_password = user.hashed_password
   if bcrypt.checkpw(data['password'].encode(), hashed_password.encode()):
 
@@ -82,8 +83,3 @@ def query_matching_users(user_id,query):
                               User.id != int(user_id)).limit(10)
   matches_dict = [user.to_dict() for user in matches]
   return jsonify({'matches':matches_dict, 'query':query})
-
-
-
-
-
