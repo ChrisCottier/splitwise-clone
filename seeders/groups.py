@@ -1,12 +1,14 @@
 from app.models.groups import Group
 from random import sample
+from . import fake
 
 x = set()
-while len(x) < 30:
-    x.add(tuple(sample(range(1, 31), k=6)))
+while len(x) < 1000:
+    x.add(tuple(sample(range(1, 301), k=6)))
 
 x = list(x)
-groups = [f'test_group{i}' for i in range(1, 31)]
+groups = [fake.company() for i in range(1000)]
+print(groups)
 for n in x:
     group = list(n)
     group.insert(0, groups.pop(0))

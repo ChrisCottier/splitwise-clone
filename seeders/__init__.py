@@ -4,10 +4,17 @@ import bcrypt
 
 fake = Faker()
 # fake data for use across multiple files which should only run once and feed the rest of the script for consistency sake.
-amounts = [format(uniform(5, 100), '.2f') for i in range(30)]
-creators = [randint(1, 30) for i in range(30)]
-borrowers = [randint(1, 30) for i in range(30)]
-payments = [format(uniform(2.5, 30), '.2f') for i in range(30)]
+amounts = [format(uniform(5, 100), '.2f') for i in range(1500)]
+creators = [randint(1, 300) for i in range(1500)]
+borrowers = [randint(1, 300) for i in range(1500)]
+payments = [format(uniform(2.5, 30), '.2f') for i in range(1500)]
+# we nee to ensure that all expense titles are unique
+expense_titles = set()
+while len(expense_titles) < 1500:
+    expense_titles.add(fake.catch_phrase())
+
+expense_titles = list(expense_titles)
+
 types = ['profile', 'expense']
 # names will be generated here for a similar reason
 male_names = [fake.name_male() for i in range(150)]
@@ -28,6 +35,7 @@ while len(emails) < 300:  # This will create 300 unique email addresses
 emails = list(emails)
 hashed_passwords = [bcrypt.hashpw(fake.password(length=4).encode(), bcrypt.gensalt(
     4)).decode('utf-8') for i in range(300)]
-# # users = dict(users)
 users = list(zip(emails, all_names, hashed_passwords, range(1, 301)))
-# users = list({'email': emails, 'name': all_names})
+
+pswrd = 'demopassword'.encode()
+demo_password = bcrypt.hashpw(pswrd, bcrypt.gensalt(4)).decode('utf-8')
