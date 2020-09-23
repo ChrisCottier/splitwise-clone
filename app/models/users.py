@@ -8,7 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     hashed_password = db.Column(db.String, nullable=False)
     name = db.Column(db.String(50), nullable=False)
-    profile_img = db.Column(db.Integer, db.ForeignKey('images.id'))
+    profile_img = db.Column(db.Integer, db.ForeignKey('images.id'), default=1)
     image_url = db.relationship('Image', foreign_keys=[profile_img])
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())

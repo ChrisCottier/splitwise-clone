@@ -1,79 +1,95 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import { login } from '../actions/auth'
-import { SplashNav } from './Splash'
+import { login } from "../actions/auth";
+import { SplashNav } from "./Splash";
 
 const Login = () => {
+  const { token } = useSelector((state) => state.auth);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
-    const { token } = useSelector(state => state.auth)
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
+  const submitLogin = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
 
-    const submitLogin = (event) => {
-        event.stopPropagation()
-        event.preventDefault()
+    dispatch(login(email, password));
+  };
 
-        dispatch(login(email, password))
-
-
+  const setField = (event) => {
+    const name = event.target.name;
+    if (name === "email") {
+      setEmail(event.target.value);
+    } else if (name === "password") {
+      setPassword(event.target.value);
     }
+  };
 
-    const setField = (event) => {
-        const name = event.target.name
-        if (name === 'email') {
-            setEmail(event.target.value)
-        } else if (name === 'password') {
-            setPassword(event.target.value)
-        }
-    }
+  const loginDemoUser = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
 
-    const loginDemoUser = (event) => {
-        event.stopPropagation();
-        event.preventDefault();
+    dispatch(login("DemoUserEmail@demo.com", "demopassword"));
+  };
 
-        dispatch(login('DemoEmail@DemoDomain.io', password));
-    }
-
-    if (token) {
-        return <Redirect to="/dashboard"></Redirect>
-    }
-    return (
-        <>
-            <SplashNav></SplashNav>
-            <div className="container is-widescreen">
-                <div className="control">
-                    <p>WELCOME TO SPLITWISE</p>
-                </div>
-                <form action="sign-up" method="POST" onSubmit={submitLogin}>
-                    <div className="field">
-                        <label className="label">Email address</label>
-                        <div className="control">
-                            <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField} />
-                        </div>
-                    </div>
-                    <div className="field">
-                        <label className="label">Password</label>
-                        <div className="control">
-                            <input className="input is-info" type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} />
-                        </div>
-                    </div>
-                    <div className="field is-grouped">
-                        <div className="control">
-                            <button className="button is-link">Login</button>
-                        </div>
-                        <div className="control">
-                            <button className="button is-link is-light" onClick={loginDemoUser}>Login as Demo User</button>
-                        </div>
-                    </div>
-                </form>
+  if (token) {
+    return <Redirect to="/dashboard"></Redirect>;
+  }
+  return (
+    <>
+      <SplashNav></SplashNav>
+      <div className="container is-widescreen">
+        <div className="control">
+          <p>WELCOME TO SPLITWISE</p>
+        </div>
+        <form action="sign-up" method="POST" onSubmit={submitLogin}>
+          <div className="field">
+            <label className="label">Email address</label>
+            <div className="control">
+              <input
+                className="input is-info"
+                type="email"
+                autoComplete="email"
+                name="email"
+                required
+                value={email}
+                onChange={setField}
+              />
             </div>
-        </>
-    )
-}
+          </div>
+          <div className="field">
+            <label className="label">Password</label>
+            <div className="control">
+              <input
+                className="input is-info"
+                type="password"
+                autoComplete="current-password"
+                name="password"
+                required
+                value={password}
+                onChange={setField}
+              />
+            </div>
+          </div>
+          <div className="field is-grouped">
+            <div className="control">
+              <button className="button is-link">Login</button>
+            </div>
+            <div className="control">
+              <button
+                className="button is-link is-light"
+                onClick={loginDemoUser}
+              >
+                Login as Demo User
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
 
-
-
-export default Login
+export default Login;
