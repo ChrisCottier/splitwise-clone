@@ -26,7 +26,7 @@ const MatchingFriends = (props) => {
   const matches = friends.filter((friend) => {
     const name = friend.name;
     return (
-      name.includes(string) &&
+      name.toLowerCase().includes(string.toLowerCase()) &&
       string.length >= 1 &&
       !friendsOnExpense.includes(friend)
     );
@@ -66,7 +66,6 @@ const FriendOnExpense = (props) => {
   const removeFriendFromExpense = () => {
     friendsArray.splice(index, 1);
     setFriendsOnExpense(friendsArray);
-    console.log("fa", friendsArray);
   };
 
   //remove friend not yet working; it adjusts the state of setFriends, but it
@@ -157,8 +156,6 @@ const AddExpenseModal = () => {
     return null;
   }
 
-  console.log("foe", friendsOnExpense);
-
   return (
     <div className="modal" style={{ display: expenseDisplay }}>
       <div className="modal-background" onClick={modalOff}></div>
@@ -189,7 +186,7 @@ const AddExpenseModal = () => {
               setFriendsOnExpense={setFriendsOnExpense}
               setAddFriend={setAddFriend}
             ></MatchingFriends>
-            <div>FRIENDS ADDED BELOW</div>
+            {/* <div>FRIENDS ADDED BELOW</div> */}
             {friendsOnExpense.map((friend, index, friendsArray) => {
               return (
                 <FriendOnExpense

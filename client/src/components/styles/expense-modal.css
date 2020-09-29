@@ -5,6 +5,11 @@ div.hover-click :hover {
 .friend-options {
   display: flex;
   flex-direction: column;
+  background-color: #eeeeee;
+}
+
+.friend-options a {
+  border-bottom: #d3d3d3;
 }
 
 .expense-remove-friend {

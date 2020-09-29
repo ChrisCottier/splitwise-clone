@@ -56,9 +56,6 @@ def login():
 
 @user_routes.route('/restore')
 def restore():
-    # auth_header= request.headers['Authorization']
-    # print(auth_header)
-    # print(auth_header[7:])
     validated = validate_jwt(request)
     if (validated):
         return validated
@@ -83,7 +80,7 @@ def query_matching_users(user_id, query):
     all_friend_ids = [
         friend_id for friend_id in all_ids if friend_id != int(user_id)]
 
-    matches = User.query.filter(User.name.contains(query),
+    matches = User.query.filter(User.name.ilike(f'%{query}%'),
                                 User.id.in_(all_friend_ids) == False,
                                 User.id != int(user_id)).limit(10)
     matches_dict = [user.to_dict() for user in matches]
