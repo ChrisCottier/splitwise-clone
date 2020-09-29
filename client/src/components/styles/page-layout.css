@@ -24,7 +24,7 @@
 .matches-root {
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .matches-container {
@@ -37,12 +37,25 @@
   border: 1px solid #5dc5a6;
   background-color: white;
   z-index: 5;
+  max-height: 250px;
+  overflow: auto;
 }
 
 .matches-container div {
   border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.matches-container button {
+  background-color: #ff4d21;
+  color: white;
+}
+
+.matches-container span {
+  font-size: 12px;
+  color: white;
 }
 
 table.friends-table {
@@ -90,4 +103,11 @@ div.container.is-widescreen {
 
 .net-owed-negative {
   color: #ec4724;
+}
+
+#friends-table-container {
+  margin-top: 30px;
+  max-height: 365px;
+  overflow: auto;
+  margin-bottom: 30px;
 }
