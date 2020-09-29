@@ -15,7 +15,7 @@ export const SplashNav = () => {
           <img
             id="logo"
             src="https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png"
-            alt=''
+            alt=""
           />
         </NavLink>
       </div>
@@ -25,11 +25,15 @@ export const SplashNav = () => {
 
         <div className="navbar-end">
           <div className="navbar-item buttons">
-            <NavLink to="/sign-up">
-              <button className="button is-link">Sign Up</button>
-            </NavLink>
             <NavLink to="/login">
-              <button className="button is-light">Log In</button>
+              <button id="log-in-button" className="button is-light">
+                Log In
+              </button>
+            </NavLink>
+            <NavLink to="/sign-up">
+              <button id="sign-up-button" className="button is-link">
+                Sign Up
+              </button>
             </NavLink>
           </div>
         </div>

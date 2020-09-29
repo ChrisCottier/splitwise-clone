@@ -58,3 +58,16 @@ div.navbar-brand img {
   position: relative;
   left: 150%; */
 }
+
+#log-in-button {
+  background-color: #5bc5a7;
+  box-shadow: -2px 2px darkgray;
+}
+
+#log-in-button:hover {
+  box-shadow: -2px 2px black;
+}
+
+#sign-up-button {
+  background-color: #ff5216;
+}

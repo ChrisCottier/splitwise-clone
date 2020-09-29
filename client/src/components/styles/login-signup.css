@@ -1,0 +1,17 @@
+.welcome-header {
+  color: #999999;
+}
+
+#login-button {
+  background-color: #ff5216;
+}
+#sign-up-button {
+  background-color: #ff5216;
+}
+#log-in-container {
+  margin-bottom: 400px;
+}
+
+#validations-container li {
+  color: red;
+}
