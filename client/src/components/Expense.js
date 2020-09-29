@@ -55,7 +55,6 @@ const ExpenseDisplay = (props) => {
   const debtComponents = debts.map((debt) => (
     <Debt key={debt.id} debt={debt} />
   ));
-  console.log(debts);
   return (
     <div id="expense-display" className="expense-display">
       <div className="expense-header">

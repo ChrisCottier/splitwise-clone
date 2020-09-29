@@ -48,14 +48,3 @@ with app.app_context():
     create_demo_user.email = 'DemoUserEmail@demo.com'
     create_demo_user.profile_img = 301
     db.session.commit()
-
-    # .query.filter(
-    #     User.id == 1).first()  # THIS OBJ
-    # .update({User.name: demo_user.name, User.email: demo_user.email,     User.hashed_password: demo_user.hashed_password, User.profile_img: demo_user.profile_img}, synchronize_session=False)
-    # create_demo_user = db.session.query(User).get(
-    #     1).update({User.name: demo_user.name, User.email: demo_user.email,
-    #                User.hashed_password: demo_user.hashed_password, User.profile_img: demo_user.profile_img}, synchronize_session=False)
-    # print(create_demo_user)
-    # print(demo_user)
-    # create_demo_user = demo_user
-    # print(create_demo_user)

@@ -99,28 +99,23 @@ export const Friending = () => {
     <>
       <TextInput
         label="Add A Friend"
-        placeHolder="Search for friend here..."
+        placeHolder="Search for friends"
         value={friendQuery}
         handleChange={handleChange}
         required={false}
         name="friending"
       ></TextInput>
       <div className="matches-root">
-        <div className="matches-container">
+        <div
+          className="matches-container"
+          style={{
+            border: matchingUsers.length > 0 ? "1px solid #5dc5a6" : "",
+          }}
+        >
           {matchingUsers.map((user) => {
             return (
-              // <div key={user.id} className="">
-              //   <span>{user.name}</span>
-              //   <button
-              //     className="button is-small"
-              //     data-id={user.id}
-              //     onClick={addNewFriend}
-              //   >
-              //     Add Friend
-              //   </button>
-              // </div>
-              <div className="add-friend-match">
-                <Friend key={user.id} user={user} />
+              <div key={user.id} className="add-friend-match">
+                <Friend user={user} />
                 <button
                   className="button is-small"
                   data-id={user.id}
