@@ -23,6 +23,7 @@ const Splashpage = () => {
           <button><a type='submit'>Log In</a></button>
           <button><a type='submit'>Sign Up</a></button>
         </div> */}
+
         <div className="area-1-container">
           <div className="area-1__left">
             <h1>
@@ -85,6 +86,11 @@ const Splashpage = () => {
                 <i className="fab fa-android" />, and web.
               </p>
             </div>
+          </div>
+        </div>
+        <div className='area-1-col__2 area-two-container'>
+          <div className='col__2-image'>
+            <img src='https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png' alt='logo' className='logo-styling' />
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 .landing-page-container{
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   padding: 0 45px 0 35px;
 }
 
@@ -29,16 +29,33 @@ button{
 
 .area-1-container{
   background-color: #F6F7F7;
-  padding-left: 500px;
-  width: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }
 
-.area-1{
+.area-two-container{
+  width: 50%;
   display: flex;
-  background-color: #F6F7F7;
-  height: 250px;
-  /* width: 42% */
+  background-color: #5BC5A7;
+  justify-content: space-around;
 }
+
+.logo-styling{
+  margin-top: 90px;
+
+}
+
+/* .area-1__left{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #F6F7F7;
+  height: 250px; 
+  width: 42%;
+  width: 50%;
+  border: 1px solid red;
+} */
 
 .header{
   font-size: 1.5rem;
@@ -48,7 +65,7 @@ button{
 
 .icon-list{
   display: flex;
-  max-width: 50%;
+  /* max-width: 50%; */
   justify-content: center;
   padding-top: 10px;
 }
@@ -74,8 +91,9 @@ button{
 }
 
 .header-one__paragraph{
+  display: flex;
   font-size: 1.125rem;
-  max-width: 20rem;
+  /* max-width: 20rem; */
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   line-height: normal;
@@ -105,15 +123,25 @@ button{
   background-color: #F6F7F7;
   display: flex;
   flex-direction: row;
-  max-width: 50%;
-  padding-left: 200px;
+  justify-content: center;
+  /* max-width: 50%; */
+  /* padding-left: 200px; */
   
+}
+
+.button-one{
+  display: flex;
+  justify-content: center;
+}
+
+.button-two{
+  display: flex;
+  justify-content: center;
 }
 
 .header-one__button{
   display: flex;
   flex-direction: row;
-  margin-left: 100px;
   width: 30%;
   height: 50px;
 }
@@ -125,7 +153,8 @@ button{
 
 .under-button{
   padding-top: 10px;
-  margin-left: 60px;
+  display: flex;
+  justify-content: center;
 }
 
 .column2{
