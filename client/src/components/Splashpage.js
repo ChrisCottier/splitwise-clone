@@ -13,7 +13,7 @@ const Splashpage = () => {
   }
 
   return (
-    <div>
+    <div className='page-container'>
       <SplashNav />
       <div className="landing-page-container">
         {/* <div className='nav-bar'>
@@ -23,6 +23,7 @@ const Splashpage = () => {
           <button><a type='submit'>Log In</a></button>
           <button><a type='submit'>Sign Up</a></button>
         </div> */}
+
         <div className="area-1-container">
           <div className="area-1__left">
             <h1>
@@ -87,6 +88,12 @@ const Splashpage = () => {
             </div>
           </div>
         </div>
+        <div className='area-1-col__2 area-two-container'>
+          <div className='col__2-image'>
+            {/* <img src='https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png' alt='logo' className='logo-styling' /> */}
+            <img src='http://u.cubeupload.com/aaronkyle/SplashImage.png' alt='logo' className='logo-styling' />
+          </div>
+        </div>
       </div>
       <div className="area-1__right column2">
         <div className="quote">
@@ -110,19 +117,19 @@ const Splashpage = () => {
       </div>
       <div className="main-container">
         <div className="balances">
+          <div className="header-content">
           <div className="header header-one">
             <h1>Track Balances</h1>
           </div>
-          <div className="header-content">
             <p>Keep track of shared expenses, balances, and who owes who.</p>
             <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png" alt=''/>
           </div>
         </div>
         <div className="expenses">
+          <div className="header-content">
           <div className="header header-two">
             <h1>Organize Expenses</h1>
           </div>
-          <div className="header-content">
             <p>
               Split expenses with any group: trips, housemates, friends,and
               family.
@@ -131,10 +138,10 @@ const Splashpage = () => {
           </div>
         </div>
         <div className="friends">
-          <div className="header header-three">
-            <h1>Pay friends back</h1>
-          </div>
           <div className="header-content">
+          <div className="header header-three">
+            <h1>Pay Friends Back</h1>
+          </div>
             <p>
               Settle up with a friend and record any cash or online payment.
             </p>
@@ -142,10 +149,10 @@ const Splashpage = () => {
           </div>
         </div>
         <div className="add-expenses">
-          <div className="header header-four">
-            <h1>Add expenses Easily</h1>
-          </div>
           <div className="header-content">
+          <div className="header header-four">
+            <h1>Add Expenses Easily</h1>
+          </div>
             <p>Quickly add expenses on the go before you forget who paid.</p>
             <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset4.png" alt=''/>
           </div>
@@ -155,7 +162,7 @@ const Splashpage = () => {
             <h1 className="pro-box-left__header">Get even more with PRO</h1>
             <p className="pro-box-left__pari">
               {" "}
-              Get even more organing with reciept scanning, charts, and graphs,
+              Get even more organizing with reciept scanning, charts, and graphs,
               currency conversion, and more!
             </p>
             <div className="pro-box__button">

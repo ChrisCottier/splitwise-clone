@@ -10,8 +10,19 @@ const Footer = () => {
           <div className="content has-text-centered">
             <div className="columns">
               <div className="column">
-                <p>splitorama</p>
+                <p className='footer-names'>Aaron Carpenter</p>
                 <p>
+                  <a href="https://github.com/aaronkcarpenter">
+                    <i className='fab fa-github' />
+                  </a>
+                  <a href="https://www.linkedin.com/in/aaronkcarpenter/">
+                    <i className='fab fa-linkedin-in' />
+                  </a>
+                  <a href="https://angel.co/u/aaron-carpenter-4">
+                    <i className='fab fa-angellist' />
+                  </a>
+                </p>
+                {/* <p>
                   <a href="/">About</a>
                 </p>
                 <p>
@@ -28,17 +39,28 @@ const Footer = () => {
                 </p>
                 <p>
                   <a href="/">API</a>
-                </p>
+                </p> */}
               </div>
               <div className="column">
-                <p>Account</p>
-                <p>
-                  <a href="/">Log In</a>
+                <p className='footer-names'>Chris Cottier</p>
+                {/* <p>
+                  <a href="/login">Log In</a>
                 </p>
                 <p>
-                  <a href="/">Sign Up</a>
-                </p>
+                  <a href="/signup">Sign Up</a>
+                </p> */}
                 <p>
+                  <a href="https://github.com/ChrisCottier">
+                    <i className='fab fa-github' />
+                  </a>
+                  <a href="https://www.linkedin.com/in/christopher-cottier-92587194/">
+                    <i className='fab fa-linkedin-in' />
+                  </a>
+                  <a href="https://angel.co/u/christopher-cottier">
+                    <i className='fab fa-angellist' />
+                  </a>
+                </p>
+                {/* <p>
                   <a href="/">Reset Password</a>
                 </p>
                 <p>
@@ -46,23 +68,34 @@ const Footer = () => {
                 </p>
                 <p>
                   <a href="/">Splitwise Pro</a>
-                </p>
+                </p> */}
               </div>
               <div className="column">
-                <p>More</p>
-                <p>
-                  <a href="/">Contact Us</a>
+                <p className='footer-names'>Conrad Orta</p>
+                {/* <p>
+                  <a href="/">Github</a>
                 </p>
                 <p>
-                  <a href="/">FAQ</a>
+                  <a href="/">LinkedIn</a>
                 </p>
                 <p>
-                  <a href="/">Terms of Service</a>
+                  <a href="/">AngelList</a>
                 </p>
                 <p>
                   <a href="/">Privacy Policy</a>
-                </p>
+                </p> */}
                 <p>
+                  <a href="https://github.com/COrtaDev">
+                    <i className='fab fa-github' />
+                  </a>
+                  <a href="https://www.linkedin.com/in/conrad-orta-16598014/">
+                    <i className='fab fa-linkedin-in' />
+                  </a>
+                  <a href="https://angel.co/u/conrad-orta-iii">
+                    <i className='fab fa-angellist' />
+                  </a>
+                </p>
+                {/* <p>
                   <a href="https:/www.twitter.com/splitwise">
                     <i className="fab fa-twitter" />
                   </a>
@@ -72,15 +105,15 @@ const Footer = () => {
                   <a href="https:/www.twitter.com/splitwise">
                     <i className="fab fa-instagram" />
                   </a>
-                </p>
+                </p> */}
               </div>
               <div className="column">
-                <button>Get It On Google Play</button>
-                <button>Download on the App Store</button>
-                <p>Made with </p>
+                {/* <button>Get It On Google Play</button>
+                <button>Download on the App Store</button> */}
+                <p className='footer-names'>Made with </p>
                 <i className="fab fa-react footer-i" />{" "}
                 <i className="fab fa-python footer-i" />
-                <p className="creators">Chris C., Conrad O., & Aaron C.</p>
+                {/* <p className="creators">Chris C., Conrad O., & Aaron C.</p> */}
               </div>
             </div>
           </div>
