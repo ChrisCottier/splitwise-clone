@@ -13,7 +13,7 @@ const Splashpage = () => {
   }
 
   return (
-    <div>
+    <div className='page-container'>
       <SplashNav />
       <div className="landing-page-container">
         {/* <div className='nav-bar'>
@@ -90,7 +90,8 @@ const Splashpage = () => {
         </div>
         <div className='area-1-col__2 area-two-container'>
           <div className='col__2-image'>
-            <img src='https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png' alt='logo' className='logo-styling' />
+            {/* <img src='https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png' alt='logo' className='logo-styling' /> */}
+            <img src='http://u.cubeupload.com/aaronkyle/SplashImage.png' alt='logo' className='logo-styling' />
           </div>
         </div>
       </div>
@@ -161,7 +162,7 @@ const Splashpage = () => {
             <h1 className="pro-box-left__header">Get even more with PRO</h1>
             <p className="pro-box-left__pari">
               {" "}
-              Get even more organing with reciept scanning, charts, and graphs,
+              Get even more organizing with reciept scanning, charts, and graphs,
               currency conversion, and more!
             </p>
             <div className="pro-box__button">
