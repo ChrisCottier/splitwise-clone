@@ -236,12 +236,13 @@ blockquote{
 }
 
 .header{
-  text-decoration: underline;
+  /* text-decoration: underline; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* align-self: center; */
   align-items: center;
+  font-size: 35px;
 
 }
 

@@ -139,7 +139,7 @@ const Splashpage = () => {
         <div className="friends">
           <div className="header-content">
           <div className="header header-three">
-            <h1>Pay friends back</h1>
+            <h1>Pay Friends Back</h1>
           </div>
             <p>
               Settle up with a friend and record any cash or online payment.
@@ -150,7 +150,7 @@ const Splashpage = () => {
         <div className="add-expenses">
           <div className="header-content">
           <div className="header header-four">
-            <h1>Add expenses Easily</h1>
+            <h1>Add Expenses Easily</h1>
           </div>
             <p>Quickly add expenses on the go before you forget who paid.</p>
             <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset4.png" alt=''/>
