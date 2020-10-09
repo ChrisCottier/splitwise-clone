@@ -23,7 +23,8 @@ button{
 .main-container{
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  /* flex-direction: row; */
+  /* flex-direction: column; */
   padding: 0 20px 0 35px;
 }
 
@@ -200,21 +201,33 @@ blockquote{
 .balances{
   background-color: #383e41;
   color: white;
+  display: flex;
+  width: 50%; 
+  justify-content: center;
 }
 
 .expenses{
   background-color: #39c3a2;
   color: white;
+  display: flex;
+  justify-content: center;
+  width: 50%;
 }
 
 .friends{
   background-color: #f17445;
   color: white;
+  display: flex;
+  width: 50%;
+  justify-content: center;
 }
 
 .add-expenses{
   background-color: #383e41;
   color: white;
+  display: flex;
+  width: 50%;
+  justify-content: center;
 }
 
 .under-icons{
@@ -223,8 +236,12 @@ blockquote{
 }
 
 .header{
-  /* border: 1px black solid; */
   text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-self: center; */
+  align-items: center;
 
 }
 
@@ -240,7 +257,7 @@ blockquote{
 .pro-box{
   background-color: #8356C7;
   color: white;
-  width: 1825px;
+  width: 1855px;
   /* height: 600px; */
   height: 500px;
   display: flex;

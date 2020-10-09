@@ -116,19 +116,19 @@ const Splashpage = () => {
       </div>
       <div className="main-container">
         <div className="balances">
+          <div className="header-content">
           <div className="header header-one">
             <h1>Track Balances</h1>
           </div>
-          <div className="header-content">
             <p>Keep track of shared expenses, balances, and who owes who.</p>
             <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png" alt=''/>
           </div>
         </div>
         <div className="expenses">
+          <div className="header-content">
           <div className="header header-two">
             <h1>Organize Expenses</h1>
           </div>
-          <div className="header-content">
             <p>
               Split expenses with any group: trips, housemates, friends,and
               family.
@@ -137,10 +137,10 @@ const Splashpage = () => {
           </div>
         </div>
         <div className="friends">
+          <div className="header-content">
           <div className="header header-three">
             <h1>Pay friends back</h1>
           </div>
-          <div className="header-content">
             <p>
               Settle up with a friend and record any cash or online payment.
             </p>
@@ -148,10 +148,10 @@ const Splashpage = () => {
           </div>
         </div>
         <div className="add-expenses">
+          <div className="header-content">
           <div className="header header-four">
             <h1>Add expenses Easily</h1>
           </div>
-          <div className="header-content">
             <p>Quickly add expenses on the go before you forget who paid.</p>
             <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset4.png" alt=''/>
           </div>
