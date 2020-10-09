@@ -12,13 +12,28 @@
 }
 
 .fab {
-  font-size: 30px;
+  font-size: 40px;
+  margin-left: 10px;
 }
 
 p > a {
-  color: #9a9a9b;
+  /* color: #9a9a9b; */
+  color: black;
+}
+
+p > a:hover{
+  color: #5bc5a7;
+}
+
+.footer-i{
+  color: black;
 }
 
 .footer {
   z-index: -1;
+}
+
+.footer-names{
+  font-weight: 700;
+  font-size: 20px;
 }
