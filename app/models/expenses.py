@@ -5,7 +5,7 @@ class Expense(db.Model):
     __tablename__ = "expenses"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(75), unique=True, nullable=False)
+    title = db.Column(db.String(75), nullable=False)
     note = db.Column(db.String(250))
     amount = db.Column(db.DECIMAL(10, 2), nullable=False)
     split_type = db.Column(db.String)

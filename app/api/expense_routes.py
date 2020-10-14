@@ -20,6 +20,17 @@ def post_expense():
     note = data['note']
     settled_up = data['settledUp']
 
+    #validate the expense has at least one friend and positive amount
+    errors = []
+    if len(friends_on_expense) < 1:
+        errors.append('Must have at least one friend on the expense')
+    if amount <= 0:
+        errors.append('Expense must be for greater than $0')
+    if len(errors) > 0:
+        return jsonify({'success': False, 'errors': errors})
+
+
+    #validated, now the expense can be created
     num_of_shares = len(friends_on_expense) + 1
     debt_per_person = amount/num_of_shares
 
@@ -51,7 +62,7 @@ def post_expense():
     db.session.commit()
 
 
-    return jsonify(new_expense)
+    return jsonify({'new_expense': new_expense, 'success': True})
 
     ################################# Expense & Comment Routes ################
 # Return all comments associated with an user

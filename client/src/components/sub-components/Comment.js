@@ -6,7 +6,8 @@ export const Comment = (props) => {
         <>
             <div>
                 <p style={{ fontSize: '12px' }}>{commentor.name} on {getCommentDate(created_at)}</p>
-                <textarea value={message} readOnly={true} rows="5" cols="30"></textarea>
+                {/* <textarea value={message} readOnly={true} rows="5" cols="30"></textarea> */}
+                <p className="user-comment">{message}</p>
             </div>
         </>
     )

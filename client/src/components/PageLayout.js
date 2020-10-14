@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import AddFriend from "./AddFriend";
 import "./styles/page-layout.css";
 import AddExpenseModal from "./AddExpenseModal";
+import SettleUpModal from "./SettleUpModal"
 import Navbar, { SideNav } from "./Navbar";
 import { getUserDebts } from "../actions/debts";
 
@@ -20,7 +21,7 @@ const RightColumn = () => {
     if (!userId || columnUpdated) return;
     dispatch(getUserDebts(userId));
     setColumnUpdated(true);
-  },[userId, columnUpdated, dispatch]);
+  }, [userId, columnUpdated, dispatch]);
 
   if (!netOwed) return null;
   const positiveAmount = netOwed > 0;
@@ -34,13 +35,12 @@ const RightColumn = () => {
           <div className="net-owed-positive net-owed-number">{`$${netOwed}`}</div>
         </>
       ) : (
-        <>
-          <div className="net-owed-negative">you owe </div>
-          <div className="net-owed-negative net-owed-number">{`$${
-            netOwed * -1
-          }`}</div>
-        </>
-      )}  
+          <>
+            <div className="net-owed-negative">you owe </div>
+            <div className="net-owed-negative net-owed-number">{`$${netOwed * -1
+              }`}</div>
+          </>
+        )}
     </div>
   );
 };
@@ -63,6 +63,7 @@ const PageLayout = (props) => {
       <main>
         <div className="container is-widescreen">
           <AddExpenseModal></AddExpenseModal>
+          <SettleUpModal></SettleUpModal>
           <div className="columns">
             <div id="left-column" className="column is-one-fifth">
               <SideNav location={location}></SideNav>

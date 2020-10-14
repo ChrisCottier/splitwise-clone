@@ -3,11 +3,14 @@ import {
   USER_EXPENSES,
   EXPENSE_DATA,
   CLEAR_EXPENSE_DATA,
+  FAILED_EXPENSE_CREATION
 } from "../actions/expenses";
 import { POST_COMMENT } from "../actions/comments";
 
 const defaultState = {
   expenses: [],
+  expenseCreated: false,
+  errors: [],
 };
 
 const expenses = (state = defaultState, action) => {
@@ -16,7 +19,16 @@ const expenses = (state = defaultState, action) => {
       return {
         ...state,
         expenses: [...state.expenses, action.newExpense],
+        expenseCreated: true,
+        errors: []
       };
+    }
+    case FAILED_EXPENSE_CREATION: {
+      return {
+        ...state,
+        expenseCreated: false,
+        errors: action.errors
+      }
     }
 
     case USER_EXPENSES: {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 
 import "../components/styles/splash.css";
 import { SplashNav } from "./Splash";
@@ -68,16 +68,16 @@ const Splashpage = () => {
               </p>
               <div className="button-one">
                 <button className="header-one__button" type="submit">
-                  <a className="header-one__link" href="/login">
+                  <NavLink className="header-one__link" to="/login">
                     Log In
-                  </a>
+                  </NavLink>
                 </button>
               </div>
               <div className="button-two">
                 <button className="header-one__button" type="submit">
-                  <a className="header-one__link" href="/signup">
+                  <NavLink className="header-one__link" to="/sign-up">
                     Sign Up
-                  </a>
+                  </NavLink>
                 </button>
               </div>
               <p className="under-button">
@@ -118,18 +118,18 @@ const Splashpage = () => {
       <div className="main-container">
         <div className="balances">
           <div className="header-content">
-          <div className="header header-one">
-            <h1>Track Balances</h1>
-          </div>
+            <div className="header header-one">
+              <h1>Track Balances</h1>
+            </div>
             <p>Keep track of shared expenses, balances, and who owes who.</p>
-            <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png" alt=''/>
+            <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset1.png" alt='' />
           </div>
         </div>
         <div className="expenses">
           <div className="header-content">
-          <div className="header header-two">
-            <h1>Organize Expenses</h1>
-          </div>
+            <div className="header header-two">
+              <h1>Organize Expenses</h1>
+            </div>
             <p>
               Split expenses with any group: trips, housemates, friends,and
               family.
@@ -139,22 +139,22 @@ const Splashpage = () => {
         </div>
         <div className="friends">
           <div className="header-content">
-          <div className="header header-three">
-            <h1>Pay Friends Back</h1>
-          </div>
+            <div className="header header-three">
+              <h1>Pay Friends Back</h1>
+            </div>
             <p>
               Settle up with a friend and record any cash or online payment.
             </p>
-            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset3.png" alt=''/>
+            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset3.png" alt='' />
           </div>
         </div>
         <div className="add-expenses">
           <div className="header-content">
-          <div className="header header-four">
-            <h1>Add Expenses Easily</h1>
-          </div>
+            <div className="header header-four">
+              <h1>Add Expenses Easily</h1>
+            </div>
             <p>Quickly add expenses on the go before you forget who paid.</p>
-            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset4.png" alt=''/>
+            <img src="https://secure.splitwise.com/assets/home_page/fixtures/asset4.png" alt='' />
           </div>
         </div>
         <div className="pro-box">
@@ -167,15 +167,15 @@ const Splashpage = () => {
             </p>
             <div className="pro-box__button">
               <button type="submit">
-                <a className="button-link" href="/signup">
+                <NavLink className="button-link" to="/sign-up">
                   Sign Up
-                </a>
+                </NavLink>
               </button>
             </div>
           </div>
           <div className="pro-box-right">
             <div className="pro-box-right__image">
-              <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset5.png" alt=''/>
+              <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/landing/asset5.png" alt='' />
             </div>
           </div>
         </div>

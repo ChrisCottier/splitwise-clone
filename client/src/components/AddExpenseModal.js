@@ -10,7 +10,7 @@ import {
 } from "./sub-components/Form-Inputs";
 import { EXPENSE_MODAL } from "../actions/modals";
 import { getFriends } from "../actions/friends.js";
-import { newExpense } from "../actions/expenses";
+import { newExpense, FAILED_EXPENSE_CREATION } from "../actions/expenses";
 import { getUserDebts } from "../actions/debts";
 import "./styles/expense-modal.css";
 
@@ -65,11 +65,10 @@ const FriendOnExpense = (props) => {
 
   const removeFriendFromExpense = () => {
     friendsArray.splice(index, 1);
-    setFriendsOnExpense(friendsArray);
+    const newArr = [...friendsArray]
+    setFriendsOnExpense(newArr);
   };
 
-  //remove friend not yet working; it adjusts the state of setFriends, but it
-  // doesnt the render is the same
   return (
     <div>
       {friend.name}
@@ -91,15 +90,29 @@ const AddExpenseModal = () => {
 
   const { expenseDisplay } = useSelector((state) => state.modals);
   const { friends } = useSelector((state) => state.friends);
-  const { userId, token } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
+  const { expenseCreated, errors } = useSelector(state => state.expenses)
   const dispatch = useDispatch();
 
+  //grabbing list of friends
   useEffect(() => {
     if (!friendsUpdated) {
       dispatch(getFriends(userId));
       setFriendsUpdated(true);
     }
   });
+
+  //if contribution successful, close modal
+  useEffect(() => {
+    if (expenseCreated) {
+      setTimeout(() => {
+        dispatch({ type: EXPENSE_MODAL, display: "none" })
+        //reset success message
+        dispatch({ type: FAILED_EXPENSE_CREATION, errors: [] })
+      }, 3000)
+    }
+  }, [expenseCreated])
+
 
   const modalOff = (event) => {
     event.stopPropagation();
@@ -169,7 +182,10 @@ const AddExpenseModal = () => {
           ></button>
         </header>
         <section className="modal-card-body">
-          {/* <h1 className="title is-5">Create An Expense</h1> */}
+          {expenseCreated ? <p className="success">Your expense has been created successfully!</p> : <></>}
+          {errors ? errors.map((error, i) => {
+            return (<p className="failure" key={i}>{error}</p>)
+          }) : <></>}
           <form onSubmit={handleSubmit}>
             <TextInput
               label="Add Friends"
@@ -213,15 +229,16 @@ const AddExpenseModal = () => {
               name="amount"
               value={amount}
               handleChange={handleChange}
-              required={false}
+              required={true}
             ></NumberInput>
+            <span className="amount-help">*Amount is split evenly between all friends*</span>
             <TextInput
               label="Note"
               name="note"
               placeHolder="Optional note..."
               value={note}
               handleChange={handleChange}
-              require={true}
+              require={false}
             ></TextInput>
             <button className="button is-success" type="submit">
               Split It!

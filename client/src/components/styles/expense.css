@@ -6,19 +6,19 @@
   width: auto;
   height: 60px;
   border-bottom: 1px solid lightgray;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.expense-tile:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
 }
 
 .expense-title {
   font-size: 15px;
   font-weight: 500;
   margin-right: 20px;
-}
-
-/* span.expense :not(.expense-tile-left):not(.expense-tile-right):hover {
-  background: #f7f7f7;
-} */
-#hoverArea :hover {
-  background: #eeeeee;
 }
 
 .expense-date {
@@ -122,4 +122,12 @@ textarea {
   color: gray;
   font-size: 12px;
   font-style: italic;
+}
+
+.user-comment {
+  font-size: 12px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-bottom: 10px;
 }
