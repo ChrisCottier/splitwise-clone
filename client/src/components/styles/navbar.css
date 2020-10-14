@@ -1,7 +1,6 @@
 #navbar {
   background-color: #5bc5a7;
-  margin-bottom: 5px;
-}
+  margin-bottom: 5px;}
 
 a.active-page {
   font-weight: bold;
@@ -30,7 +29,7 @@ i.active-page {
 }
 
 nav#navbar.navbar.container.is-widescreen {
-  height: 33px;
+  height: 45px;
   padding: 0px;
   width: 100%;
   max-width: unset;

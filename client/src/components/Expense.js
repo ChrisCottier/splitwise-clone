@@ -107,45 +107,45 @@ const ExpenseTile = (props) => {
 
   return (
     <>
-      <span id="hoverArea" className="expense">
-        <div className="expense-tile" onClick={setView}>
-          <div className="expense-tile-left">
-            <div className="expense-date">
-              <div className="month">{dateTime.month}</div>
-              <div className="day">{dateTime.dayOfMonth}</div>
-            </div>
-            <i className="fas fa-file-invoice-dollar fa-2x"></i>
-            <div className="expense-title">{expense.title}</div>
+      <div className="expense-tile" onClick={setView}>
+        <div className="expense-tile-left">
+          <div className="expense-date">
+            <div className="month">{dateTime.month}</div>
+            <div className="day">{dateTime.dayOfMonth}</div>
           </div>
-          <div className="expense-tile-right">
-            <div className="expense-tile-stats">
-              <div className="expense-left">
-                <div className="expense-tile-lender">
-                  {expense.creator.name} paid
+          <i className="fas fa-file-invoice-dollar fa-2x"></i>
+          <div className="expense-title">{expense.title}</div>
+        </div>
+        <div className="expense-tile-right">
+          <div className="expense-tile-stats">
+            <div className="expense-left">
+              <div className="expense-tile-lender">
+                {expense.creator.name} paid
                 </div>
-                <div className="expense-tile-amount"> ${expense.amount}</div>
+              <div className="expense-tile-amount"> ${expense.amount}</div>
+            </div>
+            <div className="expense-right">
+              <div className="expense-tile-lender">
+                {expense.creator.name} lent {}
               </div>
-              <div className="expense-right">
-                <div className="expense-tile-lender">
-                  {expense.creator.name} lent {}
-                </div>
-                <div id="dark" className="expense-tile-amount">
-                  {" "}
+              <div id="dark" className="expense-tile-amount">
+                {" "}
                   ${splitAmount(expense.amount)}
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </span>
-      {view ? (
-        <ExpenseDisplay
-          expenseId={expense.id}
-          viewExpense={viewExpense}
-        ></ExpenseDisplay>
-      ) : (
-        <></>
-      )}
+      </div>
+      {
+        view ? (
+          <ExpenseDisplay
+            expenseId={expense.id}
+            viewExpense={viewExpense}
+          ></ExpenseDisplay>
+        ) : (
+            <></>
+          )
+      }
     </>
   );
 };

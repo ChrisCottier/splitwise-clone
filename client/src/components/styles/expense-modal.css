@@ -15,3 +15,8 @@ div.hover-click :hover {
 .expense-remove-friend {
   margin-left: 15px;
 }
+
+.amount-help {
+  color: #aaaaaa;
+  padding-bottom: 20px;
+}

@@ -38,6 +38,9 @@ const Login = () => {
   if (token) {
     return <Redirect to="/dashboard"></Redirect>;
   }
+
+  if (errors === undefined) return null;
+
   return (
     <>
       <SplashNav></SplashNav>
@@ -48,8 +51,8 @@ const Login = () => {
             {errors.length > 0 ? (
               errors.map((error, ind) => <li key={ind}>{error}</li>)
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </ul>
           <form action="sign-up" method="POST" onSubmit={submitLogin}>
             <div className="field">

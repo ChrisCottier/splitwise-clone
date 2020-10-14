@@ -65,11 +65,10 @@ const FriendOnExpense = (props) => {
 
   const removeFriendFromExpense = () => {
     friendsArray.splice(index, 1);
-    setFriendsOnExpense(friendsArray);
+    const newArr = [...friendsArray]
+    setFriendsOnExpense(newArr);
   };
 
-  //remove friend not yet working; it adjusts the state of setFriends, but it
-  // doesnt the render is the same
   return (
     <div>
       {friend.name}
@@ -91,7 +90,7 @@ const AddExpenseModal = () => {
 
   const { expenseDisplay } = useSelector((state) => state.modals);
   const { friends } = useSelector((state) => state.friends);
-  const { userId, token } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -215,6 +214,7 @@ const AddExpenseModal = () => {
               handleChange={handleChange}
               required={false}
             ></NumberInput>
+            <span className="amount-help">*Amount is split evenly between all friends*</span>
             <TextInput
               label="Note"
               name="note"
