@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 
 import "./styles/dashboard.css";
-import { EXPENSE_MODAL } from "../actions/modals";
+import { EXPENSE_MODAL, SETTLE_UP_MODAL } from "../actions/modals";
 import { getUserDebts } from "../actions/debts";
 import PageLayout from "./PageLayout";
 
@@ -13,6 +13,10 @@ export const ExpenseHeader = (props) => {
 
   const showExpenseModal = () => {
     dispatch({ type: EXPENSE_MODAL, display: "block" });
+  };
+
+  const showSettleUpModal = () => {
+    dispatch({ type: SETTLE_UP_MODAL, display: "block" });
   };
 
   return (
@@ -37,7 +41,7 @@ export const ExpenseHeader = (props) => {
               </button>
             </div>
             <div className="settle-up">
-              <button className="button settle-up-button">
+              <button className="button settle-up-button" onClick={showSettleUpModal}>
                 <p>Settle up</p>
               </button>
             </div>

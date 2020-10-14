@@ -1,0 +1,38 @@
+.settle-up-grid {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 200px;
+    grid-template-rows: 100%;
+}
+
+.settle-up-grid span {
+    max-width: 100%;
+    text-align: center;
+}
+
+.settle-up-header {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+.settle-up-debt span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.settle-up-form {
+    display: flex;
+}
+
+.settle-up-form button{
+    background-color: #ff652f;
+    color: white;
+    margin-left: 15px;
+}
+
+.settle-up-form button:hover{
+    background-color: #FF4D21;
+}
+

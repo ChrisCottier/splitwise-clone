@@ -1,1 +1,2 @@
-export const EXPENSE_MODAL="EXPENSE_MODAL"
+export const EXPENSE_MODAL = "EXPENSE_MODAL"
+export const SETTLE_UP_MODAL = "SETTLE_UP_MODAL"
