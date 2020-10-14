@@ -21,6 +21,7 @@ const DebtDetails = (props) => {
         event.stopPropagation();
         event.preventDefault();
         dispatch(payDebt({ userId, debtId: debt.id, payAmount }))
+        setPayAmount('')
 
     }
 
@@ -58,6 +59,10 @@ const SettleUpModal = () => {
         dispatch({ type: SETTLE_UP_MODAL, display: 'none' })
     }
     if (!iOwe) return null;
+
+    //we'll organize the debts alphabetically for some organization
+    const myDebts = [...iOwe].sort((a, b) => a.lender.name.localeCompare(b.lender.name))
+
     return (
         <div className="modal" style={{ display: settleUpDisplay }}>
             <div className="modal-background" onClick={modalOff}></div>
@@ -89,7 +94,7 @@ const SettleUpModal = () => {
                             <span>Amount</span>
                             <span>Settle</span>
                         </header>
-                        {iOwe.map(debt => {
+                        {myDebts.map(debt => {
                             if (debt.amount === '0.00') return <></>
                             const dateTime = dateTimeObj(debt.created_at);
                             return (
