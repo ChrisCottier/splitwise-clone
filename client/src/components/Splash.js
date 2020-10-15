@@ -14,7 +14,7 @@ export const SplashNav = () => {
         <NavLink to="/" className="navbar-item">
           <img
             id="logo"
-            src="https://indiegogo-clone.s3.us-east-2.amazonaws.com/splitwise.png"
+            src="https://misc0103.s3.us-east-2.amazonaws.com/split-logo.png"
             alt=""
           />
         </NavLink>
